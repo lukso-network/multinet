@@ -85,8 +85,6 @@ Example config for 8 nodes:
 
 ## TODO
 
-- [ ] Integrate eth2stats
-- [ ] Allow external nodes in order to experiment
 - [ ] Deploy to github actions image building
 
 # Running just 3 nodes with docker-compose

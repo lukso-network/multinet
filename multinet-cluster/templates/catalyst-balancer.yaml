@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalyst-balancer
+spec:
+  selector:
+    # force it only to teku-catalyst tier
+    app: multinet
+    tier: teku-catalyst
+  ports:
+    - protocol: TCP
+      name: rpcapi
+      port: 8545
+      targetPort: 8545
+    - protocol: TCP
+      name: p2p-catalyst
+      port: 30303
+      targetPort: 30303
+    - protocol: TCP
+      name: 9k-teku
+      port: 9000
+      targetPort: 9000
+    - protocol: TCP
+      name: 4k-teku
+      port: 4000
+      targetPort: 4000
+    - protocol: TCP
+      name: 5051-teku
+      port: 5051
+      targetPort: 5051
+  type: LoadBalancer
+
