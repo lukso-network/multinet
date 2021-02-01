@@ -5,8 +5,7 @@ metadata:
 spec:
   selector:
     # force it only to teku-catalyst tier
-    app: multinet
-    tier: teku-catalyst
+    balancer: teku-catalyst
   ports:
     - protocol: TCP
       name: rpcapi
@@ -29,4 +28,4 @@ spec:
       port: 5051
       targetPort: 5051
   type: LoadBalancer
-
+  externalTrafficPolicy: Local

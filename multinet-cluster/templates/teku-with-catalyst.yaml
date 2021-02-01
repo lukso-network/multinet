@@ -16,6 +16,7 @@ spec:
       generateName: teku-catalyst-
       labels:
         tier: teku-catalyst
+        balancer: teku-catalyst
     spec:
       volumes:
         - name: deposits
