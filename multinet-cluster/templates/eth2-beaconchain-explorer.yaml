@@ -6,6 +6,7 @@ metadata:
     app: multinet
     tier: explorer
 spec:
+  replicas: {{ .Values.ETH_2_EXPLORERS }}
   serviceName: explorer
   selector:
     matchLabels:
