@@ -39,7 +39,7 @@ if [ "$MULTINET_POD_NAME" != "teku-catalyst-0" ]; then
   done
 fi
 
-
+TEKU_LOG_FILE_TIMESTAMP=$( date +'%s' );
 
 echo "starting with Interop index $INTEROP_START_INDEX";
 
@@ -54,8 +54,7 @@ echo "starting with Interop index $INTEROP_START_INDEX";
 --rest-api-host-allowlist="*" \
 --rest-api-port=5051 \
 --logging=all \
---log-file=$TEKU_LOG_FILE \
---log-file-name-pattern=$TEKU_LOG_FILE_NAME_PATTERN \
+--log-file=/root/multinet/repo/data/logs/$MULTINET_POD_NAME-$TEKU_LOG_FILE_TIMESTAMP.log \
 --rest-api-enabled=true \
 --metrics-enabled=true \
 --p2p-discovery-bootnodes=$TEKU_BOOTNODE_ENR \
