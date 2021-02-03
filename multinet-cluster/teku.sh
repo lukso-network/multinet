@@ -54,7 +54,7 @@ echo "starting with Interop index $INTEROP_START_INDEX";
 --rest-api-host-allowlist="*" \
 --rest-api-port=5051 \
 --logging=all \
---log-file=/root/multinet/repo/data/logs/$MULTINET_POD_NAME-$TEKU_LOG_FILE_TIMESTAMP \
+--log-file=/root/multinet/repo/data/logs/$MULTINET_POD_NAME-$TEKU_LOG_FILE_TIMESTAMP.log \
 --rest-api-enabled=true \
 --metrics-enabled=true \
 --p2p-discovery-bootnodes=$TEKU_BOOTNODE_ENR \
