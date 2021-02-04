@@ -28,6 +28,10 @@ spec:
       containers:
         - name: catalyst
           image: silesiacoin/ssc20-client:v002
+          resources:
+            requests:
+              memory: "1000M"
+              cpu: "1"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
@@ -59,6 +63,10 @@ spec:
               value: {{ .Files.Get "catalyst.sh" | b64enc }}
         - name: teku
           image: silesiacoin/ssc20-client:v002
+          resources:
+            requests:
+              memory: "1000M"
+              cpu: "1"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
@@ -89,6 +97,9 @@ spec:
               value: "{{ .Values.TEKU_BOOTNODE_ENR }}"
         - name: eth2stats-client
           image: silesiacoin/eth2stats-client:v2teku
+          resources:
+            requests:
+              cpu: "1"
           imagePullPolicy: IfNotPresent
           args: [ "run", "--v", "--eth2stats.node-name", "$(MULTINET_POD_NAME)", "--eth2stats.addr", "eth2stats:9090", "--eth2stats.tls=false", "--beacon.type", "v1", "--beacon.addr", "http://$(MULTINET_POD_IP):5051" ]
           env:
@@ -103,6 +114,9 @@ spec:
       initContainers:
         - name: genesis
           image: silesiacoin/ssc20-client:v002
+          resources:
+            requests:
+              cpu: "100m"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
