@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prysmbootnode
+spec:
+  selector:
+    # force it to node 0 only
+    statefulset.kubernetes.io/pod-name: prysm-0
+  ports:
+    - protocol: UDP
+      name: prysm-bootnode-udp
+      port: 4000
+    - protocol: TCP
+      name: prysm-bootnode-tcp
+      port: 5000

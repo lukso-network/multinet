@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prysmbootnode
+  labels:
+    app: multinet
+    tier: prysm
+spec:
+  replicas: 1
+  serviceName: prysmbootnode
+  selector:
+    matchLabels:
+      tier: prysm
+  template:
+    metadata:
+      generateName: prysmbootnode
+      labels:
+        tier: prysm
+    spec:
+      volumes:
+        - name: deposits
+          persistentVolumeClaim:
+            claimName: deposits-storage
+        - name: common-data
+          persistentVolumeClaim:
+            claimName: common-data
+      containers:
+        - name: prysmbootnode
+          image: silesiacoin/multinet-prysm:v17
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /root/multinet/repo/deposits
+              name: deposits
+            - mountPath: /root/multinet/repo/data
+              name: common-data
+          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 4000
+              protocol: UDP
+            - containerPort: 5000
+              protocol: TCP
+          args:
+            - ls -la /root/multinet/repo; echo $PRYSM_SCRIPT; echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_bootnode.shB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_bootnode.shB64.sh > /root/multinet/repo/prysm/run_bootnode.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_bootnode.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: PRYSM_SCRIPT
+              value: {{ .Files.Get "run_bootnode.sh" | b64enc }}

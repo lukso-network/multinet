@@ -17,7 +17,7 @@ LIGHTHOUSE_DEV_NODES: 0
 LIGHTHOUSE_SOURCE_PATH: /run/desktop/mnt/host/e/tmp/multinet/lh
 LIGHTHOUSE_VALIDATORS: 64
 
-PRYSM_NODES: 0
+PRYSM_NODES: 2
 # external nodes we manually manage
 PRYSM_DEV_NODES: 0
 # the path of the source code for the manually managed nodes
@@ -25,6 +25,7 @@ PRYSM_DEV_NODES: 0
 # you will find the oritinal source in the container you can copy also
 PRYSM_SOURCE_PATH: /run/desktop/mnt/host/e/tmp/multinet/pry
 PRYSM_VALIDATORS: 64
+PRYSM_BOOTNODE_ENR:
 
 # DEV_NODES should use the <client>-dev-N folders for deposits details
 # see respective run_<client> scripts for usage
@@ -38,7 +39,7 @@ ETH2STATS_DASHBOARD_EXPOSURE_PORT: 80
 ETH2STATS_SERVER_EXPOSURE_PORT: 8080
 
 # ETH 2.0 PHASE 1
-TEKU_CATALYST_NODES: 4
+TEKU_CATALYST_NODES: 0
 TEKU_CATALYST_NODES_DEV: 0
 TEKU_LOG_FILE: "/root/multinet/repo/teku_2021-02-03_15-12.log"
 TEKU_LOG_FILE_NAME_PATTERN: "teku_%d{yyyy-MM-dd_HH-ii}.log"
