@@ -35,7 +35,12 @@ spec:
             name: common-data
           command: [ "bash", "-c"]
           ports:
-          - containerPort: 4000
+            - name: monitoring-port
+              containerPort: 8080
+              protocol: TCP
+            - name: p2p-tcp-port
+              containerPort: 13000
+              protocol: TCP
           args:
           - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_beacon-nodeB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_beacon-nodeB64.sh > /root/multinet/repo/prysm/run_beacon-node.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_beacon-node.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_beacon-node.sh;
           # inject environment variables
@@ -61,7 +66,9 @@ spec:
               name: common-data
           command: [ "bash", "-c" ]
           ports:
-            - containerPort: 4000
+            - name: monitoring-port
+              containerPort: 8081
+              protocol: TCP
           args:
             - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_validatorB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_validatorB64.sh > /root/multinet/repo/prysm/run_validator.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_validator.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_validator.sh;
           # inject environment variables
