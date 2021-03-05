@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prysm-external-1
+spec:
+  selector:
+    statefulset.kubernetes.io/pod-name: prysm-1
+  ports:
+    - name: monitoring-port
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: p2p-tcp-port
+      port: 13000
+      targetPort: 13000
+      protocol: TCP
+  type: LoadBalancer
+  loadBalancerIP: 34.91.186.254
