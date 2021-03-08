@@ -6,10 +6,10 @@ mkdir /root/multinet/repo/data/common;
 
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
   EXTERNAL_IP=34.91.111.241;
-  rm /root/multinet/repo/data/common/genesis.ssz
-  bazel run //tools/genesis-state-gen -- --num-validators=400 \
-  --output-ssz=/root/multinet/repo/data/common/genesis.ssz \
-  --mainnet-config
+#  rm /root/multinet/repo/data/common/genesis.ssz
+#  bazel run //tools/genesis-state-gen -- --num-validators=500 \
+#  --output-ssz=/root/multinet/repo/data/common/genesis.ssz \
+#  --mainnet-config
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then

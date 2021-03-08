@@ -3,35 +3,15 @@
 echo 'Running prysm validator';
 echo $MULTINET_POD_IP;
 
+  ./prysm.sh validator accounts import --keys-dir=/root/multinet/repo/data/common/$MULTINET_POD_NAME \
+  --wallet-dir=/tmp/wallets \
+  --wallet-password-file=/root/multinet/repo/data/common/$MULTINET_POD_NAME/pass.txt \
+  --account-password-file=/root/multinet/repo/data/common/$MULTINET_POD_NAME/pass1.txt \
+  --accept-terms-of-use &&
 
-if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
   ./prysm.sh validator --beacon-rpc-provider localhost:4000 \
-  --interop-num-validators=100 \
-  --interop-start-index=0 \
   --force-clear-db \
+  --wallet-dir=/tmp/wallets \
+  --wallet-password-file=/root/multinet/repo/data/common/$MULTINET_POD_NAME/pass1.txt \
   --accept-terms-of-use
-fi
 
-if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
-  ./prysm.sh validator --beacon-rpc-provider localhost:4000 \
-  --interop-num-validators=100 \
-  --interop-start-index=100 \
-  --force-clear-db \
-  --accept-terms-of-use
-fi
-
-if [ "$MULTINET_POD_NAME" == "prysm-2" ]; then
-  ./prysm.sh validator --beacon-rpc-provider localhost:4000 \
-  --interop-num-validators=100 \
-  --interop-start-index=200 \
-  --force-clear-db \
-  --accept-terms-of-use
-fi
-
-if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
-  ./prysm.sh validator --beacon-rpc-provider localhost:4000 \
-  --interop-num-validators=100 \
-  --interop-start-index=300 \
-  --force-clear-db \
-  --accept-terms-of-use
-fi
