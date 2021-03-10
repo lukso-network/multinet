@@ -6,10 +6,6 @@ mkdir /root/multinet/repo/data/common;
 
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
   EXTERNAL_IP=34.91.111.241;
-#  rm /root/multinet/repo/data/common/genesis.ssz
-#  bazel run //tools/genesis-state-gen -- --num-validators=500 \
-#  --output-ssz=/root/multinet/repo/data/common/genesis.ssz \
-#  --mainnet-config
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
@@ -23,7 +19,6 @@ fi
 if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
   EXTERNAL_IP=35.204.181.122;
 fi
-
 
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
@@ -40,8 +35,3 @@ done
   --p2p-host-ip=$EXTERNAL_IP \
   --bootstrap-node=enr:-Ku4QFuEmIcEMoNAox0fh1PdJMeYdzruWFI1rNXi0Xk-Bk9pPpetCQSu27X9vUjYj7rS67L6tJaWWgaB-aNx16-0InkBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAAUaJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A \
   --accept-terms-of-use
-
-
-
-
-
