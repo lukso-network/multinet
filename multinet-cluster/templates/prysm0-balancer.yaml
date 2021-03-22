@@ -10,6 +10,10 @@ spec:
       port: 8080
       targetPort: 8080
       protocol: TCP
+    - name: grpc-port
+      port: 4000
+      targetPort: 4000
+      protocol: TCP
     - name: p2p-tcp-port
       port: 13000
       targetPort: 13000

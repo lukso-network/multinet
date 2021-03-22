@@ -38,6 +38,9 @@ spec:
             - name: monitoring-port
               containerPort: 8080
               protocol: TCP
+            - name: grpc-port
+              containerPort: 4000
+              protocol: TCP
             - name: p2p-tcp-port
               containerPort: 13000
               protocol: TCP

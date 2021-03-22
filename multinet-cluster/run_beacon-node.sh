@@ -29,7 +29,8 @@ done
   --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
   --interop-eth1data-votes \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --monitoring-host=0.0.0.0 \
+  --monitoring-host="0.0.0.0" \
+  --rpc-host="0.0.0.0" \
   --deposit-contract=0x72C524F3b1bCe12FB0eADb1ab91E6Bcd42C611Cc \
   --http-web3provider=https://goerli.prylabs.net \
   --contract-deployment-block=4367358 \
