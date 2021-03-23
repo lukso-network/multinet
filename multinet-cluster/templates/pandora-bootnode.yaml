@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pandorabootnode
+  labels:
+    app: multinet
+    tier: prysm
+spec:
+  replicas: 1
+  serviceName: pandorabootnode
+  selector:
+    matchLabels:
+      tier: prysm
+  template:
+    metadata:
+      generateName: pandorabootnode
+      labels:
+        tier: prysm
+    spec:
+      volumes:
+        - name: deposits
+          persistentVolumeClaim:
+            claimName: deposits-storage
+        - name: common-data
+          persistentVolumeClaim:
+            claimName: common-data
+      containers:
+        - name: prysmbootnode
+          image: ubuntu
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /root/multinet/repo/data
+              name: common-data
+          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 30303
+              protocol: TCP
+            - containerPort: 30301
+              protocol: TCP
+          args:
+            - ls -la; echo $PRYSM_SCRIPT; echo $PRYSM_SCRIPT > run_pandora-bootnodeB64.sh; echo "copied"; base64 -d ./run_pandora-bootnodeB64.sh > ./run_pandora-bootnode.sh; echo "decoded"; chmod +x ./run_pandora-bootnode.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ./run_pandora-bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: PRYSM_SCRIPT
+              value: {{ .Files.Get "run_pandora-bootnode.sh" | b64enc }}

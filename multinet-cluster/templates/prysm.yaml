@@ -25,6 +25,39 @@ spec:
           persistentVolumeClaim:
             claimName: common-data
       containers:
+        - name: catalyst
+          image: ubuntu
+          resources:
+            requests:
+              memory: "1000M"
+              cpu: "1"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /root/multinet/repo/data
+              name: common-data
+          command: [ "bash", "-c" ]
+          ports:
+            - containerPort: 8545
+            - containerPort: 30303
+          args:
+            - echo $CATALYST_INIT_SCRIPT; echo $CATALYST_INIT_SCRIPT > /root/multinet/repo/catalystB64.sh; base64 -d /root/multinet/repo/catalystB64.sh > /root/multinet/repo/catalyst.sh; chmod +x /root/multinet/repo/catalyst.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/catalyst.sh
+          terminationMessagePolicy: FallbackToLogsOnError
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: CATALYST_STATS_LOGIN_SECRET
+              value: "{{ .Values.CATALYST_STATS_LOGIN_SECRET }}"
+            - name: CATALYST_STATS_HOST
+              value: "{{ .Values.CATALYST_STATS_HOST }}"
+            - name: CATALYST_INIT_SCRIPT
+              value: {{ .Files.Get "catalyst.sh" | b64enc }}
         - name: prysm
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
