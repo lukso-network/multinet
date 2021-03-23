@@ -23,8 +23,9 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-
-./prysm.sh beacon-chain --datadir /tmp/chaindata \
+wget https://github.com/prysmaticlabs/prysm/releases/download/v1.3.3/beacon-chain-v1.3.3-linux-amd64 -O ./beacon-chain.run &&
+chmod +x ./beacon-chain.run &&
+./beacon-chain.run --datadir /tmp/chaindata \
   --force-clear-db \
   --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
   --interop-eth1data-votes \
