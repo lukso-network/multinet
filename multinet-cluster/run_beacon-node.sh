@@ -23,7 +23,7 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-wget https://github.com/prysmaticlabs/prysm/releases/download/v1.3.3/beacon-chain-v1.3.3-linux-amd64 -O ./beacon-chain.run &&
+wget https://storage.googleapis.com/l16-common/vanguard/prysm_"$VANGUARD_COMMIT" -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 ./beacon-chain.run --datadir /tmp/chaindata \
   --force-clear-db \
@@ -33,7 +33,7 @@ chmod +x ./beacon-chain.run &&
   --monitoring-host="0.0.0.0" \
   --rpc-host="0.0.0.0" \
   --deposit-contract=0x72C524F3b1bCe12FB0eADb1ab91E6Bcd42C611Cc \
-  --http-web3provider=https://goerli.prylabs.net \
+  --http-web3provider=https://goerli.infura.io/v3/b21b783d2d854d609418915a13e2df43 \
   --contract-deployment-block=4367358 \
   --chain-id=5 \
   --network-id=5 \

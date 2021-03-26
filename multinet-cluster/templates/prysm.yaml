@@ -45,7 +45,7 @@ spec:
               containerPort: 13000
               protocol: TCP
           args:
-          - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_beacon-nodeB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_beacon-nodeB64.sh > /root/multinet/repo/prysm/run_beacon-node.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_beacon-node.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_beacon-node.sh;
+          - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_beacon-nodeB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_beacon-nodeB64.sh > /root/multinet/repo/prysm/run_beacon-node.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_beacon-node.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP VANGUARD_COMMIT=$VANGUARD_COMMIT /root/multinet/repo/prysm/run_beacon-node.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME
@@ -58,6 +58,8 @@ spec:
                   fieldPath: status.podIP
             - name: PRYSM_SCRIPT
               value: {{ .Files.Get "run_beacon-node.sh" | b64enc }}
+            - name: VANGUARD_COMMIT
+              value: "{{ .Values.VANGUARD_COMMIT }}"
 
         - name: validator
           image: silesiacoin/multinet-prysm:v17
