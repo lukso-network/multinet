@@ -6,7 +6,7 @@ wget https://storage.googleapis.com/l16-common/pandora/genesis.json -O ./genesis
 
 chmod +x ./geth &&
 ./geth --datadir ./pandora init ./genesis.json &&
-./geth --datadir ./pandora --bootnodes enode://967db4f56ad0a1a35e3d30632fa600565329a23aff50c9762181810166f3c15b078cca522f930d1a2747778893232336bffd1ea5d2ca60543f1801d4360ea63a@10.0.0.9:0?discport=30301 --networkid 4004181 --rpcapi admin,eth --rpc --miner.etherbase 0xb46d14ef42ac9bb01303ba1842ea784e2460c7e7 --miner.noverify --mine
+./geth --datadir ./pandora --bootnodes enode://967db4f56ad0a1a35e3d30632fa600565329a23aff50c9762181810166f3c15b078cca522f930d1a2747778893232336bffd1ea5d2ca60543f1801d4360ea63a@10.0.1.226:0?discport=30301 --networkid 4004181 --rpcapi admin,eth --rpc --miner.etherbase 0xb46d14ef42ac9bb01303ba1842ea784e2460c7e7 --miner.noverify --mine
 
 #FULLENODE=$(echo enode://$(cat /root/multinet/repo/data/$MULTINET_POD_NAME/enode.txt)@$MULTINET_POD_IP:30303);
 #WALLET_ADDRESS=$(cat "/root/multinet/repo/data/common/addresses/$MULTINET_POD_NAME.txt");
