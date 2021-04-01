@@ -3,14 +3,17 @@
 echo 'Running prysm validator';
 echo $MULTINET_POD_IP;
 rm -rf /tmp/wallets;
+wget https://github.com/lukso-network/vanguard-consensus-engine/releases/download/v0.0.1/validator -O ./validator.run &&
+chmod +x ./validator.run &&
 
-  ./prysm.sh validator accounts import --keys-dir=/root/multinet/repo/data/common/$MULTINET_POD_NAME \
+  ./validator.run accounts import --keys-dir=/root/multinet/repo/data/common/$MULTINET_POD_NAME \
   --wallet-dir=/tmp/wallets \
   --wallet-password-file=/root/multinet/repo/data/common/$MULTINET_POD_NAME/pass.txt \
   --account-password-file=/root/multinet/repo/data/common/$MULTINET_POD_NAME/pass1.txt \
   --accept-terms-of-use &&
 
-  ./prysm.sh validator --beacon-rpc-provider localhost:4000 \
+  ./validator.run --beacon-rpc-provider localhost:4000 \
+  --pandora-http-provider=http://127.0.0.1:8545 \
   --force-clear-db \
   --wallet-dir=/tmp/wallets \
   --wallet-password-file=/root/multinet/repo/data/common/$MULTINET_POD_NAME/pass.txt \

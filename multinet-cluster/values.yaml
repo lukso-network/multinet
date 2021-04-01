@@ -63,6 +63,6 @@ POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 
 # Vanguard
-VANGUARD_COMMIT: df82299cfce94edb41f2fd0a00221113f84b9a02
+VANGUARD_COMMIT: 1da5d4dbcf0f4aef8ee03928db70b02c141f1594
 # Pandora
 PANDORA_COMMIT: df82299cfce94edb41f2fd0a00221113f84b9a02

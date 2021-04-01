@@ -32,11 +32,11 @@ chmod +x ./beacon-chain.run &&
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
   --monitoring-host="0.0.0.0" \
   --rpc-host="0.0.0.0" \
-  --deposit-contract=0x72C524F3b1bCe12FB0eADb1ab91E6Bcd42C611Cc \
-  --http-web3provider=https://goerli.infura.io/v3/b21b783d2d854d609418915a13e2df43 \
-  --contract-deployment-block=4367358 \
-  --chain-id=5 \
-  --network-id=5 \
+  --deposit-contract=0x000000000000000000000000000000000000cafe \
+  --contract-deployment-block=0 \
+  --http-web3provider=http://127.0.0.1:8545 \
+  --chain-id=4004181 \
+  --network-id=4004181 \
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
