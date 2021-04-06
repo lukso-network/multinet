@@ -43,7 +43,7 @@ spec:
             - containerPort: 8545
             - containerPort: 30303
           args:
-            - echo $CATALYST_INIT_SCRIPT; echo $CATALYST_INIT_SCRIPT > /root/multinet/repo/catalystB64.sh; base64 -d /root/multinet/repo/catalystB64.sh > /root/multinet/repo/catalyst.sh; chmod +x /root/multinet/repo/catalyst.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP PANDORA_COMMIT=$PANDORA_COMMIT /root/multinet/repo/catalyst.sh
+            - echo $CATALYST_INIT_SCRIPT; echo $CATALYST_INIT_SCRIPT > /root/multinet/repo/catalystB64.sh; base64 -d /root/multinet/repo/catalystB64.sh > /root/multinet/repo/pandora.sh; chmod +x /root/multinet/repo/pandora.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP PANDORA_COMMIT=$PANDORA_COMMIT /root/multinet/repo/pandora.sh
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
@@ -60,7 +60,7 @@ spec:
             - name: CATALYST_STATS_HOST
               value: "{{ .Values.CATALYST_STATS_HOST }}"
             - name: CATALYST_INIT_SCRIPT
-              value: {{ .Files.Get "catalyst.sh" | b64enc }}
+              value: {{ .Files.Get "pandora.sh" | b64enc }}
             - name: PANDORA_COMMIT
               value: "{{ .Values.PANDORA_COMMIT }}"
         - name: teku
