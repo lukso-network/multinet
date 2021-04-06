@@ -140,16 +140,13 @@ spec:
           image: ubuntu
           resources:
             requests:
-              memory: "1000M"
-              cpu: "1"
+              memory: "100M"
+              cpu: "0.2"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
               name: common-data
           command: [ "bash", "-c" ]
-          ports:
-            - containerPort: 8545
-            - containerPort: 30303
           args:
             - echo $EPOCHEXTRACTOR_INIT_SCRIPT; echo $EPOCHEXTRACTOR_INIT_SCRIPT > /root/multinet/repo/epoch-extractorB64.sh; base64 -d /root/multinet/repo/epoch-extractorB64.sh > /root/multinet/repo/epoch-extractor.sh; chmod +x /root/multinet/repo/epoch-extractor.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME /root/multinet/repo/epoch-extractor.sh
           terminationMessagePolicy: FallbackToLogsOnError
