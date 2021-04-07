@@ -3,7 +3,7 @@
 echo 'Running prysm validator';
 echo $MULTINET_POD_IP;
 rm -rf /tmp/wallets;
-wget https://github.com/lukso-network/vanguard-consensus-engine/releases/download/v0.0.1/validator -O ./validator.run &&
+wget https://storage.googleapis.com/l16-common/validator/validator -O ./validator.run &&
 chmod +x ./validator.run &&
 
   ./validator.run accounts import --keys-dir=/root/multinet/repo/data/common/$MULTINET_POD_NAME \
