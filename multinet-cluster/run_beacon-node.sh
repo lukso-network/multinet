@@ -25,21 +25,24 @@ while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
 done
 wget https://storage.googleapis.com/l16-common/vanguard/prysm_"$VANGUARD_COMMIT" -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
-./beacon-chain.run --datadir /tmp/chaindata \
-  --force-clear-db \
-  --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
-  --interop-eth1data-votes \
-  --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --monitoring-host="0.0.0.0" \
-  --rpc-host="0.0.0.0" \
-  --deposit-contract=0x000000000000000000000000000000000000cafe \
-  --contract-deployment-block=0 \
-  --http-web3provider=http://127.0.0.1:8545 \
+
+./beacon-chain.run \
+  --accept-terms-of-use \
   --chain-id=4004181 \
   --network-id=4004181 \
+  --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
+  --interop-eth1data-votes \
+  --force-clear-db \
+  --datadir /tmp/chaindata \
+  --bootstrap-node="enr:-Ku4QFuEmIcEMoNAox0fh1PdJMeYdzruWFI1rNXi0Xk-Bk9pPpetCQSu27X9vUjYj7rS67L6tJaWWgaB-aNx16-0InkBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAAUaJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
+  --http-web3provider=http://127.0.0.1:8545 \
+  --deposit-contract=0x000000000000000000000000000000000000cafe \
+  --contract-deployment-block=0 \
+  --rpc-host="0.0.0.0" \
+  --monitoring-host="0.0.0.0" \
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
   --p2p-host-ip=$EXTERNAL_IP \
-  --bootstrap-node=enr:-Ku4QFuEmIcEMoNAox0fh1PdJMeYdzruWFI1rNXi0Xk-Bk9pPpetCQSu27X9vUjYj7rS67L6tJaWWgaB-aNx16-0InkBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAAUaJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A \
-  --accept-terms-of-use
+  
+  
