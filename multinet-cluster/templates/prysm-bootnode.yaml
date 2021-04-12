@@ -17,22 +17,10 @@ spec:
       labels:
         tier: prysm
     spec:
-      volumes:
-        - name: deposits
-          persistentVolumeClaim:
-            claimName: deposits-storage
-        - name: common-data
-          persistentVolumeClaim:
-            claimName: common-data
       containers:
         - name: prysmbootnode
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /root/multinet/repo/deposits
-              name: deposits
-            - mountPath: /root/multinet/repo/data
-              name: common-data
           command: [ "bash", "-c"]
           ports:
             - containerPort: 4000

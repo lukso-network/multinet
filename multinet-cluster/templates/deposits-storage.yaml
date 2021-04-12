@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: deposits-storage
+  name: deposits-storage-dev
   labels:
-    name: deposits-storage
+    name: deposits-storage-dev
 spec:
   capacity:
     storage: 50Gi
@@ -11,6 +11,9 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: slow
+  claimRef:
+    name: deposits-storage-pvc
+    namespace: dev
   mountOptions:
     - hard
   nfs:
