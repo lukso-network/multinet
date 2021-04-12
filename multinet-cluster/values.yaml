@@ -17,7 +17,7 @@ LIGHTHOUSE_DEV_NODES: 0
 LIGHTHOUSE_SOURCE_PATH: /run/desktop/mnt/host/e/tmp/multinet/lh
 LIGHTHOUSE_VALIDATORS: 64
 
-PRYSM_NODES: 4
+PRYSM_NODES: 1
 # external nodes we manually manage
 PRYSM_DEV_NODES: 0
 # the path of the source code for the manually managed nodes
@@ -45,7 +45,7 @@ TEKU_LOG_FILE: "/root/multinet/repo/teku_2021-02-03_15-12.log"
 TEKU_LOG_FILE_NAME_PATTERN: "teku_%d{yyyy-MM-dd_HH-ii}.log"
 ETH_1_BLOCK_HASH: 0x9f41b94fdf02858bb8ef9bc55cb1ec8ef8adf7efa0f6fd82046fa94e154c0728
 TEKU_BOOTNODE_ENR: enr:-KG4QLsrN3KDJILIds0VdLhke1hS3IPDfyT6Ht9moJ98alqQHyuGGcWouNI1eZkqnu2_GhoEAID4vmgZF7kgxplWXt8DhGV0aDKQUmfZxgAAAAH__________4JpZIJ2NIJpcIQKAAAOiXNlY3AyNTZrMaECHUus3zWMIQA3Zebysp9d_cXk6ncpGszUqybmiKd6kVqDdGNwgiMog3VkcIIjKA
-ETH_2_GENESIS_TIME: "1617885461"
+ETH_2_GENESIS_TIME: "1618224337"
 ETH_2_VALIDATORS: 128
 # Set to 1 if you want to have explorer up
 ETH_2_EXPLORERS: 0
@@ -62,7 +62,11 @@ POSTGRES_USER: postgres
 POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 
-# Vanguard
-VANGUARD_COMMIT: 3aa6e0055f83a4a3d25c40c32a7fe84a762e0798
+# Vanguard (beacon-chain)
+VANGUARD_COMMIT: 67685b3d16b77999030695585e508cc455c9da27
+# Validator
+VALIDATOR_COMMIT: 67685b3d16b77999030695585e508cc455c9da27
 # Pandora
-PANDORA_COMMIT: 7e73c09606842fd697734486c74cae0434dc70f9
+PANDORA_COMMIT: 88a199d3fc3338d62e8cc4ecf34a3cd433c26ce0
+# Orchestrator
+ORCHESTRATOR_COMMIT: 22

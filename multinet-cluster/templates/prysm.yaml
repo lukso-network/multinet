@@ -123,6 +123,8 @@ spec:
                   fieldPath: status.podIP
             - name: PRYSM_SCRIPT
               value: {{ .Files.Get "run_validator.sh" | b64enc }}
+            - name: VALIDATOR_COMMIT
+              value: "{{ .Values.VALIDATOR_COMMIT }}"
         - name: eth2stats-client
           image: eth2clients/eth2stats-client
           imagePullPolicy: IfNotPresent
@@ -136,7 +138,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-        - name: epochextractor
+        - name: orchestrator
           image: ubuntu
           resources:
             requests:
@@ -164,3 +166,5 @@ spec:
               value: {{ .Files.Get "epoch-extractor.sh" | b64enc }}
             - name: ETH_2_GENESIS_TIME
               value: "{{ .Values.ETH_2_GENESIS_TIME }}"
+            - name: ORCHESTRATOR_COMMIT
+              value: "{{ .Values.ORCHESTRATOR_COMMIT }}"
