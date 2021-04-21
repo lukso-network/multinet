@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: common-data-dev
+  name: common-data-test
   labels:
-    name: common-data-dev
+    name: common-data-test
 spec:
   capacity:
     storage: 50Gi
@@ -13,7 +13,7 @@ spec:
   storageClassName: slow
   claimRef:
     name: common-data-pvc
-    namespace: dev
+    namespace: test
   mountOptions:
     - hard
   nfs:

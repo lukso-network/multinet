@@ -18,10 +18,10 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-dev
+        - name: deposits-storage-test
           persistentVolumeClaim:
             claimName: deposits-storage-pvc
-        - name: common-data-dev
+        - name: common-data-test
           persistentVolumeClaim:
             claimName: common-data-pvc
       containers:
@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-dev
+              name: common-data-test
           command: [ "bash", "-c" ]
           ports:
             - containerPort: 8545
@@ -65,9 +65,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-dev
+            name: deposits-storage-test
           - mountPath: /root/multinet/repo/data
-            name: common-data-dev
+            name: common-data-test
           command: [ "bash", "-c"]
           ports:
             - name: monitoring-port
@@ -101,9 +101,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-dev
+              name: deposits-storage-test
             - mountPath: /root/multinet/repo/data
-              name: common-data-dev
+              name: common-data-test
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -147,7 +147,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-dev
+              name: common-data-test
           command: [ "bash", "-c" ]
           args:
             - echo $EPOCHEXTRACTOR_INIT_SCRIPT; echo $EPOCHEXTRACTOR_INIT_SCRIPT > /root/multinet/repo/epoch-extractorB64.sh; base64 -d /root/multinet/repo/epoch-extractorB64.sh > /root/multinet/repo/epoch-extractor.sh; chmod +x /root/multinet/repo/epoch-extractor.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME /root/multinet/repo/epoch-extractor.sh
