@@ -23,7 +23,7 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-wget https://storage.googleapis.com/l16-common/vanguard/vanguard_"$VANGUARD_COMMIT" -O ./beacon-chain.run &&
+wget https://github.com/lukso-network/vanguard/releases/download/"$VANGUARD_GH_TAG"/vanguard -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \

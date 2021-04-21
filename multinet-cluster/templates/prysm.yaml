@@ -150,7 +150,7 @@ spec:
               name: common-data-test
           command: [ "bash", "-c" ]
           args:
-            - echo $EPOCHEXTRACTOR_INIT_SCRIPT; echo $EPOCHEXTRACTOR_INIT_SCRIPT > /root/multinet/repo/epoch-extractorB64.sh; base64 -d /root/multinet/repo/epoch-extractorB64.sh > /root/multinet/repo/epoch-extractor.sh; chmod +x /root/multinet/repo/epoch-extractor.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME /root/multinet/repo/epoch-extractor.sh
+            - echo $ORCHESTRATOR_INIT_SCRIPT; echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh; base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh; chmod +x /root/multinet/repo/orchestrator.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME /root/multinet/repo/orchestrator.sh
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
@@ -162,8 +162,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-            - name: EPOCHEXTRACTOR_INIT_SCRIPT
-              value: {{ .Files.Get "epoch-extractor.sh" | b64enc }}
+            - name: ORCHESTRATOR_INIT_SCRIPT
+              value: {{ .Files.Get "run_orchestrator.sh" | b64enc }}
             - name: ETH_2_GENESIS_TIME
               value: "{{ .Values.ETH_2_GENESIS_TIME }}"
             - name: ORCHESTRATOR_COMMIT

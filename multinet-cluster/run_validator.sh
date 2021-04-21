@@ -2,7 +2,7 @@
 
 echo 'Running validator client';
 echo $MULTINET_POD_IP;
-wget https://storage.googleapis.com/l16-common/validator/validator_"$VALIDATOR_COMMIT" -O ./validator.run &&
+wget https://github.com/lukso-network/vanguard/releases/download/"$VANGUARD_GH_TAG"/validator -O ./validator.run &&
 chmod +x ./validator.run &&
 
 ./validator.run \

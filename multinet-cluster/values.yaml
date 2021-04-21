@@ -63,10 +63,10 @@ POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 
 # Vanguard (beacon-chain)
-VANGUARD_COMMIT: 6b495ab864f19b39b8c6d12eacf10f24c5a72c79
+VANGUARD_GH_TAG: p-v0.0.5-alpha
 # Validator
-VALIDATOR_COMMIT: 67685b3d16b77999030695585e508cc455c9da27
+VALIDATOR_GH_TAG: p-v0.0.5-alpha
 # Pandora
-PANDORA_COMMIT: 88a199d3fc3338d62e8cc4ecf34a3cd433c26ce0
+PANDORA_GH_TAG: p-v0.0.5-alpha
 # Orchestrator
-ORCHESTRATOR_COMMIT: efb1c98c1c8b6bf84ed4184061f45a7511b6823a
+ORCHESTRATOR_GH_TAG: p-v0.0.5-alpha
