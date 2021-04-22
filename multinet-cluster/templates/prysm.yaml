@@ -150,7 +150,7 @@ spec:
               name: common-data-test
           command: [ "bash", "-c" ]
           args:
-            - echo $ORCHESTRATOR_INIT_SCRIPT; echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh; base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh; chmod +x /root/multinet/repo/orchestrator.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME /root/multinet/repo/orchestrator.sh
+            - echo $ORCHESTRATOR_INIT_SCRIPT; echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh; base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh; chmod +x /root/multinet/repo/orchestrator.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME ORCHESTRATOR_GH_TAG=$ORCHESTRATOR_GH_TAG /root/multinet/repo/orchestrator.sh
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
@@ -166,5 +166,5 @@ spec:
               value: {{ .Files.Get "run_orchestrator.sh" | b64enc }}
             - name: ETH_2_GENESIS_TIME
               value: "{{ .Values.ETH_2_GENESIS_TIME }}"
-            - name: ORCHESTRATOR_COMMIT
-              value: "{{ .Values.ORCHESTRATOR_COMMIT }}"
+            - name: ORCHESTRATOR_GH_TAG
+              value: "{{ .Values.ORCHESTRATOR_GH_TAG }}"

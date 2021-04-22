@@ -1,38 +1,25 @@
 #!/bin/bash
 echo "Not ready! Please do not use" &&
 exit;
-#YAML_CONTENT=$(cat ./multinet-cluster/values.yaml) &&
 #
-#PANDORA_COMMIT=$(echo "$YAML_CONTENT" | shyaml get-value PANDORA_COMMIT) &&
-#VANGUARD_COMMIT=$(echo "$YAML_CONTENT" | shyaml get-value VANGUARD_COMMIT) &&
-#VALIDATOR_COMMIT=$(echo "$YAML_CONTENT" | shyaml get-value VALIDATOR_COMMIT) &&
-#ORCHESTRATOR_COMMIT=$(echo "$YAML_CONTENT" | shyaml get-value VALIDATOR_COMMIT) &&
-#
-#
-##build pandora
-#gsutil cp ./pandora gs://l16-common/pandora/pandora_"$PANDORA_COMMIT" &&
-#gsutil acl ch -u AllUsers:R gs://l16-common/pandora/pandora_"$PANDORA_COMMIT" &&
-#
-##build vanguard
-#gsutil cp ./validator gs://l16-common/pandora/pandora_"$PANDORA_COMMIT" &&
-#gsutil acl ch -u AllUsers:R gs://l16-common/pandora/pandora_"$PANDORA_COMMIT" &&
-#
-##build validator
-#
-#gsutil cp ./pandora gs://l16-common/pandora/pandora_"$PANDORA_COMMIT" &&
-#gsutil acl ch -u AllUsers:R gs://l16-common/pandora/pandora_"$PANDORA_COMMIT" &&
-#
-##build orchestrator
-#
-## NOW + 6 minutes
+#NAMESPACE="test" &&
+#echo $NAMESPACE &&
+## Generate genesis
+### NOW + 6 minutes
 #GENESIS_START=$(echo "$(date +%s)"+360 | bc) &&
+#cd ../prysm &&
 #bazel run //tools/genesis-state-gen -- --output-ssz=/tmp/genesis.ssz \
 #--mainnet-config \
 #--num-validators=2000 \
 #--genesis-time="$GENESIS_START" &&
+#cd ../l16-multinet &&
+#ls multinet-cluster/values.yaml &&
 #kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
-#-c vanguard &&
+#-c vanguard -n $NAMESPACE &&
+#yq eval '.MIN_GENESIS_TIME = '$GENESIS_START multinet-cluster/values.yaml -i &&
+#yq eval '.MIN_GENESIS_TIME = '$GENESIS_START chain-config.yaml -i &&
+#kubectl cp ./chain-config.yaml prysm-0:/root/multinet/repo/data/common/chain-config.yaml -n $NAMESPACE
 #echo "$GENESIS_START" &&
-#helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ &&
-#kubectl delete pods prysm-0 prysm-1 prysm-2 prysm-3
-#
+#helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace "$NAMESPACE" &&
+#kubectl delete pods prysm-0 prysm-1 prysm-2 prysm-3 --namespace "$NAMESPACE"
+
