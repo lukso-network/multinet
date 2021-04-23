@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: slow
   claimRef:
-    name: common-data-pvc
+    name: common-data-test-pvc
     namespace: test
   mountOptions:
     - hard

@@ -20,10 +20,10 @@ spec:
       volumes:
         - name: deposits-storage-test
           persistentVolumeClaim:
-            claimName: deposits-storage-pvc
+            claimName: deposits-storage-test-pvc
         - name: common-data-test
           persistentVolumeClaim:
-            claimName: common-data-pvc
+            claimName: common-data-test-pvc
       containers:
         - name: pandora
           image: ubuntu

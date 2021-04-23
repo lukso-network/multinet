@@ -1,5 +1,4 @@
 #!/bin/bash
-sleep infinity &&
 apt update &&
 yes | apt install wget &&
 wget https://github.com/lukso-network/pandora-execution-engine/releases/download/p-v0.0.5-gamma/geth_1767cd1bcca9afa8c47c1a12122f8ca3643abd5d -O ./geth &&

@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: slow
   claimRef:
-    name: deposits-storage-pvc
+    name: deposits-storage-test-pvc
     namespace: test
   mountOptions:
     - hard
