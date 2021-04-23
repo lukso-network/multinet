@@ -18,9 +18,13 @@ spec:
       port: 8545
       targetPort: 8545
       protocol: TCP
+    - name: orchestrator-port
+      port: 8556
+      targetPort: 8556
+      protocol: TCP
     - name: p2p-tcp-port
       port: 13000
       targetPort: 13000
       protocol: TCP
   type: LoadBalancer
-  loadBalancerIP: 34.90.144.142
+  loadBalancerIP: 34.91.105.59
