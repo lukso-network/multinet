@@ -8,9 +8,9 @@ spec:
   capacity:
     storage: 50Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: slow
+  storageClassName: standard
   claimRef:
     name: deposits-storage-test-pvc
     namespace: test

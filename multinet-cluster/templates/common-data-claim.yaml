@@ -5,8 +5,8 @@ metadata:
   namespace: test
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: slow
+    - ReadWriteOnce
+  storageClassName: standard
   resources:
     requests:
       storage: 50Gi
