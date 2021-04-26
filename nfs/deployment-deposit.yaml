@@ -26,10 +26,10 @@ spec:
             privileged: true
           volumeMounts:
             - mountPath: /deposit
-              name: nfs-deposit
+              name: test-nfs-deposit
 
       volumes:
-        - name: nfs-deposit
+        - name: test-nfs-deposit
           gcePersistentDisk:
-            pdName: nfs-deposit
+            pdName: test-nfs-deposit
             fsType: ext4

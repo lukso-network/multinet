@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: slow
+  storageClassName: standard
   claimRef:
     name: common-data-test-pvc
     namespace: test

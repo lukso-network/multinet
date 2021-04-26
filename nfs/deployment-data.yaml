@@ -26,10 +26,10 @@ spec:
             privileged: true
           volumeMounts:
             - mountPath: /data
-              name: nfs-data
+              name: test-nfs-data
 
       volumes:
-        - name: nfs-data
+        - name: test-nfs-data
           gcePersistentDisk:
-            pdName: nfs-data
+            pdName: test-nfs-data
             fsType: ext4
