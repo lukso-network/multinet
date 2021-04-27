@@ -27,4 +27,4 @@ spec:
       targetPort: 13000
       protocol: TCP
   type: LoadBalancer
-  loadBalancerIP: 34.91.111.241
+  loadBalancerIP: 34.91.105.59

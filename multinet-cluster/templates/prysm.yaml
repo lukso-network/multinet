@@ -18,12 +18,12 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-test
+        - name: deposits-storage-test2
           persistentVolumeClaim:
-            claimName: deposits-storage-test-pvc
-        - name: common-data-test
+            claimName: deposits-storage-test2-pvc
+        - name: common-data-test2
           persistentVolumeClaim:
-            claimName: common-data-test-pvc
+            claimName: common-data-test2-pvc
       containers:
         - name: pandora
           image: ubuntu
@@ -34,13 +34,13 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-test
+              name: common-data-test2
           command: [ "bash", "-c" ]
           ports:
             - containerPort: 8545
             - containerPort: 30303
           args:
-            - echo $PANDORA_INIT_SCRIPT; echo $PANDORA_INIT_SCRIPT > /root/multinet/repo/pandoraB64.sh; base64 -d /root/multinet/repo/pandoraB64.sh > /root/multinet/repo/pandora.sh; chmod +x /root/multinet/repo/pandora.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/pandora.sh
+            - echo $PANDORA_INIT_SCRIPT; echo $PANDORA_INIT_SCRIPT > /root/multinet/repo/pandoraB64.sh; base64 -d /root/multinet/repo/pandoraB64.sh > /root/multinet/repo/pandora.sh; chmod +x /root/multinet/repo/pandora.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP PANDORA_GH_TAG=$PANDORA_GH_TAG /root/multinet/repo/pandora.sh
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
@@ -60,14 +60,16 @@ spec:
               value: {{ .Files.Get "pandora.sh" | b64enc }}
             - name: PANDORA_COMMIT
               value: "{{ .Values.PANDORA_COMMIT }}"
+            - name: PANDORA_GH_TAG
+              value: "{{ .Values.PANDORA_GH_TAG }}"
         - name: vanguard
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-test
+            name: deposits-storage-test2
           - mountPath: /root/multinet/repo/data
-            name: common-data-test
+            name: common-data-test2
           command: [ "bash", "-c"]
           ports:
             - name: monitoring-port
@@ -101,9 +103,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-test
+              name: deposits-storage-test2
             - mountPath: /root/multinet/repo/data
-              name: common-data-test
+              name: common-data-test2
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -147,7 +149,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-test
+              name: common-data-test2
           command: [ "bash", "-c" ]
           args:
             - echo $ORCHESTRATOR_INIT_SCRIPT; echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh; base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh; chmod +x /root/multinet/repo/orchestrator.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME ORCHESTRATOR_GH_TAG=$ORCHESTRATOR_GH_TAG /root/multinet/repo/orchestrator.sh

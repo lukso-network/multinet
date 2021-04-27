@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: deposits-storage
+  name: deposits-storage-test2
   labels:
-    name: deposits-storage
+    name: deposits-storage-test2
 spec:
   capacity:
     storage: 50Gi
@@ -12,8 +12,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   claimRef:
-    name: deposits-storage-test-pvc
-    namespace: default
+    name: deposits-storage-test2-pvc
+    namespace: test
   mountOptions:
     - hard
   nfs:
