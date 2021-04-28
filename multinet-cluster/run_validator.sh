@@ -25,7 +25,7 @@ chmod +x ./validator.run &&
   --accept-terms-of-use \
   --beacon-rpc-provider localhost:4000 \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --interop-num-validators=500 \
+  --interop-num-validators=2000 \
   --interop-start-index="$INDEX" \
   --force-clear-db \
   --verbosity=debug \
