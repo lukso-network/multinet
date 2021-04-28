@@ -1,11 +1,11 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: deposits-storage-test2-pvc
+  name: deposits-storage-pvc-default2
   namespace: default
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   storageClassName: standard
   resources:
     requests:

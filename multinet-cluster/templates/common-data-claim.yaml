@@ -1,11 +1,11 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: common-data-test2-pvc
+  name: common-data-pvc-default2
   namespace: default
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   storageClassName: standard
   resources:
     requests:

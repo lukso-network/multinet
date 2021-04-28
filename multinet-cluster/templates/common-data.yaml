@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: common-data
+  name: common-data-default
   labels:
-    name: common-data
+    name: common-data-default
 spec:
   capacity:
     storage: 50Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   claimRef:
-    name: common-data-test2-pvc
+    name: common-data-pvc-default2
     namespace: default
   mountOptions:
     - hard
