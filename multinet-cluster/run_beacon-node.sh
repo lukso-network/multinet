@@ -5,7 +5,7 @@ echo "Running prysm beacon-node";
 mkdir /root/multinet/repo/data/common;
 
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
-  EXTERNAL_IP=34.91.111.241;
+  EXTERNAL_IP=34.91.105.59;
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
@@ -23,7 +23,7 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-wget https://storage.googleapis.com/l16-common/vanguard/vanguard_08ac78e8051c5bc497f0c57bfac305f47c1ef97d -O ./beacon-chain.run &&
+wget https://storage.googleapis.com/l16-common/vanguard/vanguard_67dfa2ca5acb7b884c30257a76c696a31448cbcf -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \

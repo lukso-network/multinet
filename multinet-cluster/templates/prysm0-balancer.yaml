@@ -19,8 +19,16 @@ spec:
       targetPort: 8545
       protocol: TCP
     - name: orchestrator-port
-      port: 8556
-      targetPort: 8556
+      port: 7878
+      targetPort: 7878
+      protocol: TCP
+    - name: vanguard-http-port
+      port: 8565
+      targetPort: 8565
+      protocol: TCP
+    - name: vanguard-ws-port
+      port: 8566
+      targetPort: 8566
       protocol: TCP
     - name: p2p-tcp-port
       port: 13000
