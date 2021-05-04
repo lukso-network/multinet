@@ -1,8 +1,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: deposits-storage-test2-pvc
-  namespace: test
+  name: deposits-storage-pvc-dev
+  namespace: dev
 spec:
   accessModes:
     - ReadWriteOnce

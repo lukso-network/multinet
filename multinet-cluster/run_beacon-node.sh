@@ -5,20 +5,20 @@ echo "Running prysm beacon-node";
 mkdir /root/multinet/repo/data/common;
 
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
-  EXTERNAL_IP=34.91.105.59;
+  EXTERNAL_IP=34.90.144.142;
 fi
 
-if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
-  EXTERNAL_IP=34.91.186.254;
-fi
-
-if [ "$MULTINET_POD_NAME" == "prysm-2" ]; then
-  EXTERNAL_IP=34.90.76.16;
-fi
-
-if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
-  EXTERNAL_IP=35.204.181.122;
-fi
+#if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
+#  EXTERNAL_IP=;
+#fi
+#
+#if [ "$MULTINET_POD_NAME" == "prysm-2" ]; then
+#  EXTERNAL_IP=;
+#fi
+#
+#if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
+#  EXTERNAL_IP=;
+#fi
 
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
@@ -35,7 +35,7 @@ chmod +x ./beacon-chain.run &&
   --force-clear-db \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --bootstrap-node="enr:-Ku4QNp6MXi0lRwhZoYDSxrSbv7uuZ1vyYuFdMCbAn4FHlivEZdYwMDvQq-ZjOgjWlFWnChBoRCcdVcUfIYw9ZdRnfQBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoABQOJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
+  --bootstrap-node="enr:-Ku4QOoNjcQp4g7jd8IziJ_pL29CWbC_UDJ7iC7WNOPo26L4VtSS_F8eLcZ3jQIl7YfTkkgJK85bQ4zYFH_maL3XrmEBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAAg-Jc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
   --http-web3provider=http://127.0.0.1:8545 \
   --deposit-contract=0x000000000000000000000000000000000000cafe \
   --contract-deployment-block=0 \
