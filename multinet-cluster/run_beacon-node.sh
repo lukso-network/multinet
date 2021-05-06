@@ -23,7 +23,7 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-wget https://storage.googleapis.com/l16-common/vanguard/vanguard_67dfa2ca5acb7b884c30257a76c696a31448cbcf -O ./beacon-chain.run &&
+wget https://storage.googleapis.com/l16-common/vanguard/vanguard_8d10049f794ab6f33e7b713aeab47fe4c5a203d5 -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \
