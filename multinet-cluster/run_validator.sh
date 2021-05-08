@@ -18,7 +18,7 @@ fi
 
 echo 'Running validator client';
 echo $MULTINET_POD_IP;
-wget https://storage.googleapis.com/l16-common/validator/validator_67685b3d16b77999030695585e508cc455c9da27 -O ./validator.run &&
+wget https://storage.googleapis.com/l16-common/validator/validator_f1d9abc8400ef4fdcbd13edc5774179136c4a5de -O ./validator.run &&
 chmod +x ./validator.run &&
 
 ./validator.run \
