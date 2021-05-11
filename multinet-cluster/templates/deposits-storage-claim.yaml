@@ -1,8 +1,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: deposits-storage-pvc-dev
-  namespace: dev
+  name: deposits-storage-pvc-staging
+  namespace: staging
 spec:
   accessModes:
     - ReadWriteOnce

@@ -1,8 +1,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: common-data-pvc-dev
-  namespace: dev
+  name: common-data-pvc-staging
+  namespace: staging
 spec:
   accessModes:
     - ReadWriteOnce
