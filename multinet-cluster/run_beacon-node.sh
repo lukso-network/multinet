@@ -23,7 +23,7 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-wget https://storage.googleapis.com/l16-common/vanguard/vanguard_fb63565535a227cdd9f5dc4d49b8ed6ab6bc1e05 -O ./beacon-chain.run &&
+wget https://storage.googleapis.com/l16-common/vanguard/vanguard_d9478a38bfb3d42e4e09ad0bd0659628358a124d -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \
@@ -45,5 +45,5 @@ chmod +x ./beacon-chain.run &&
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
   --p2p-host-ip=$EXTERNAL_IP \
-  
-  
+
+

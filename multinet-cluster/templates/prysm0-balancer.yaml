@@ -18,6 +18,10 @@ spec:
       port: 8545
       targetPort: 8545
       protocol: TCP
+    - name: pandora-port-ws
+      port: 8546
+      targetPort: 8546
+      protocol: TCP
     - name: orchestrator-port
       port: 7878
       targetPort: 7878
