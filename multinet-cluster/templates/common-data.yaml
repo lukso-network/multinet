@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: common-data-dev
+  name: common-data-dev3
   labels:
-    name: common-data-dev
+    name: common-data-dev3
 spec:
   capacity:
     storage: 50Gi
@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   claimRef:
-    name: common-data-pvc-dev
+    name: common-data-pvc-dev3
     namespace: dev
   mountOptions:
     - hard
