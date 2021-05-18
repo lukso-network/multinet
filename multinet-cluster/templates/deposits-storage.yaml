@@ -18,4 +18,4 @@ spec:
     - hard
   nfs:
     path: /
-    server: nfs-server-deposit.default.svc.cluster.local
+    server: nfs-server-deposit.staging.svc.cluster.local
