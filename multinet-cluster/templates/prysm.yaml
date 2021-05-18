@@ -40,7 +40,11 @@ spec:
             - containerPort: 8545
             - containerPort: 30303
           args:
-            - echo $PANDORA_INIT_SCRIPT; echo $PANDORA_INIT_SCRIPT > /root/multinet/repo/pandoraB64.sh; base64 -d /root/multinet/repo/pandoraB64.sh > /root/multinet/repo/pandora.sh; chmod +x /root/multinet/repo/pandora.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP PANDORA_GH_TAG=$PANDORA_GH_TAG /root/multinet/repo/pandora.sh
+            - echo $PANDORA_INIT_SCRIPT;
+              echo $PANDORA_INIT_SCRIPT > /root/multinet/repo/run_pandoraB64.sh;
+              base64 -d /root/multinet/repo/run_pandoraB64.sh > /root/multinet/repo/run_pandora.sh;
+              chmod +x /root/multinet/repo/run_pandora.sh;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP PANDORA_GH_TAG=$PANDORA_GH_TAG /root/multinet/repo/run_pandora.sh;
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
@@ -57,7 +61,7 @@ spec:
             - name: PANDORA_STATS_HOST
               value: "{{ .Values.PANDORA_STATS_HOST }}"
             - name: PANDORA_INIT_SCRIPT
-              value: {{ .Files.Get "pandora.sh" | b64enc }}
+              value: {{ .Files.Get "run_pandora.sh" | b64enc }}
             - name: PANDORA_COMMIT
               value: "{{ .Values.PANDORA_COMMIT }}"
             - name: PANDORA_GH_TAG
@@ -82,7 +86,13 @@ spec:
               containerPort: 13000
               protocol: TCP
           args:
-          - echo $VANGUARD_SCRIPT > /root/multinet/repo/prysm/run_beacon-nodeB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_beacon-nodeB64.sh > /root/multinet/repo/prysm/run_beacon-node.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_beacon-node.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP VANGUARD_COMMIT=$VANGUARD_COMMIT /root/multinet/repo/prysm/run_beacon-node.sh;
+          - echo $VANGUARD_SCRIPT > /root/multinet/repo/prysm/run_beacon-nodeB64.sh;
+            echo "copied";
+            base64 -d /root/multinet/repo/prysm/run_beacon-nodeB64.sh > /root/multinet/repo/prysm/run_beacon-node.sh;
+            echo "decoded";
+            chmod +x /root/multinet/repo/prysm/run_beacon-node.sh;
+            cd /root/multinet/repo/prysm;
+            MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP VANGUARD_COMMIT=$VANGUARD_COMMIT /root/multinet/repo/prysm/run_beacon-node.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME
@@ -112,7 +122,13 @@ spec:
               containerPort: 8081
               protocol: TCP
           args:
-            - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_validatorB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_validatorB64.sh > /root/multinet/repo/prysm/run_validator.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_validator.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_validator.sh;
+            - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_validatorB64.sh;
+              echo "copied";
+              base64 -d /root/multinet/repo/prysm/run_validatorB64.sh > /root/multinet/repo/prysm/run_validator.sh;
+              echo "decoded";
+              chmod +x /root/multinet/repo/prysm/run_validator.sh;
+              cd /root/multinet/repo/prysm;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_validator.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME
@@ -152,7 +168,11 @@ spec:
               name: common-data-staging
           command: [ "bash", "-c" ]
           args:
-            - echo $ORCHESTRATOR_INIT_SCRIPT; echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh; base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh; chmod +x /root/multinet/repo/orchestrator.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME ORCHESTRATOR_GH_TAG=$ORCHESTRATOR_GH_TAG /root/multinet/repo/orchestrator.sh
+            - echo $ORCHESTRATOR_INIT_SCRIPT;
+              echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh;
+              base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh;
+              chmod +x /root/multinet/repo/orchestrator.sh;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME ORCHESTRATOR_GH_TAG=$ORCHESTRATOR_GH_TAG /root/multinet/repo/orchestrator.sh
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:

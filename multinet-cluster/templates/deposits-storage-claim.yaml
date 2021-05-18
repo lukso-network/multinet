@@ -5,7 +5,7 @@ metadata:
   namespace: staging
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   storageClassName: standard
   resources:
     requests:
