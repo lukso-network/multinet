@@ -18,12 +18,12 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-staging
+        - name: deposits-storage-default
           persistentVolumeClaim:
-            claimName: deposits-storage-pvc-staging
-        - name: common-data-staging
+            claimName: deposits-storage-pvc-default
+        - name: common-data-default
           persistentVolumeClaim:
-            claimName: common-data-pvc-staging
+            claimName: common-data-pvc-default
       containers:
         - name: pandora
           image: ubuntu
@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data-default
             - mountPath: /blockchainData
               name: blockchain-data
           command: [ "bash", "-c" ]
@@ -73,9 +73,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-staging
+            name: deposits-storage-default
           - mountPath: /root/multinet/repo/data
-            name: common-data-staging
+            name: common-data-default
           command: [ "bash", "-c"]
           ports:
             - name: monitoring-port
@@ -105,19 +105,19 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: VANGUARD_BOOTNODE_ENR
+              value: "{{ .Values.VANGUARD_BOOTNODE_ENR }}"
             - name: VANGUARD_SCRIPT
               value: {{ .Files.Get "run_beacon-node.sh" | b64enc }}
-            - name: VANGUARD_COMMIT
-              value: "{{ .Values.VANGUARD_COMMIT }}"
 
         - name: validator
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-staging
+              name: deposits-storage-default
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data-default
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -143,8 +143,7 @@ spec:
                   fieldPath: status.podIP
             - name: PRYSM_SCRIPT
               value: {{ .Files.Get "run_validator.sh" | b64enc }}
-            - name: VALIDATOR_COMMIT
-              value: "{{ .Values.VALIDATOR_COMMIT }}"
+
         - name: eth2stats-client
           image: eth2clients/eth2stats-client
           imagePullPolicy: IfNotPresent
@@ -167,7 +166,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data-default
           command: [ "bash", "-c" ]
           args:
             - echo $ORCHESTRATOR_INIT_SCRIPT;
@@ -193,12 +192,12 @@ spec:
             - name: ORCHESTRATOR_GH_TAG
               value: "{{ .Values.ORCHESTRATOR_GH_TAG }}"
 
-  volumeClaimTemplates:
-    - metadata:
-        name: blockchain-data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 5G
+#  volumeClaimTemplates:
+#    - metadata:
+#        name: blockchain-data
+#      spec:
+#        accessModes:
+#          - ReadWriteOnce
+#        resources:
+#          requests:
+#            storage: 5G

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: common-data-staging
+  name: common-data-default
   labels:
-    name: common-data-staging
+    name: common-data-default
 spec:
   capacity:
     storage: 50Gi
@@ -12,10 +12,10 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   claimRef:
-    name: common-data-pvc-staging
-    namespace: staging
+    name: common-data-pvc-default
+    namespace: default
   mountOptions:
     - hard
   nfs:
     path: /
-    server: nfs-server-data.staging.svc.cluster.local
+    server: nfs-server-data.default.svc.cluster.local
