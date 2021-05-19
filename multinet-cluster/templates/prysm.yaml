@@ -35,6 +35,8 @@ spec:
           volumeMounts:
             - mountPath: /root/multinet/repo/data
               name: common-data-staging
+            - mountPath: /blockchainData
+              name: blockchain-data
           command: [ "bash", "-c" ]
           ports:
             - containerPort: 8545
@@ -190,3 +192,13 @@ spec:
               value: "{{ .Values.ETH_2_GENESIS_TIME }}"
             - name: ORCHESTRATOR_GH_TAG
               value: "{{ .Values.ORCHESTRATOR_GH_TAG }}"
+
+  volumeClaimTemplates:
+    - metadata:
+        name: blockchain-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5G
