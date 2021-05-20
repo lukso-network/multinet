@@ -185,12 +185,12 @@ spec:
             - name: ORCHESTRATOR_GH_TAG
               value: "{{ .Values.ORCHESTRATOR_GH_TAG }}"
 
-#  volumeClaimTemplates:
-#    - metadata:
-#        name: blockchain-data-default
-#      spec:
-#        accessModes:
-#          - ReadWriteOnce
-#        resources:
-#          requests:
-#            storage: 5G
+  volumeClaimTemplates:
+    - metadata:
+        name: blockchain-data-default
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5G
