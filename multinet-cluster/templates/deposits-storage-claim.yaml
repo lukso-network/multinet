@@ -1,12 +1,12 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: deposits-storage-pvc-default
-  namespace: default
-spec:
-  accessModes:
-    - ReadOnlyMany
-  storageClassName: standard
-  resources:
-    requests:
-      storage: 50Gi
+#kind: PersistentVolumeClaim
+#apiVersion: v1
+#metadata:
+#  name: deposits-storage-pvc-default
+#  namespace: default
+#spec:
+#  accessModes:
+#    - ReadOnlyMany
+#  storageClassName: standard
+#  resources:
+#    requests:
+#      storage: 50Gi

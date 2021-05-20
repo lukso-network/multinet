@@ -17,5 +17,5 @@ chmod +x ./geth &&
 --rpccorsdomain "*" \
 --miner.etherbase 0xb46d14ef42ac9bb01303ba1842ea784e2460c7e7 \
 --mine \
---miner.notify ws://localhost:7878 \
+--miner.notify ws://localhost:8556 \
 --verbosity 4

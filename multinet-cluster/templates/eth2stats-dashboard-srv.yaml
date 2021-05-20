@@ -9,4 +9,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: {{ .Values.ETH2STATS_DASHBOARD_PORT }}
+      nodePort: {{ .Values.ETH2STATS_DASHBOARD_PORT }}

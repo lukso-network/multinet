@@ -1,21 +1,21 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: deposits-storage-default
-  labels:
-    name: deposits-storage-default
-spec:
-  capacity:
-    storage: 50Gi
-  accessModes:
-    - ReadOnlyMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: standard
-  claimRef:
-    name: deposits-storage-pvc-default
-    namespace: default
-  mountOptions:
-    - hard
-  nfs:
-    path: /
-    server: nfs-server-deposit.default.svc.cluster.local
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: deposits-storage-default
+#  labels:
+#    name: deposits-storage-default
+#spec:
+#  capacity:
+#    storage: 50Gi
+#  accessModes:
+#    - ReadOnlyMany
+#  persistentVolumeReclaimPolicy: Retain
+#  storageClassName: standard
+#  claimRef:
+#    name: deposits-storage-pvc-default
+#    namespace: default
+#  mountOptions:
+#    - hard
+#  nfs:
+#    path: /
+#    server: nfs-server-deposit.default.svc.cluster.local

@@ -18,9 +18,6 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-default
-          persistentVolumeClaim:
-            claimName: deposits-storage-pvc-default
         - name: common-data-default
           persistentVolumeClaim:
             claimName: common-data-pvc-default
@@ -36,7 +33,7 @@ spec:
             - mountPath: /root/multinet/repo/data
               name: common-data-default
             - mountPath: /blockchainData
-              name: blockchain-data
+              name: blockchain-data-default
           command: [ "bash", "-c" ]
           ports:
             - containerPort: 8545
@@ -72,8 +69,6 @@ spec:
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
           volumeMounts:
-          - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-default
           - mountPath: /root/multinet/repo/data
             name: common-data-default
           command: [ "bash", "-c"]
@@ -114,8 +109,6 @@ spec:
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-default
             - mountPath: /root/multinet/repo/data
               name: common-data-default
           command: [ "bash", "-c" ]
@@ -194,7 +187,7 @@ spec:
 
 #  volumeClaimTemplates:
 #    - metadata:
-#        name: blockchain-data
+#        name: blockchain-data-default
 #      spec:
 #        accessModes:
 #          - ReadWriteOnce
