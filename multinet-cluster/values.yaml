@@ -40,6 +40,6 @@ VANGUARD_GH_TAG: p-v0.0.5-alpha
 # Validator
 VALIDATOR_GH_TAG: p-v0.0.5-alpha
 # Pandora
-PANDORA_GH_TAG: p-v.0.0.7-epsilon
+PANDORA_GH_TAG: p-v0.0.7-alpha
 # Orchestrator
-ORCHESTRATOR_GH_TAG: 0.0.13-beta
+ORCHESTRATOR_GH_TAG: 0.0.9
