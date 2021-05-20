@@ -5,6 +5,7 @@ wget https://github.com/lukso-network/pandora-execution-engine/releases/download
 wget https://storage.googleapis.com/l16-common/pandora/pandora_genesis3.json -O ./genesis.json &&
 
 chmod +x ./geth &&
+rm -rf /blockchainData/pandora &&
 ./geth --datadir /blockchainData/pandora init ./genesis.json &&
 
 ./geth --datadir /blockchainData/pandora \
