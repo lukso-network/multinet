@@ -40,7 +40,7 @@ chmod +x ./beacon-chain.run &&
   --force-clear-db \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --bootstrap-node=$VANGUARD_BOOTNODE_ENR \
+  --bootstrap-node="enr:-Ku4QHDzUrCOlPOZT8l6sZObcAd_6HCk3eR9UV4UqDLGwJjPEXcPjyGfLW465kXeQSE1hHK17Ka_azMJlPxnP6gi2D8Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoACxaJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
   --http-web3provider=http://127.0.0.1:8545 \
   --deposit-contract=0x000000000000000000000000000000000000cafe \
   --contract-deployment-block=0 \
@@ -49,6 +49,6 @@ chmod +x ./beacon-chain.run &&
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
-  --p2p-host-ip=$MULTINET_POD_IP \
+  --p2p-host-ip=$EXTERNAL_IP \
 
 
