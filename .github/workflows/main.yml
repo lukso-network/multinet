@@ -1,0 +1,16 @@
+name: upgrade-multinet
+on: [ repository_dispatch ]
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: configure access
+        env:
+          GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
+        run: |
+          echo "configured"
+
+      - name: upgrade
+        run: |
+          echo "Works"
