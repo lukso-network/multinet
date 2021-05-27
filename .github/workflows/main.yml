@@ -4,7 +4,7 @@ jobs:
   upgrade:
     runs-on: ubuntu-latest
     steps:
-
+      - uses: actions/checkout@v2
       - name: configure access
         env:
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
