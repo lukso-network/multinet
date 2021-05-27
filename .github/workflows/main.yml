@@ -8,7 +8,9 @@ jobs:
       - name: configure access
         env:
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
+          NAMESPACE: dev
         run: |
+          ls -la &&
           echo "configured"
 
       - name: upgrade
