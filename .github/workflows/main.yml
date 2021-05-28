@@ -19,5 +19,5 @@ jobs:
         run: |
           echo "Works"
           chmod +x ./auto.sh
-          ./auto.sh
+          NAMESPACE=$NAMESPACE ./auto.sh
           helm history
