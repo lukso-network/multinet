@@ -16,8 +16,11 @@ jobs:
           echo "configured"
 
       - name: upgrade
+        env:
+          GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
+          NAMESPACE: dev
         run: |
           echo "Works"
           chmod +x ./auto.sh
-          NAMESPACE=$NAMESPACE ./auto.sh
+          ./auto.sh
           helm history
