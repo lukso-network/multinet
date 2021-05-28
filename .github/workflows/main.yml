@@ -18,3 +18,4 @@ jobs:
       - name: upgrade
         run: |
           echo "Works"
+          helm history
