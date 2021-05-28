@@ -18,4 +18,6 @@ jobs:
       - name: upgrade
         run: |
           echo "Works"
+          chmod +x ./auto.sh
+          ./auto.sh
           helm history
