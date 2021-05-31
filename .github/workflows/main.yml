@@ -24,8 +24,8 @@ jobs:
       - name: Upgrade cluster
         env:
           NAMESPACE: dev
-          REPOSITORY: github.event.client_payload.repository
-          REPOSITORY_TAG: github.event.client_payload.tag
+          REPOSITORY: ${{ github.event.client_payload.repository }}
+          REPOSITORY_TAG: ${{ github.event.client_payload.tag }}
         run: |
           export REPOSITORY;
           export REPOSITORY_TAG;
