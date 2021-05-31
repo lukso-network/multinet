@@ -11,11 +11,13 @@ jobs:
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
+          CONTEXT: ${{ secrets.CONTEXT }}
           NAMESPACE: dev
         run: |
           export KUBECONFIG &&
           mkdir ~/.kube &&
           echo $KUBECONFIG | base64 -di > ~/.kube/config &&
+          kubectl config use-context $CONTEXT &&
           echo "configured"
 
       - name: upgrade
