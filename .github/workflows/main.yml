@@ -13,6 +13,7 @@ jobs:
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
           NAMESPACE: dev
         run: |
+          export KUBECONFIG &&
           mkdir ~/.kube &&
           echo $KUBECONFIG | base64 -di > ~/.kube/config &&
           echo "configured"
@@ -22,6 +23,7 @@ jobs:
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
           NAMESPACE: dev
         run: |
+        
           echo "Works"
           chmod +x ./auto.sh
           helm history eth20 --namespace $NAMESPACE
