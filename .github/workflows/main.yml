@@ -10,21 +10,15 @@ jobs:
       - name: configure access
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
-          GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
-          CONTEXT: ${{ secrets.CONTEXT }}
           NAMESPACE: dev
         run: |
           export KUBECONFIG &&
           mkdir ~/.kube &&
           echo $KUBECONFIG | base64 -di > ~/.kube/config &&
-          echo "configured"
 
       - name: upgrade
         env:
-          GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
           NAMESPACE: dev
         run: |
-        
-          echo "Works"
-          chmod +x ./auto.sh
+          chmod +x ./auto.sh &&
           helm history eth20 --namespace $NAMESPACE
