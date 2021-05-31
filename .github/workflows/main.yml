@@ -29,24 +29,25 @@ jobs:
         run: |
           export REPOSITORY;
           export REPOSITORY_TAG;
+          export NAMESPACE;
 
-          if [[$REPOSITORY == "VANGUARD"]]; then
+          if [[ $REPOSITORY == "VANGUARD" ]]; then
             export VANGUARD=$REPOSITORY_TAG
           fi
 
-          if [[$REPOSITORY == "VALIDATOR"]]; then
+          if [[ $REPOSITORY == "VALIDATOR" ]]; then
             export VALIDATOR=$REPOSITORY_TAG
           fi
 
-          if [[$REPOSITORY == "PANDORA"]]; then
+          if [[ $REPOSITORY == "PANDORA" ]]; then
             export PANDORA=$REPOSITORY_TAG
           fi
 
-          if [[$REPOSITORY == "ORCHESTRATOR"]]; then
+          if [[ $REPOSITORY == "ORCHESTRATOR" ]]; then
             export ORCHESTRATOR=$REPOSITORY_TAG
           fi
 
           echo $REPOSITORY;
           echo $REPOSITORY_TAG;
           chmod +x ./auto.sh &&
-          helm history eth20 --namespace $NAMESPACE
+          ./auto.sh
