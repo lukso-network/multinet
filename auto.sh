@@ -7,8 +7,8 @@ GENESIS_START=$(echo "$(date +%s)"+180 | bc) &&
 --mainnet-config \
 --num-validators=2000 \
 --genesis-time="$GENESIS_START" &&
-kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz --dry-run \
--c vanguard -n $NAMESPACE &&
+kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
+-c vanguard -n $NAMESPACE --dry-run &&
 
 if [ "$VANGUARD" ]; then
   yq eval '.VANGUARD_GH_TAG = '"$VANGUARD" multinet-cluster/values.yaml -i
