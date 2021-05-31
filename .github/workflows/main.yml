@@ -7,18 +7,46 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: namespace/dev
-      - name: configure access
+
+      - name: Install yq
+        run: |
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.9.3/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Configure access to cluster
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
-          NAMESPACE: dev
         run: |
           export KUBECONFIG &&
           mkdir ~/.kube &&
           echo $KUBECONFIG | base64 -di > ~/.kube/config &&
 
-      - name: upgrade
+      - name: Upgrade cluster
         env:
           NAMESPACE: dev
+          REPOSITORY: github.event.client_payload.repository
+          REPOSITORY_TAG: github.event.client_payload.tag
         run: |
+          export REPOSITORY;
+          export REPOSITORY_TAG;
+
+          if [[$REPOSITORY == "VANGUARD"]]; then
+            export VANGUARD=$REPOSITORY_TAG
+          fi
+
+          if [[$REPOSITORY == "VALIDATOR"]]; then
+            export VALIDATOR=$REPOSITORY_TAG
+          fi
+
+          if [[$REPOSITORY == "PANDORA"]]; then
+            export PANDORA=$REPOSITORY_TAG
+          fi
+
+          if [[$REPOSITORY == "ORCHESTRATOR"]]; then
+            export ORCHESTRATOR=$REPOSITORY_TAG
+          fi
+
+          echo $REPOSITORY;
+          echo $REPOSITORY_TAG;
           chmod +x ./auto.sh &&
           helm history eth20 --namespace $NAMESPACE
