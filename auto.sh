@@ -1,8 +1,6 @@
 #!/bin/bash
 #echo "Not ready! Please do not use" &&
 #exit;
-apt install bc;
-snap install yq;
 echo $NAMESPACE;
 GENESIS_START=$(echo "$(date +%s)"+180 | bc) &&
 ./genesis-state-gen --output-ssz=/tmp/genesis.ssz \
