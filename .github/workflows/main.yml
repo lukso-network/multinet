@@ -9,6 +9,7 @@ jobs:
           ref: namespace/dev
       - name: configure access
         env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
           NAMESPACE: dev
         run: |
@@ -22,5 +23,4 @@ jobs:
         run: |
           echo "Works"
           chmod +x ./auto.sh
-          ./auto.sh
-          helm history
+          helm history --namespace $NAMESPACE
