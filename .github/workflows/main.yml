@@ -14,7 +14,7 @@ jobs:
           NAMESPACE: dev
         run: |
           mkdir ~/.kube &&
-          echo $KUBECONFIG | base64 -d > ~/.kube/config &&
+          echo $KUBECONFIG | base64 -di > ~/.kube/config &&
           echo "configured"
 
       - name: upgrade
