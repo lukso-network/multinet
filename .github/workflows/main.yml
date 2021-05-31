@@ -12,14 +12,21 @@ jobs:
         run: |
           sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.9.3/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
+          
+      - name: Get credentials
+        uses: google-github-actions/get-gke-credentials@main
+        with:
+          cluster_name: eth20
+          location: europe-west4-a
+          credentials: ${{ secrets.gcp_credentials }}    
 
       - name: Configure access to cluster
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: |
-          export KUBECONFIG &&
-          mkdir ~/.kube &&
-          echo $KUBECONFIG | base64 -di > ~/.kube/config
+          #export KUBECONFIG &&
+          #mkdir ~/.kube &&
+          #echo $KUBECONFIG | base64 -di > ~/.kube/config
 
       - name: Upgrade cluster
         env:
