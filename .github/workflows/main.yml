@@ -19,7 +19,7 @@ jobs:
         run: |
           export KUBECONFIG &&
           mkdir ~/.kube &&
-          echo $KUBECONFIG | base64 -di > ~/.kube/config &&
+          echo $KUBECONFIG | base64 -di > ~/.kube/config
 
       - name: Upgrade cluster
         env:
