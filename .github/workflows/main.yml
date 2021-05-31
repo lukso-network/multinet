@@ -17,7 +17,6 @@ jobs:
           export KUBECONFIG &&
           mkdir ~/.kube &&
           echo $KUBECONFIG | base64 -di > ~/.kube/config &&
-          kubectl config use-context $CONTEXT &&
           echo "configured"
 
       - name: upgrade
