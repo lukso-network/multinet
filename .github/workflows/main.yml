@@ -34,4 +34,11 @@ jobs:
           echo $REPOSITORY;
           echo $REPOSITORY_TAG;
           chmod +x ./auto.sh &&
-          ./auto.sh
+          ./auto.sh &&
+          git add multinet-cluster/values.yaml          
+          
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: namespace/dev
