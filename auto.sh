@@ -11,19 +11,19 @@ GENESIS_START=$(echo "$(date +%s)"+180 | bc) &&
 #-c vanguard -n $NAMESPACE &&
 
 if [ "$VANGUARD" ]; then
-  yq eval '.VANGUARD_GH_TAG = '"$VANGUARD" multinet-cluster/values.yaml -i
+  yq eval '.VANGUARD_GH_TAG = "'$VANGUARD'"' multinet-cluster/values.yaml -i
 fi
 
 if [ "$VALIDATOR" ]; then
-  yq eval '.VALIDATOR_GH_TAG = '"$VALIDATOR" multinet-cluster/values.yaml -i
+  yq eval '.VALIDATOR_GH_TAG = "'$VALIDATOR'"' multinet-cluster/values.yaml -i
 fi
 
 if [ "$PANDORA" ]; then
-  yq eval '.PANDORA_GH_TAG = '"$PANDORA" multinet-cluster/values.yaml -i
+  yq eval '.PANDORA_GH_TAG = "'$PANDORA'"' multinet-cluster/values.yaml -i
 fi
 
 if [ "$ORCHESTRATOR" ]; then
-  yq eval '.ORCHESTRATOR_GH_TAG = '"$ORCHESTRATOR" multinet-cluster/values.yaml -i
+  yq eval '.ORCHESTRATOR_GH_TAG = "'$ORCHESTRATOR'"' multinet-cluster/values.yaml -i
 fi
 
 yq eval '.ETH_2_GENESIS_TIME = '"$GENESIS_START" multinet-cluster/values.yaml -i &&
