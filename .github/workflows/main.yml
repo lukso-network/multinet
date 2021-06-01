@@ -31,22 +31,6 @@ jobs:
           export REPOSITORY_TAG;
           export NAMESPACE;
 
-          if [[ $REPOSITORY == "VANGUARD" ]]; then
-            export VANGUARD=$REPOSITORY_TAG
-          fi
-
-          if [[ $REPOSITORY == "VALIDATOR" ]]; then
-            export VALIDATOR=$REPOSITORY_TAG
-          fi
-
-          if [[ $REPOSITORY == "PANDORA" ]]; then
-            export PANDORA=$REPOSITORY_TAG
-          fi
-
-          if [[ $REPOSITORY == "ORCHESTRATOR" ]]; then
-            export ORCHESTRATOR=$REPOSITORY_TAG
-          fi
-
           echo $REPOSITORY;
           echo $REPOSITORY_TAG;
           chmod +x ./auto.sh &&
