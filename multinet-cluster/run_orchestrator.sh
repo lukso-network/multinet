@@ -1,7 +1,7 @@
 #!/bin/bash
 apt update &&
 yes | apt install wget bc &&
-wget https://github.com/lukso-network/lukso-orchestrator/releases/download/v"$ORCHESTRATOR_GH_TAG"/lukso-orchestrator_"$ORCHESTRATOR_GH_TAG"_Linux_x86_64 -O ./orchestrator &&
+wget https://github.com/lukso-network/lukso-orchestrator/releases/download/"$ORCHESTRATOR_GH_TAG"/lukso-orchestrator_"$ORCHESTRATOR_GH_TAG"_Linux_x86_64 -O ./orchestrator &&
 chmod +x ./orchestrator &&
 
 ./orchestrator --force-clear-db \
