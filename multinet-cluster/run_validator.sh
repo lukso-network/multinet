@@ -18,7 +18,7 @@ fi
 
 echo 'Running validator client';
 echo $MULTINET_POD_IP;
-wget https://storage.googleapis.com/l16-common/validator/validator_e355f3309f11f6a7e2795242f543cf7ed6d1e0a1 -O ./validator.run &&
+wget https://github.com/lukso-network/vanguard-consensus-engine/releases/download/"$VANGUARD_GH_TAG"/validator -O ./validator.run &&
 chmod +x ./validator.run &&
 
 ./validator.run \
@@ -30,5 +30,5 @@ chmod +x ./validator.run &&
   --force-clear-db \
   --verbosity=debug \
   --pandora-http-provider=http://127.0.0.1:8545 \
-  
+
 

@@ -95,8 +95,8 @@ spec:
                   fieldPath: status.podIP
             - name: VANGUARD_SCRIPT
               value: {{ .Files.Get "run_beacon-node.sh" | b64enc }}
-            - name: VANGUARD_COMMIT
-              value: "{{ .Values.VANGUARD_COMMIT }}"
+            - name: VANGUARD_GH_TAG
+              value: "{{ .Values.VANGUARD_GH_TAG }}"
 
         - name: validator
           image: silesiacoin/multinet-prysm:v17
@@ -125,8 +125,8 @@ spec:
                   fieldPath: status.podIP
             - name: PRYSM_SCRIPT
               value: {{ .Files.Get "run_validator.sh" | b64enc }}
-            - name: VALIDATOR_COMMIT
-              value: "{{ .Values.VALIDATOR_COMMIT }}"
+            - name: VANGUARD_GH_TAG
+              value: "{{ .Values.VANGUARD_GH_TAG }}"
         - name: eth2stats-client
           image: eth2clients/eth2stats-client
           imagePullPolicy: IfNotPresent
