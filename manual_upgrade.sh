@@ -3,7 +3,7 @@
 #exit;
 
 echo $NAMESPACE;
-GENESIS_START=$(echo "$(date +%s)"+180 | bc) &&
+GENESIS_START=$(echo "$(date +%s)"+360 | bc) &&
 ./genesis-state-gen --output-ssz=/tmp/genesis.ssz \
 --mainnet-config \
 --num-validators=2000 \

@@ -18,12 +18,12 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-dev3
+        - name: deposits-storage-dev5
           persistentVolumeClaim:
-            claimName: deposits-storage-pvc-dev3
-        - name: common-data-dev3
+            claimName: deposits-storage-pvc-dev5
+        - name: common-data-dev5
           persistentVolumeClaim:
-            claimName: common-data-pvc-dev3
+            claimName: common-data-pvc-dev5
       containers:
         - name: pandora
           image: ubuntu
@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-dev3
+              name: common-data-dev5
           command: [ "bash", "-c" ]
           ports:
             - containerPort: 8545
@@ -67,9 +67,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-dev3
+            name: deposits-storage-dev5
           - mountPath: /root/multinet/repo/data
-            name: common-data-dev3
+            name: common-data-dev5
           command: [ "bash", "-c"]
           ports:
             - name: monitoring-port
@@ -103,9 +103,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-dev3
+              name: deposits-storage-dev5
             - mountPath: /root/multinet/repo/data
-              name: common-data-dev3
+              name: common-data-dev5
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -149,7 +149,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-dev3
+              name: common-data-dev5
           command: [ "bash", "-c" ]
           args:
             - echo $ORCHESTRATOR_INIT_SCRIPT; echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh; base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh; chmod +x /root/multinet/repo/orchestrator.sh; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME ORCHESTRATOR_GH_TAG=$ORCHESTRATOR_GH_TAG /root/multinet/repo/orchestrator.sh

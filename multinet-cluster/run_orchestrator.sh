@@ -6,6 +6,9 @@ chmod +x ./orchestrator &&
 
 ./orchestrator --force-clear-db \
 --vanguard-grpc-endpoint=127.0.0.1:4000 \
+--http \
+--http.addr=127.0.0.1 \
+--http.port=7877 \
 --ws \
 --ws.addr=127.0.0.1 \
 --ws.port=7878 \

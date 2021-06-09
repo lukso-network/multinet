@@ -23,7 +23,7 @@ fi
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
   sleep 5;
 done
-wget https://storage.googleapis.com/l16-common/vanguard/vanguard_69e242790f764184e19972e286b13a22512b0766 -O ./beacon-chain.run &&
+wget https://storage.googleapis.com/l16-common/vanguard/vanguard_193a56f5ba62add4e947b3f9b730bd5c24c7c18f -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \
@@ -35,7 +35,7 @@ chmod +x ./beacon-chain.run &&
   --force-clear-db \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --bootstrap-node="enr:-Ku4QOoNjcQp4g7jd8IziJ_pL29CWbC_UDJ7iC7WNOPo26L4VtSS_F8eLcZ3jQIl7YfTkkgJK85bQ4zYFH_maL3XrmEBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAAg-Jc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
+  --bootstrap-node=" enr:-Ku4QINXMVHpOeLXqqZBsSNOA0FLoZoB5gGfIkr43G0vhSIxHADRpRfLTpRiuhFH-0caYaT48fg5nsKINaJTXTqwPoQBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoACxiJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
   --http-web3provider=http://127.0.0.1:8545 \
   --deposit-contract=0x000000000000000000000000000000000000cafe \
   --contract-deployment-block=0 \
@@ -45,5 +45,7 @@ chmod +x ./beacon-chain.run &&
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
   --p2p-host-ip=$EXTERNAL_IP \
+  --lukso-network \
+  --orc-http-provider=http://127.0.0.1:7877
 
 
