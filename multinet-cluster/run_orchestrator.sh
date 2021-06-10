@@ -7,10 +7,10 @@ chmod +x ./orchestrator &&
 ./orchestrator --force-clear-db \
 --vanguard-grpc-endpoint=127.0.0.1:4000 \
 --http \
---http.addr=127.0.0.1 \
+--http.addr=0.0.0.0 \
 --http.port=7877 \
 --ws \
---ws.addr=127.0.0.1 \
+--ws.addr=0.0.0.0 \
 --ws.port=7878 \
 --pandora-rpc-endpoint=ws://127.0.0.1:8546 \
 --verbosity=debug

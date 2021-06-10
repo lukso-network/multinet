@@ -22,7 +22,11 @@ spec:
       port: 8546
       targetPort: 8546
       protocol: TCP
-    - name: orchestrator-port
+    - name: orchestrator-http-port
+      port: 7877
+      targetPort: 7877
+      protocol: TCP
+    - name: orchestrator-ws-port
       port: 7878
       targetPort: 7878
       protocol: TCP
