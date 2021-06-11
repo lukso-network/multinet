@@ -25,7 +25,7 @@ jobs:
           gcloud auth activate-service-account --key-file=${HOME}/gcloud.json &&
           gcloud container clusters get-credentials \
           ${{ env.CLUSTER_NAME }} --zone \ 
-          ${{ env.CLUSTER_ZONE }} --project ${{ env.PROJECT_NAME }} &&
+          ${{ env.CLUSTER_ZONE }} &&
           helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace dev --dry-run
 
 
