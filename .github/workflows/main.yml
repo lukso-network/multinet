@@ -18,7 +18,7 @@ jobs:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
           CLUSTER_NAME: eth20
           CLUSTER_ZONE: europe-west4-a
-          GCLOUD_KEY: ${{ secrets.KUBECONFIG }}
+          GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
         run: |
           export GCLOUD_KEY &&
           echo "$GCLOUD_KEY" | base64 --decode > ${HOME}/gcloud.json &&
