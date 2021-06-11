@@ -19,13 +19,14 @@ jobs:
           CLUSTER_NAME: eth20
           CLUSTER_ZONE: europe-west4-a
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
+          PROJECT_NAME: l15-testnet
         run: |
           export GCLOUD_KEY &&
           echo "$GCLOUD_KEY" | base64 --decode > ${HOME}/gcloud.json &&
           gcloud auth activate-service-account --key-file=${HOME}/gcloud.json &&
           gcloud container clusters get-credentials \
           ${{ env.CLUSTER_NAME }} --zone \ 
-          ${{ env.CLUSTER_ZONE }} &&
+          ${{ env.CLUSTER_ZONE }} --project ${{ env.PROJECT_NAME }} &&
           helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace dev --dry-run
 
 
