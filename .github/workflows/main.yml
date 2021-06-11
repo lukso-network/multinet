@@ -16,29 +16,38 @@ jobs:
       - name: Configure access to cluster
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
+          CLUSTER_NAME: eth20
+          CLUSTER_ZONE: europe-west4-a
+          GCLOUD_KEY: ${{ secrets.KUBECONFIG }}
         run: |
-          export KUBECONFIG &&
-          mkdir ~/.kube &&
-          echo $KUBECONFIG | base64 -di > ~/.kube/config
+          export GCLOUD_KEY &&
+          echo "$GCLOUD_KEY" | base64 --decode > ${HOME}/gcloud.json &&
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud.json &&
+          gcloud auth configure-docker &&
+          gcloud container clusters get-credentials \
+          ${{ env.CLUSTER_NAME }} --zone \ 
+          ${{ env.CLUSTER_ZONE }} --project ${{ env.PROJECT_NAME }} &&
+          helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace dev --dry-run
 
-      - name: Upgrade cluster
-        env:
-          NAMESPACE: dev
-          REPOSITORY: ${{ github.event.client_payload.repository }}
-          REPOSITORY_TAG: ${{ github.event.client_payload.tag }}
-        run: |
-          export REPOSITORY;
-          export REPOSITORY_TAG;
-          export NAMESPACE;
 
-          echo $REPOSITORY;
-          echo $REPOSITORY_TAG;
-          chmod +x ./auto.sh &&
-          ./auto.sh &&
-          git add multinet-cluster/values.yaml          
+#       - name: Upgrade cluster
+#         env:
+#           NAMESPACE: dev
+#           REPOSITORY: ${{ github.event.client_payload.repository }}
+#           REPOSITORY_TAG: ${{ github.event.client_payload.tag }}
+#         run: |
+#           export REPOSITORY;
+#           export REPOSITORY_TAG;
+#           export NAMESPACE;
+
+#           echo $REPOSITORY;
+#           echo $REPOSITORY_TAG;
+#           chmod +x ./auto.sh &&
+#           ./auto.sh &&
+#           git add multinet-cluster/values.yaml          
           
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: namespace/dev
+#       - name: Commit & Push changes
+#         uses: actions-js/push@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: namespace/dev
