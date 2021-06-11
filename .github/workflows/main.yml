@@ -23,7 +23,6 @@ jobs:
           export GCLOUD_KEY &&
           echo "$GCLOUD_KEY" | base64 --decode > ${HOME}/gcloud.json &&
           gcloud auth activate-service-account --key-file=${HOME}/gcloud.json &&
-          gcloud auth configure-docker &&
           gcloud container clusters get-credentials \
           ${{ env.CLUSTER_NAME }} --zone \ 
           ${{ env.CLUSTER_ZONE }} --project ${{ env.PROJECT_NAME }} &&
