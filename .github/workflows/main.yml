@@ -15,7 +15,6 @@ jobs:
           
       - name: Configure access to cluster
         env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
           CLUSTER_NAME: eth20
           CLUSTER_ZONE: europe-west4-a
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
