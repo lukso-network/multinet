@@ -8,13 +8,13 @@ GENESIS_START=$(echo "$(date +%s)"+180 | bc) &&
 --num-validators=2000 \
 --genesis-time="$GENESIS_START" &&
 kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
--c vanguard -n $NAMESPACE &&
+-c pandora -n $NAMESPACE &&
 
 # Replacing values in "values.yaml"
 yq eval '.'$REPOSITORY'_GH_TAG = "'$REPOSITORY_TAG'"' multinet-cluster/values.yaml -i
 yq eval '.ETH_2_GENESIS_TIME = '"$GENESIS_START" multinet-cluster/values.yaml -i &&
 yq eval '.MIN_GENESIS_TIME = '$GENESIS_START chain-config.yaml -i &&
-kubectl cp ./chain-config.yaml prysm-0:/root/multinet/repo/data/common/chain-config.yaml -c vanguard -n $NAMESPACE &&
+kubectl cp ./chain-config.yaml prysm-0:/root/multinet/repo/data/common/chain-config.yaml -c pandora -n $NAMESPACE &&
 helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace "$NAMESPACE" &&
 kubectl delete pods prysm-0 --namespace "$NAMESPACE" &&
 echo "Done"
