@@ -5,6 +5,7 @@ wget https://github.com/lukso-network/pandora-execution-engine/releases/download
 wget https://storage.googleapis.com/l16-common/pandora/pandora_genesis3.json -O ./genesis.json &&
 
 chmod +x ./geth &&
+rm -rf ./pandora &&
 ./geth --datadir ./pandora init ./genesis.json &&
 # There is no way in kubernetes to get index of a pod so we retrieve it from $MULTINET_POD_NAME
 ./geth --datadir ./pandora \
@@ -22,5 +23,5 @@ chmod +x ./geth &&
 --ws.origins '*' \
 --miner.etherbase 0xb46d14ef42ac9bb01303ba1842ea784e2460c7e7 \
 --mine \
---miner.notify ws://localhost:7878 \
+--miner.notify "ws://localhost:7878,http://localhost:7877" \
 --verbosity 4
