@@ -23,5 +23,5 @@ rm -rf ./pandora &&
 --ws.origins '*' \
 --miner.etherbase 0xb46d14ef42ac9bb01303ba1842ea784e2460c7e7 \
 --mine \
---miner.notify "ws://localhost:7878,http://localhost:7877" \
+--miner.notify "ws://127.0.0.1:7878,http://127.0.0.1:7877" \
 --verbosity 4
