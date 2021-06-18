@@ -6,11 +6,11 @@ spec:
   selector:
     statefulset.kubernetes.io/pod-name: prysm-0
   ports:
-    - name: monitoring-port
+    - name: vanguard-monitoring-port
       port: 8080
       targetPort: 8080
       protocol: TCP
-    - name: grpc-port
+    - name: vanguard-grpc-port
       port: 4000
       targetPort: 4000
       protocol: TCP
@@ -38,9 +38,13 @@ spec:
       port: 8566
       targetPort: 8566
       protocol: TCP
-    - name: p2p-tcp-port
+    - name: vanguard-p2p-tcp-port
       port: 13000
       targetPort: 13000
+      protocol: TCP
+    - name: pandora-listener-port
+      port: 30303
+      targetPort: 30303
       protocol: TCP
   type: LoadBalancer
   loadBalancerIP: 34.90.144.142
