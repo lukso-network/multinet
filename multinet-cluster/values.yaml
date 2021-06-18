@@ -57,7 +57,9 @@ POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 # Vanguard (beacon-chain and validator)
 VANGUARD_GH_TAG: v0.0.13-alpha
+# Validator
+#VALIDATOR_GH_TAG: p-v0.0.5-alpha
 # Pandora
 PANDORA_GH_TAG: p-v0.0.12-omega
 # Orchestrator
-ORCHESTRATOR_GH_TAG: v0.0.22-delta
+ORCHESTRATOR_GH_TAG: v0.0.22-zeta
