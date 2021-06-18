@@ -18,7 +18,7 @@ spec:
         tier: prysm
     spec:
       containers:
-        - name: prysmbootnode
+        - name: pandorabootnode
           image: ubuntu
           imagePullPolicy: IfNotPresent
           command: [ "bash", "-c"]

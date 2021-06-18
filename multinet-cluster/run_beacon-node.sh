@@ -35,7 +35,7 @@ chmod +x ./beacon-chain.run &&
   --force-clear-db \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --bootstrap-node=" enr:-Ku4QINXMVHpOeLXqqZBsSNOA0FLoZoB5gGfIkr43G0vhSIxHADRpRfLTpRiuhFH-0caYaT48fg5nsKINaJTXTqwPoQBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoACxiJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
+  --bootstrap-node="enr:-Ku4QGNPAw0rHb5RW9DDV4m3BdUVMVMD2tw0Eg5YIQMKlVh6UvWc7XFWHv3aEHo4JqrcSzlIIfiksADF2BAka-vDgwgBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhCPMiFWJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
   --http-web3provider=http://127.0.0.1:8545 \
   --deposit-contract=0x000000000000000000000000000000000000cafe \
   --contract-deployment-block=0 \

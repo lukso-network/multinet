@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: prysmbootnode
+  name: vanguardbootnode
   labels:
     app: multinet
     tier: prysm
@@ -13,22 +13,22 @@ spec:
       tier: prysm
   template:
     metadata:
-      generateName: prysmbootnode
+      generateName: vanguardbootnode
       labels:
         tier: prysm
     spec:
       containers:
-        - name: prysmbootnode
+        - name: vanguardbootnode
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
           command: [ "bash", "-c"]
           ports:
-            - containerPort: 4000
+            - containerPort: 12000
               protocol: UDP
-            - containerPort: 5000
+            - containerPort: 13000
               protocol: TCP
           args:
-            - ls -la /root/multinet/repo; echo $PRYSM_SCRIPT; echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_bootnode.shB64.sh; echo "copied"; base64 -d /root/multinet/repo/prysm/run_bootnode.shB64.sh > /root/multinet/repo/prysm/run_bootnode.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_bootnode.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_bootnode.sh;
+            - echo $BOOTNODE_SCRIPT; echo $BOOTNODE_SCRIPT > /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64; echo "copied"; base64 -d /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64 > /root/multinet/repo/prysm/run_vanguard-bootnode.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_vanguard-bootnode.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME
@@ -39,5 +39,5 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-            - name: PRYSM_SCRIPT
-              value: {{ .Files.Get "run_bootnode.sh" | b64enc }}
+            - name: BOOTNODE_SCRIPT
+              value: {{ .Files.Get "run_vanguard-bootnode.sh" | b64enc }}
