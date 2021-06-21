@@ -1,6 +1,4 @@
 #!/bin/bash
-#echo "Not ready! Please do not use" &&
-#exit;
 
 echo $NAMESPACE;
 GENESIS_START=$(echo "$(date +%s)"+360 | bc) &&
@@ -16,4 +14,3 @@ kubectl cp ./chain-config.yaml prysm-0:/root/multinet/repo/data/common/chain-con
 helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace "$NAMESPACE" &&
 kubectl delete pods prysm-0 prysm-1 prysm-2 prysm-3 --namespace "$NAMESPACE" &&
 echo "$GENESIS_START"
-#kubectl get pods -n "$NAMESPACE" -w

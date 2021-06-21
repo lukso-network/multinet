@@ -46,7 +46,13 @@ spec:
               echo $PANDORA_INIT_SCRIPT > /root/multinet/repo/run_pandoraB64.sh;
               base64 -d /root/multinet/repo/run_pandoraB64.sh > /root/multinet/repo/run_pandora.sh;
               chmod +x /root/multinet/repo/run_pandora.sh;
-              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP PANDORA_GH_TAG=$PANDORA_GH_TAG /root/multinet/repo/run_pandora.sh;
+              export MULTINET_POD_NAME;
+              export MULTINET_POD_IP;
+              export PANDORA_GH_TAG;
+              export PANDORA_STATS_LOGIN_SECRET;
+              export PANDORA_STATS_HOST;
+              export $GENESIS_TIME;
+              /root/multinet/repo/run_pandora.sh;
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
@@ -64,10 +70,10 @@ spec:
               value: "{{ .Values.PANDORA_STATS_HOST }}"
             - name: PANDORA_INIT_SCRIPT
               value: {{ .Files.Get "run_pandora.sh" | b64enc }}
-            - name: PANDORA_COMMIT
-              value: "{{ .Values.PANDORA_COMMIT }}"
             - name: PANDORA_GH_TAG
               value: "{{ .Values.PANDORA_GH_TAG }}"
+            - name: ETH_2_GENESIS_TIME
+              value: "{{ .Values.ETH_2_GENESIS_TIME }}"
         - name: vanguard
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
@@ -107,8 +113,8 @@ spec:
                   fieldPath: status.podIP
             - name: VANGUARD_SCRIPT
               value: {{ .Files.Get "run_beacon-node.sh" | b64enc }}
-            - name: VANGUARD_COMMIT
-              value: "{{ .Values.VANGUARD_COMMIT }}"
+            - name: VANGUARD_GH_TAG
+              value: "{{ .Values.VANGUARD_GH_TAG }}"
 
         - name: validator
           image: silesiacoin/multinet-prysm:v17
@@ -143,8 +149,9 @@ spec:
                   fieldPath: status.podIP
             - name: PRYSM_SCRIPT
               value: {{ .Files.Get "run_validator.sh" | b64enc }}
-            - name: VALIDATOR_COMMIT
-              value: "{{ .Values.VALIDATOR_COMMIT }}"
+            - name: VANGUARD_GH_TAG
+              value: "{{ .Values.VANGUARD_GH_TAG }}"
+
         - name: eth2stats-client
           image: eth2clients/eth2stats-client
           imagePullPolicy: IfNotPresent
@@ -174,7 +181,11 @@ spec:
               echo $ORCHESTRATOR_INIT_SCRIPT > /root/multinet/repo/orchestratorB64.sh;
               base64 -d /root/multinet/repo/orchestratorB64.sh > /root/multinet/repo/orchestrator.sh;
               chmod +x /root/multinet/repo/orchestrator.sh;
-              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ETH_2_GENESIS_TIME=$ETH_2_GENESIS_TIME ORCHESTRATOR_GH_TAG=$ORCHESTRATOR_GH_TAG /root/multinet/repo/orchestrator.sh
+              export MULTINET_POD_NAME;
+              export MULTINET_POD_IP;
+              export ETH_2_GENESIS_TIME;
+              export ORCHESTRATOR_GH_TAG;
+              /root/multinet/repo/orchestrator.sh
           terminationMessagePolicy: FallbackToLogsOnError
           # inject environment variables
           env:
