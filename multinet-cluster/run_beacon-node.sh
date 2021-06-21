@@ -5,21 +5,21 @@ echo "Running prysm beacon-node";
 mkdir /root/multinet/repo/data/common;
 
 #TODO: Automatize this
-#if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
-#  EXTERNAL_IP=34.90.144.142;
-#fi
-#
-#if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
-#  EXTERNAL_IP=;
-#fi
-#
-#if [ "$MULTINET_POD_NAME" == "prysm-2" ]; then
-#  EXTERNAL_IP=;
-#fi
-#
-#if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
-#  EXTERNAL_IP=;
-#fi
+if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
+  EXTERNAL_IP=34.90.129.243;
+fi
+
+if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
+  EXTERNAL_IP=34.91.34.170;
+fi
+
+if [ "$MULTINET_POD_NAME" == "prysm-2" ]; then
+  EXTERNAL_IP=34.141.196.72;
+fi
+
+if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
+  EXTERNAL_IP=34.91.101.178;
+fi
 
 echo "Waiting For genesis.ssz";
 while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
@@ -54,7 +54,7 @@ chmod +x ./beacon-chain.run &&
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
-  --p2p-host-ip=$MULTINET_POD_IP \
+  --p2p-host-ip=$EXTERNAL_IP \
   --lukso-network \
   --orc-http-provider=http://127.0.0.1:7877
 
