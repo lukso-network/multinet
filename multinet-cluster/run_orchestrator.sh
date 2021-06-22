@@ -13,4 +13,4 @@ chmod +x ./orchestrator &&
 --ws.addr=0.0.0.0 \
 --ws.port=7878 \
 --pandora-rpc-endpoint=ws://127.0.0.1:8546 \
---verbosity=debug
+--verbosity=trace
