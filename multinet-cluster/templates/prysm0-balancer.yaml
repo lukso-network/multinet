@@ -46,5 +46,9 @@ spec:
       port: 30303
       targetPort: 30303
       protocol: TCP
+    - name: pandora2-listener-port
+      port: 30304
+      targetPort: 30304
+      protocol: TCP
   type: LoadBalancer
   loadBalancerIP: 34.90.144.142
