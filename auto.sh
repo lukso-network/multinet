@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo $NAMESPACE;
-GENESIS_START=$(echo "$(date +%s)"+360 | bc) &&
+GENESIS_START=$(echo "$(date +%s)"+150 | bc) &&
 ./genesis-state-gen --output-ssz=/tmp/genesis.ssz \
 --mainnet-config \
 --num-validators=2000 \

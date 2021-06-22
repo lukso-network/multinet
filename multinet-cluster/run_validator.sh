@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ "$MULTINET_POD_NAME" == "prysm-4" ]; then
+  sleep infinity;
+fi
+
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
   INDEX=0;
 fi
