@@ -4,10 +4,13 @@ echo $NAMESPACE;
 # Current time plus 3 minutes to give cluster time to upgrade.
 GENESIS_START=$(echo "$(date +%s)"+180 | bc) &&
 ./genesis-state-gen --output-ssz=/tmp/genesis.ssz \
+--output-json=/tmp/genesisL2.json \
 --mainnet-config \
 --num-validators=2000 \
 --genesis-time="$GENESIS_START" &&
 kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
+-c pandora -n $NAMESPACE &&
+kubectl cp /tmp/genesisL2.json  prysm-0:/root/multinet/repo/data/common/genesisL2.json \
 -c pandora -n $NAMESPACE &&
 
 # Replacing values in "values.yaml"
