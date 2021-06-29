@@ -56,7 +56,7 @@ POSTGRES_USER: postgres
 POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 # Vanguard (beacon-chain and validator)
-VANGUARD_GH_TAG: v0.0.15-sharding-test-beta
+VANGUARD_GH_TAG: v0.0.15-sharding-test-gamma
 # Pandora
 PANDORA_GH_TAG: v0.0.13-sharding-test-beta
 # Orchestrator
