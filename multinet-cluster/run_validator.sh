@@ -29,7 +29,6 @@ chmod +x ./validator.run &&
   --interop-start-index="$INDEX" \
   --force-clear-db \
   --verbosity=debug \
-  --pandora-http-provider=http://127.0.0.1:8545 \
-  --lukso-network
+  --pandora-http-provider=http://127.0.0.1:8545
 
 
