@@ -58,7 +58,7 @@ PGDATA: /root/multinet/postgresql/data
 # Vanguard (beacon-chain and validator)
 VANGUARD_GH_TAG: v0.0.14-zeta
 # Pandora
-PANDORA_GH_TAG: p-v0.0.10-alpha-bloom-debug2
+PANDORA_GH_TAG: p-v0.0.10-alpha-mic-cache-fix
 # Orchestrator
 ORCHESTRATOR_GH_TAG: v0.0.24-alpha
 # Static IP assignment
