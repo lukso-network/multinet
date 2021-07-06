@@ -2,7 +2,7 @@
 apt update &&
 yes | apt install wget &&
 wget https://github.com/lukso-network/pandora-execution-engine/releases/download/"$PANDORA_GH_TAG"/geth -O ./geth &&
-wget https://storage.googleapis.com/l16-common/pandora/pandora_genesis3.json -O ./genesis.json &&
+wget https://storage.cloud.google.com/l16-common/pandora/pandora_genesis4.json -O ./genesis.json &&
 
 chmod +x ./geth &&
 rm -rf ./pandora &&
