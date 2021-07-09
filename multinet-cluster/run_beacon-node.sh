@@ -40,8 +40,6 @@ chmod +x ./beacon-chain.run &&
   --accept-terms-of-use \
   --chain-id=4004181 \
   --network-id=4004181 \
-  --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
-  --interop-eth1data-votes \
   --force-clear-db \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \

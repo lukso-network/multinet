@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: deposits-storage-staging
+  name: deposits-storage-dev-matt
   labels:
-    name: deposits-storage-staging
+    name: deposits-storage-dev-matt
 spec:
   capacity:
     storage: 50Gi
@@ -12,10 +12,10 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   claimRef:
-    name: deposits-storage-pvc-staging
-    namespace: staging
+    name: deposits-storage-pvc-dev-matt
+    namespace: dev-matt
   mountOptions:
     - hard
   nfs:
     path: /
-    server: nfs-server-deposit.staging.svc.cluster.local
+    server: nfs-server-deposit.dev-matt.svc.cluster.local

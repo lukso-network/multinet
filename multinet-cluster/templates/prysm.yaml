@@ -18,12 +18,12 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-staging
+        - name: deposits-storage-dev-matt
           persistentVolumeClaim:
-            claimName: deposits-storage-pvc-staging
-        - name: common-data-staging
+            claimName: deposits-storage-pvc-dev-matt
+        - name: common-data-dev-matt
           persistentVolumeClaim:
-            claimName: common-data-pvc-staging
+            claimName: common-data-pvc-dev-matt
       containers:
         - name: pandora
           image: ubuntu
@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data-dev-matt
             - mountPath: /blockchainData
               name: blockchain-data
           command: [ "bash", "-c" ]
@@ -79,9 +79,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-staging
+            name: deposits-storage-dev-matt
           - mountPath: /root/multinet/repo/data
-            name: common-data-staging
+            name: common-data-dev-matt
           command: [ "bash", "-c"]
           ports:
             - name: monitoring-port
@@ -121,9 +121,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-staging
+              name: deposits-storage-dev-matt
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data-dev-matt
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -174,7 +174,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data-dev-matt
           command: [ "bash", "-c" ]
           args:
             - echo $ORCHESTRATOR_INIT_SCRIPT;

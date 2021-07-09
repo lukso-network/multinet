@@ -26,10 +26,10 @@ spec:
             privileged: true
           volumeMounts:
             - mountPath: /deposit
-              name: staging-nfs-deposit
+              name: dev-matt-nfs-deposit
 
       volumes:
-        - name: staging-nfs-deposit
+        - name: dev-matt-nfs-deposit
           gcePersistentDisk:
-            pdName: staging-nfs-deposit
+            pdName: dev-matt-nfs-deposit
             fsType: ext4
