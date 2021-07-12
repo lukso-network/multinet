@@ -20,10 +20,10 @@ spec:
       volumes:
         - name: deposits
           persistentVolumeClaim:
-            claimName: deposits-storage
+            claimName: deposits-storage-pvc-dev-matt
         - name: common-data
           persistentVolumeClaim:
-            claimName: common-data
+            claimName: common-data-pvc-dev-matt
         - name: prysm-source
           hostPath:
             path: "{{ .Values.PRYSM_SOURCE_PATH }}"
@@ -36,8 +36,6 @@ spec:
             name: deposits
           - mountPath: /root/multinet/repo/data
             name: common-data
-          - mountPath: /root/multinet/repo/prysm-src
-            name: prysm-source
           command: [ "bash", "-c"]
           ports:
             - containerPort: 4000
