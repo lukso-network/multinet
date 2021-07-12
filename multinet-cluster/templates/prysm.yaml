@@ -116,42 +116,6 @@ spec:
             - name: VANGUARD_GH_TAG
               value: "{{ .Values.VANGUARD_GH_TAG }}"
 
-        - name: validator
-          image: silesiacoin/multinet-prysm:v17
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-dev-matt
-            - mountPath: /root/multinet/repo/data
-              name: common-data-dev-matt
-          command: [ "bash", "-c" ]
-          ports:
-            - name: monitoring-port
-              containerPort: 8081
-              protocol: TCP
-          args:
-            - echo $PRYSM_SCRIPT > /root/multinet/repo/prysm/run_validatorB64.sh;
-              echo "copied";
-              base64 -d /root/multinet/repo/prysm/run_validatorB64.sh > /root/multinet/repo/prysm/run_validator.sh;
-              echo "decoded";
-              chmod +x /root/multinet/repo/prysm/run_validator.sh;
-              cd /root/multinet/repo/prysm;
-              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_validator.sh;
-          # inject environment variables
-          env:
-            - name: MULTINET_POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: MULTINET_POD_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-            - name: PRYSM_SCRIPT
-              value: {{ .Files.Get "run_validator.sh" | b64enc }}
-            - name: VANGUARD_GH_TAG
-              value: "{{ .Values.VANGUARD_GH_TAG }}"
-
         - name: eth2stats-client
           image: eth2clients/eth2stats-client
           imagePullPolicy: IfNotPresent
