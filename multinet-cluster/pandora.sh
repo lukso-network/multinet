@@ -2,11 +2,14 @@
 apt update &&
 yes | apt install wget &&
 wget https://github.com/lukso-network/pandora-execution-engine/releases/download/"$PANDORA_GH_TAG"/geth -O ./geth &&
-wget https://storage.googleapis.com/l16-common/pandora/pandora_genesis3.json -O ./genesis.json &&
+wget https://storage.googleapis.com/l16-common/pandora/pandora_genesis4.json -O ./genesis.json &&
 
 chmod +x ./geth &&
 rm -rf ./pandora &&
 ./geth --datadir ./pandora init ./genesis.json &&
+
+cp /root/multinet/repo/data/common/UTC--2021-07-06T12-06-29.058613000Z--2 ./pandora/keystore
+
 # There is no way in kubernetes to get index of a pod so we retrieve it from $MULTINET_POD_NAME
 ./geth --datadir ./pandora \
 --ethstats dev-pandora-"${MULTINET_POD_NAME: -1}":VIyf7EjWlR49@catalyst.silesiacoin.com \
@@ -14,7 +17,7 @@ rm -rf ./pandora &&
 --networkid 4004181 \
 --rpc \
 --rpcaddr 0.0.0.0 \
---rpcapi admin,eth,net \
+--rpcapi admin,eth,net,web3,personal \
 --rpccorsdomain "*" \
 --ws \
 --ws.addr 0.0.0.0 \
@@ -24,4 +27,7 @@ rm -rf ./pandora &&
 --miner.etherbase 0xb46d14ef42ac9bb01303ba1842ea784e2460c7e7 \
 --mine \
 --miner.notify "ws://127.0.0.1:7878,http://127.0.0.1:7877" \
---verbosity 4
+--verbosity 4 \
+--http.corsdomain https://remix.ethereum.org \
+--allow-insecure-unlock \
+--password /root/multinet/repo/data/common/password.txt
