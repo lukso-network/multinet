@@ -1,50 +1,50 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: prysm-external-2
-spec:
-  selector:
-    statefulset.kubernetes.io/pod-name: prysm-2
-  ports:
-    - name: vanguard-monitoring-port
-      port: 8080
-      targetPort: 8080
-      protocol: TCP
-    - name: vanguard-grpc-port
-      port: 4000
-      targetPort: 4000
-      protocol: TCP
-    - name: pandora-port
-      port: 8545
-      targetPort: 8545
-      protocol: TCP
-    - name: pandora-port-ws
-      port: 8546
-      targetPort: 8546
-      protocol: TCP
-    - name: orchestrator-http-port
-      port: 7877
-      targetPort: 7877
-      protocol: TCP
-    - name: orchestrator-ws-port
-      port: 7878
-      targetPort: 7878
-      protocol: TCP
-    - name: vanguard-http-port
-      port: 8565
-      targetPort: 8565
-      protocol: TCP
-    - name: vanguard-ws-port
-      port: 8566
-      targetPort: 8566
-      protocol: TCP
-    - name: vanguard-p2p-tcp-port
-      port: 13000
-      targetPort: 13000
-      protocol: TCP
-    - name: pandora-listener-port
-      port: 30303
-      targetPort: 30303
-      protocol: TCP
-  type: LoadBalancer
-  loadBalancerIP: "{{ .Values.POD_IP_2 }}"
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: prysm-external-2
+#spec:
+#  selector:
+#    statefulset.kubernetes.io/pod-name: prysm-2
+#  ports:
+#    - name: vanguard-monitoring-port
+#      port: 8080
+#      targetPort: 8080
+#      protocol: TCP
+#    - name: vanguard-grpc-port
+#      port: 4000
+#      targetPort: 4000
+#      protocol: TCP
+#    - name: pandora-port
+#      port: 8545
+#      targetPort: 8545
+#      protocol: TCP
+#    - name: pandora-port-ws
+#      port: 8546
+#      targetPort: 8546
+#      protocol: TCP
+#    - name: orchestrator-http-port
+#      port: 7877
+#      targetPort: 7877
+#      protocol: TCP
+#    - name: orchestrator-ws-port
+#      port: 7878
+#      targetPort: 7878
+#      protocol: TCP
+#    - name: vanguard-http-port
+#      port: 8565
+#      targetPort: 8565
+#      protocol: TCP
+#    - name: vanguard-ws-port
+#      port: 8566
+#      targetPort: 8566
+#      protocol: TCP
+#    - name: vanguard-p2p-tcp-port
+#      port: 13000
+#      targetPort: 13000
+#      protocol: TCP
+#    - name: pandora-listener-port
+#      port: 30303
+#      targetPort: 30303
+#      protocol: TCP
+#  type: LoadBalancer
+#  loadBalancerIP: "{{ .Values.POD_IP_2 }}"

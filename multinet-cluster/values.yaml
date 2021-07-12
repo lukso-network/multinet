@@ -16,7 +16,7 @@ LIGHTHOUSE_DEV_NODES: 0
 # you will find the oritinal source in the container you can copy also
 LIGHTHOUSE_SOURCE_PATH: /run/desktop/mnt/host/e/tmp/multinet/lh
 LIGHTHOUSE_VALIDATORS: 64
-PRYSM_NODES: 5
+PRYSM_NODES: 0
 # external nodes we manually manage
 PRYSM_DEV_NODES: 0
 # the path of the source code for the manually managed nodes

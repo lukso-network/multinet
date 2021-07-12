@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bootnodes
+  labels:
+    app: multinet
+    tier: prysm
+spec:
+  replicas: 1
+  serviceName: bootnodes
+  selector:
+    matchLabels:
+      tier: prysm
+  template:
+    metadata:
+      generateName: bootnodes-
+      labels:
+        tier: prysm
+    spec:
+      containers:
+        - name: vanguardbootnode
+          image: silesiacoin/multinet-prysm:v17
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c" ]
+          ports:
+            - containerPort: 12000
+              protocol: UDP
+            - containerPort: 13000
+              protocol: TCP
+          args:
+            - echo $BOOTNODE_SCRIPT > /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64;
+              base64 -d /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64 > /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+              chmod +x /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+              cd /root/multinet/repo/prysm;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: BOOTNODE_SCRIPT
+              value: {{ .Files.Get "run_vanguard-bootnode.sh" | b64enc }}
+
+        - name: prysmbootnode
+          image: ubuntu
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c" ]
+          ports:
+            - containerPort: 30303
+              protocol: TCP
+            - containerPort: 30301
+              protocol: TCP
+          args:
+            - echo $PRYSM_SCRIPT > run_pandora-bootnodeB64.sh;
+              base64 -d ./run_pandora-bootnodeB64.sh > ./run_pandora-bootnode.sh;
+              chmod +x ./run_pandora-bootnode.sh;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ./run_pandora-bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: PRYSM_SCRIPT
+              value: {{ .Files.Get "run_pandora-bootnode.sh" | b64enc }}
