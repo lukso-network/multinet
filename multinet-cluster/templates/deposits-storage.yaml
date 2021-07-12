@@ -12,10 +12,10 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   claimRef:
-    name: deposits-storage-pvc-staging
-    namespace: staging
+    name: deposits-storage-pvc
+    namespace: closed-testnet
   mountOptions:
     - hard
   nfs:
     path: /
-    server: nfs-server-deposit.staging.svc.cluster.local
+    server: nfs-server-deposit.closed-testnet.svc.cluster.local

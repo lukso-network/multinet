@@ -28,7 +28,11 @@ spec:
             - containerPort: 13000
               protocol: TCP
           args:
-            - echo $BOOTNODE_SCRIPT; echo $BOOTNODE_SCRIPT > /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64; echo "copied"; base64 -d /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64 > /root/multinet/repo/prysm/run_vanguard-bootnode.sh; echo "decoded"; chmod +x /root/multinet/repo/prysm/run_vanguard-bootnode.sh; cd /root/multinet/repo/prysm; MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+            - echo $BOOTNODE_SCRIPT > /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64;
+              base64 -d /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64 > /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+              chmod +x /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+              cd /root/multinet/repo/prysm;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME

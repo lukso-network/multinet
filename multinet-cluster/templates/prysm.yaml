@@ -18,12 +18,12 @@ spec:
         tier: prysm
     spec:
       volumes:
-        - name: deposits-storage-staging
+        - name: deposits-storage
           persistentVolumeClaim:
-            claimName: deposits-storage-pvc-staging
-        - name: common-data-staging
+            claimName: deposits-storage-pvc
+        - name: common-data
           persistentVolumeClaim:
-            claimName: common-data-pvc-staging
+            claimName: common-data-pvc
       containers:
         - name: pandora
           image: ubuntu
@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data
             - mountPath: /blockchainData
               name: blockchain-data
           command: [ "bash", "-c" ]
@@ -78,10 +78,8 @@ spec:
           image: silesiacoin/multinet-prysm:v17
           imagePullPolicy: IfNotPresent
           volumeMounts:
-          - mountPath: /root/multinet/repo/deposits
-            name: deposits-storage-staging
           - mountPath: /root/multinet/repo/data
-            name: common-data-staging
+            name: common-data
           command: [ "bash", "-c"]
           ports:
             - name: monitoring-port
@@ -121,9 +119,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage-staging
+              name: deposits-storage
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -174,7 +172,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
-              name: common-data-staging
+              name: common-data
           command: [ "bash", "-c" ]
           args:
             - echo $ORCHESTRATOR_INIT_SCRIPT;

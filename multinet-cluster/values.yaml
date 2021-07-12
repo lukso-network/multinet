@@ -1,4 +1,4 @@
-NAMESPACE: staging
+NAMESPACE: closed-testnet
 NIMBUS_NODES: 0
 # external nodes we manually manage
 NIMBUS_DEV_NODES: 0
