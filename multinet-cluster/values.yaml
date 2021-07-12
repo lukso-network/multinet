@@ -62,7 +62,7 @@ PANDORA_GH_TAG: v0.0.15-theta
 # Orchestrator
 ORCHESTRATOR_GH_TAG: v0.0.25-sharding-alpha
 # Static IP assignment
-POD_IP_0: 34.90.129.243
-POD_IP_1: 34.91.34.170
-POD_IP_2: 34.141.196.72
-POD_IP_3: 34.91.101.178
+POD_IP_0:
+POD_IP_1:
+POD_IP_2:
+POD_IP_3:
