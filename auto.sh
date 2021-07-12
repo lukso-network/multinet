@@ -4,7 +4,7 @@ echo $NAMESPACE;
 GENESIS_START=$(echo "$(date +%s)"+150 | bc) &&
 ./genesis-state-gen --output-ssz=/tmp/genesis.ssz \
 --mainnet-config \
---num-validators=2000 \
+--deposit-json-file=./deposit_data.json \
 --genesis-time="$GENESIS_START" &&
 kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
 -c vanguard -n $NAMESPACE &&
