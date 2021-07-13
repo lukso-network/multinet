@@ -1,47 +1,47 @@
-#apiVersion: apps/v1
-#kind: StatefulSet
-#metadata:
-#  name: vanguardbootnode
-#  labels:
-#    app: multinet
-#    tier: prysm
-#spec:
-#  replicas: 1
-#  serviceName: prysmbootnode
-#  selector:
-#    matchLabels:
-#      tier: prysm
-#  template:
-#    metadata:
-#      generateName: vanguardbootnode
-#      labels:
-#        tier: prysm
-#    spec:
-#      containers:
-#        - name: vanguardbootnode
-#          image: silesiacoin/multinet-prysm:v17
-#          imagePullPolicy: IfNotPresent
-#          command: [ "bash", "-c"]
-#          ports:
-#            - containerPort: 12000
-#              protocol: UDP
-#            - containerPort: 13000
-#              protocol: TCP
-#          args:
-#            - echo $BOOTNODE_SCRIPT > /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64;
-#              base64 -d /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64 > /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
-#              chmod +x /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
-#              cd /root/multinet/repo/prysm;
-#              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
-#          # inject environment variables
-#          env:
-#            - name: MULTINET_POD_NAME
-#              valueFrom:
-#                fieldRef:
-#                  fieldPath: metadata.name
-#            - name: MULTINET_POD_IP
-#              valueFrom:
-#                fieldRef:
-#                  fieldPath: status.podIP
-#            - name: BOOTNODE_SCRIPT
-#              value: {{ .Files.Get "run_vanguard-bootnode.sh" | b64enc }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vanguardbootnode
+  labels:
+    app: multinet
+    tier: prysm
+spec:
+  replicas: 1
+  serviceName: prysmbootnode
+  selector:
+    matchLabels:
+      tier: prysm
+  template:
+    metadata:
+      generateName: vanguardbootnode
+      labels:
+        tier: prysm
+    spec:
+      containers:
+        - name: vanguardbootnode
+          image: silesiacoin/multinet-prysm:v17
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 12000
+              protocol: UDP
+            - containerPort: 13000
+              protocol: TCP
+          args:
+            - echo $BOOTNODE_SCRIPT > /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64;
+              base64 -d /root/multinet/repo/prysm/run_vanguard-bootnode.sh.B64 > /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+              chmod +x /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+              cd /root/multinet/repo/prysm;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP /root/multinet/repo/prysm/run_vanguard-bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: BOOTNODE_SCRIPT
+              value: {{ .Files.Get "run_vanguard-bootnode.sh" | b64enc }}

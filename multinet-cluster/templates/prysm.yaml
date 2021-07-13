@@ -29,8 +29,8 @@ spec:
           image: ubuntu
           resources:
             requests:
-              memory: "1000M"
-              cpu: "1"
+              memory: "250M"
+              cpu: "0.5"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/data
@@ -75,7 +75,11 @@ spec:
             - name: ETH_2_GENESIS_TIME
               value: "{{ .Values.ETH_2_GENESIS_TIME }}"
         - name: vanguard
-          image: silesiacoin/multinet-prysm:v17
+          image: ubuntu
+          resources:
+            requests:
+              memory: "1000M"
+              cpu: "1"
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /root/multinet/repo/data
@@ -92,13 +96,12 @@ spec:
               containerPort: 13000
               protocol: TCP
           args:
-          - echo $VANGUARD_SCRIPT > /root/multinet/repo/prysm/run_beacon-nodeB64.sh;
+          - echo $VANGUARD_SCRIPT > /root/multinet/repo/run_beacon-nodeB64.sh;
             echo "copied";
-            base64 -d /root/multinet/repo/prysm/run_beacon-nodeB64.sh > /root/multinet/repo/prysm/run_beacon-node.sh;
+            base64 -d /root/multinet/repo/run_beacon-nodeB64.sh > /root/multinet/repo/run_beacon-node.sh;
             echo "decoded";
-            chmod +x /root/multinet/repo/prysm/run_beacon-node.sh;
-            cd /root/multinet/repo/prysm;
-            MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP VANGUARD_COMMIT=$VANGUARD_COMMIT /root/multinet/repo/prysm/run_beacon-node.sh;
+            chmod +x /root/multinet/repo/run_beacon-node.sh;
+            MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP VANGUARD_COMMIT=$VANGUARD_COMMIT /root/multinet/repo/run_beacon-node.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME
@@ -119,9 +122,9 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /root/multinet/repo/deposits
-              name: deposits-storage
+              name: deposits-storage-staging
             - mountPath: /root/multinet/repo/data
-              name: common-data
+              name: common-data-staging
           command: [ "bash", "-c" ]
           ports:
             - name: monitoring-port
@@ -150,19 +153,6 @@ spec:
             - name: VANGUARD_GH_TAG
               value: "{{ .Values.VANGUARD_GH_TAG }}"
 
-        - name: eth2stats-client
-          image: eth2clients/eth2stats-client
-          imagePullPolicy: IfNotPresent
-          args: ["run", "--v", "--eth2stats.node-name", "$(MULTINET_POD_NAME)", "--eth2stats.addr", "eth2stats:9090", "--eth2stats.tls=false", "--beacon.type", "prysm", "--beacon.addr", "localhost:4000"]
-          env:
-            - name: MULTINET_POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: MULTINET_POD_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
         - name: orchestrator
           image: ubuntu
           resources:

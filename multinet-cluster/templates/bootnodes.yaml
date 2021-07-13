@@ -6,7 +6,7 @@ metadata:
     app: multinet
     tier: prysm
 spec:
-  replicas: 1
+  replicas: 0
   serviceName: bootnodes
   selector:
     matchLabels:

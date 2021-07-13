@@ -17,30 +17,30 @@ spec:
       labels:
         tier: prysm
     spec:
-#      containers:
-#        - name: prysmbootnode
-#          image: ubuntu
-#          imagePullPolicy: IfNotPresent
-#          command: [ "bash", "-c"]
-#          ports:
-#            - containerPort: 30303
-#              protocol: TCP
-#            - containerPort: 30301
-#              protocol: TCP
-#          args:
-#            - echo $PRYSM_SCRIPT > run_pandora-bootnodeB64.sh;
-#              base64 -d ./run_pandora-bootnodeB64.sh > ./run_pandora-bootnode.sh;
-#              chmod +x ./run_pandora-bootnode.sh;
-#              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ./run_pandora-bootnode.sh;
-#          # inject environment variables
-#          env:
-#            - name: MULTINET_POD_NAME
-#              valueFrom:
-#                fieldRef:
-#                  fieldPath: metadata.name
-#            - name: MULTINET_POD_IP
-#              valueFrom:
-#                fieldRef:
-#                  fieldPath: status.podIP
-#            - name: PRYSM_SCRIPT
-#              value: {{ .Files.Get "run_pandora-bootnode.sh" | b64enc }}
+      containers:
+        - name: prysmbootnode
+          image: ubuntu
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 30303
+              protocol: TCP
+            - containerPort: 30301
+              protocol: TCP
+          args:
+            - echo $PRYSM_SCRIPT > run_pandora-bootnodeB64.sh;
+              base64 -d ./run_pandora-bootnodeB64.sh > ./run_pandora-bootnode.sh;
+              chmod +x ./run_pandora-bootnode.sh;
+              MULTINET_POD_NAME=$MULTINET_POD_NAME MULTINET_POD_IP=$MULTINET_POD_IP ./run_pandora-bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: PRYSM_SCRIPT
+              value: {{ .Files.Get "run_pandora-bootnode.sh" | b64enc }}

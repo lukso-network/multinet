@@ -1,12 +1,13 @@
 #!/bin/bash
-
+apt update &&
+yes | apt install wget &&
 echo "Running prysm beacon-node";
 
 mkdir /root/multinet/repo/data/common;
 
 #TODO: Automatize this
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
-  EXTERNAL_IP=34.90.129.243;
+  EXTERNAL_IP=34.90.46.200;
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
@@ -45,7 +46,7 @@ chmod +x ./beacon-chain.run &&
   --force-clear-db \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --bootstrap-node="enr:-Ku4QIccdAuen78pN7Wm39ZE2RkLmktfEwi0Rq8mZ62SrZT6H8nKDG5Ner7BDBq_BdD7n4QmG37yujrsu4pEvXb7uu8Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAAAOJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
+  --bootstrap-node="enr:-Ku4QA3oi1X-748lqAlNNQKPZAY2-KWMcBBp0BXN0VtiQlnEPf54uwJM84GiKNypMLd3uvkvs2XALmp9FJ2G5IPdcRMBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhCPM_6yJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
   --http-web3provider=http://127.0.0.1:8545 \
   --deposit-contract=0x000000000000000000000000000000000000cafe \
   --contract-deployment-block=0 \
