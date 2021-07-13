@@ -12,5 +12,5 @@ yq eval '.ETH_2_GENESIS_TIME = '"$GENESIS_START" multinet-cluster/values.yaml -i
 yq eval '.MIN_GENESIS_TIME = '$GENESIS_START chain-config.yaml -i &&
 kubectl cp ./chain-config.yaml prysm-0:/root/multinet/repo/data/common/chain-config.yaml -c vanguard -n $NAMESPACE &&
 helm upgrade -f multinet-cluster/values.yaml eth20 ./multinet-cluster/ --namespace "$NAMESPACE" &&
-kubectl delete pods prysm-0 prysm-1 prysm-2 prysm-3 --namespace "$NAMESPACE" &&
+kubectl delete pods prysm-0 --namespace "$NAMESPACE" &&
 echo "$GENESIS_START"
