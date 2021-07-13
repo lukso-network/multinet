@@ -41,10 +41,12 @@ chmod +x ./beacon-chain.run &&
   --chain-id=4004181 \
   --network-id=4004181 \
   --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
+  --interop-eth1data-votes \
   --force-clear-db \
+  --disable-sync \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
-  --bootstrap-node="enr:-Ku4QMR5KUnBeM2IBnRduMltc3JhnAT3yJizqTDNfkGc7qFlcN3fP40CnA1VKficDrniZZMq172pK2vp0-FzcpKlxfQBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoAC0qJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
+  --bootstrap-node="enr:-Ku4QANldTRLCRUrY9K4OAmk_ATOAyS_sxdTAaGeSh54AuDJXxOYij1fbgh4KOjD4tb2g3T-oJmMjuJyzonLYW9OmRQBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhAoABweJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
   --http-web3provider=http://127.0.0.1:8545 \
   --deposit-contract=0x000000000000000000000000000000000000cafe \
   --contract-deployment-block=0 \
