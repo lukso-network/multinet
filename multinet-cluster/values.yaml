@@ -34,7 +34,7 @@ POSTGRES_USER: postgres
 POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 # Vanguard (beacon-chain and validator)
-VANGUARD_GH_TAG: v0.0.14-zeta
+VANGUARD_GH_TAG: v0.0.15-eth1data-votes-debug
 # Pandora
 PANDORA_GH_TAG: p-v0.0.10-alpha-mic-cache-fix
 # Orchestrator
