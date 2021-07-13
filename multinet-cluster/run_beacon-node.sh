@@ -41,7 +41,6 @@ chmod +x ./beacon-chain.run &&
   --chain-id=4004181 \
   --network-id=4004181 \
   --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
-  --interop-eth1data-votes \
   --force-clear-db \
   --disable-sync \
   --datadir /tmp/chaindata \
