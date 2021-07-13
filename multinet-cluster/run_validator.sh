@@ -31,10 +31,6 @@ done
 
 chmod +x ./validator.run &&
 
-/validator.run accounts import \
-  --keys-dir=/root/multinet/repo/matt_validator_keys/validator_keys \
-  --account-password-file=/root/multinet/repo/matt_validator_keys/validator_keys/passwords.txt &&
-
 ./validator.run \
   --accept-terms-of-use \
   --beacon-rpc-provider localhost:4000 \
