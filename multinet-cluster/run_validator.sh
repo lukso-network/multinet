@@ -35,6 +35,11 @@ while  [ ! -f /root/multinet/repo/deposits/validator_keys/deposit_data-162617395
   sleep 5;
 done
 
+echo "Waiting for validator keys";
+while  [ ! -f /root/multinet/repo/deposits/password.txt ]; do
+  sleep 5;
+done
+
 chmod +x ./validator.run &&
 
 ./validator.run accounts import \
