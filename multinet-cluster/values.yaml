@@ -56,11 +56,11 @@ POSTGRES_USER: postgres
 POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 # Vanguard (beacon-chain and validator)
-VANGUARD_GH_TAG: v0.0.15-gamma
+VANGUARD_GH_TAG: v0.0.15-debug-fork_0
 # Pandora
-PANDORA_GH_TAG: v0.0.15-theta
+PANDORA_GH_TAG: v0.0.15-debug-fork_0
 # Orchestrator
-ORCHESTRATOR_GH_TAG: v0.0.25-sharding-alpha
+ORCHESTRATOR_GH_TAG: v0.0.25-sharding-test-theta-merged-with-comparison
 # Static IP assignment
 POD_IP_0: 34.90.129.243
 POD_IP_1: 34.91.34.170
