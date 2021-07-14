@@ -33,14 +33,14 @@ done
 
 echo "chain-config.yaml received starting up...";
 
-wget https://github.com/lukso-network/vanguard-consensus-engine/releases/download/"$VANGUARD_GH_TAG"/beacon-chain -O ./beacon-chain.run &&
+wget https://github.com/prysmaticlabs/prysm/releases/download/v1.3.5/beacon-chain-v1.3.5-linux-amd64 -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \
   --accept-terms-of-use \
   --chain-id=4004181 \
   --network-id=4004181 \
-  --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
+  --genesis-state /root/multinet/repo/data/common/genesis.ssz \
   --force-clear-db \
   --disable-sync \
   --datadir /tmp/chaindata \
