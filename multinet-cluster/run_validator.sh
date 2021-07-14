@@ -35,7 +35,7 @@ while  [ ! -f /root/multinet/repo/deposits/validator_keys/deposit_data-162617395
   sleep 5;
 done
 
-echo "Waiting for validator keys";
+echo "Waiting for password file";
 while  [ ! -f /root/multinet/repo/deposits/password.txt ]; do
   sleep 5;
 done
@@ -57,4 +57,7 @@ chmod +x ./validator.run &&
   --verbosity=debug \
   --pandora-http-provider=http://127.0.0.1:8545 \
   --lukso-network \
-  --wallet-dir=/root/multinet/repo/wallet
+  --wallet-dir=/root/multinet/repo/wallet \
+  --wallet-password-file=/root/multinet/repo/deposits/password.txt
+
+
