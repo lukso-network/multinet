@@ -38,6 +38,7 @@ chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \
   --accept-terms-of-use \
+  --force-clear-db \
   --chain-id=4004181 \
   --network-id=4004181 \
   --genesis-state /root/multinet/repo/data/common/genesis.ssz \
@@ -54,9 +55,4 @@ chmod +x ./beacon-chain.run &&
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
-  --p2p-host-ip=$EXTERNAL_IP \
-  --lukso-network \
-  --orc-http-provider=http://127.0.0.1:7877
-
-
-
+  --p2p-host-ip=$EXTERNAL_IP
