@@ -1,5 +1,5 @@
 NAMESPACE: closed-testnet
-PRYSM_NODES: 1
+PRYSM_NODES: 2
 # external nodes we manually manage
 PRYSM_DEV_NODES: 0
 PRYSM_BOOTNODE_ENR:
@@ -18,7 +18,7 @@ TEKU_CATALYST_NODES_DEV: 0
 TEKU_LOG_FILE: "/root/multinet/repo/teku_2021-02-03_15-12.log"
 TEKU_LOG_FILE_NAME_PATTERN: "teku_%d{yyyy-MM-dd_HH-ii}.log"
 ETH_1_BLOCK_HASH: 0x9f41b94fdf02858bb8ef9bc55cb1ec8ef8adf7efa0f6fd82046fa94e154c0728
-ETH_2_GENESIS_TIME: "1626276281"
+ETH_2_GENESIS_TIME: "1626429779"
 ETH_2_VALIDATORS: 128
 # Set to 1 if you want to have explorer up
 ETH_2_EXPLORERS: 0
@@ -33,13 +33,13 @@ POSTGRES_USER: postgres
 POSTGRES_DB: db
 PGDATA: /root/multinet/postgresql/data
 # Vanguard (beacon-chain and validator)
-VANGUARD_GH_TAG: v0.0.15-debug-fork_0
+VANGUARD_GH_TAG: v0.0.16-alpha
 # Pandora
-PANDORA_GH_TAG: v0.0.15-debug-fork_0
+PANDORA_GH_TAG: p-v0.0.10-alpha-mic-cache-fix
 # Orchestrator
-ORCHESTRATOR_GH_TAG: v0.0.25-sharding-test-theta-merged-with-comparison
+ORCHESTRATOR_GH_TAG: v0.0.24-alpha
 # Static IP assignment
-POD_IP_0:
-POD_IP_1:
+POD_IP_0: 34.90.158.7
+POD_IP_1: 34.90.42.103
 POD_IP_2:
 POD_IP_3:

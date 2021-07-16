@@ -5,7 +5,6 @@ GENESIS_START=$(echo "$(date +%s)"+150 | bc) &&
 ./genesis-state-gen --output-ssz=/tmp/genesis.ssz \
 --deposit-json-file ./deposit_data.json \
 --mainnet-config \
---num-validators=2000 \
 --genesis-time="$GENESIS_START" &&
 kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
 -c pandora -n $NAMESPACE &&

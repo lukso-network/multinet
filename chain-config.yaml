@@ -2,7 +2,7 @@
 # Note: the intention of this file (for now) is to illustrate what a mainnet configuration could look like.
 # Some of these constants may still change before the launch of Phase 0.
 
-CONFIG_NAME: "mainnet"
+CONFIG_NAME: "closed-testnet"
 # Misc
 # ---------------------------------------------------------------
 # 2**6 (= 64)
@@ -20,7 +20,7 @@ SHUFFLE_ROUND_COUNT: 90
 # `2**14` (= 16,384)
 MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: 1
 # Jan 3, 2020
-MIN_GENESIS_TIME: 1626276281
+MIN_GENESIS_TIME: 1626429779
 # 4
 HYSTERESIS_QUOTIENT: 4
 # 1 (minus 0.25)

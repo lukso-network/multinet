@@ -23,10 +23,8 @@ spec:
           imagePullPolicy: IfNotPresent
           command: [ "bash", "-c"]
           ports:
-            - containerPort: 30303
-              protocol: TCP
             - containerPort: 30301
-              protocol: TCP
+              protocol: UDP
           args:
             - echo $PRYSM_SCRIPT > run_pandora-bootnodeB64.sh;
               base64 -d ./run_pandora-bootnodeB64.sh > ./run_pandora-bootnode.sh;

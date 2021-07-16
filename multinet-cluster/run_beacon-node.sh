@@ -7,19 +7,19 @@ mkdir /root/multinet/repo/data/common;
 
 #TODO: Automatize this
 if [ "$MULTINET_POD_NAME" == "prysm-0" ]; then
-  EXTERNAL_IP=34.90.46.200;
+  EXTERNAL_IP=34.90.158.7;
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-1" ]; then
-  EXTERNAL_IP=34.91.34.170;
+  EXTERNAL_IP=34.90.42.103;
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-2" ]; then
-  EXTERNAL_IP=34.141.196.72;
+  EXTERNAL_IP=000;
 fi
 
 if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
-  EXTERNAL_IP=34.91.101.178;
+  EXTERNAL_IP=000;
 fi
 
 echo "Waiting For genesis.ssz";
