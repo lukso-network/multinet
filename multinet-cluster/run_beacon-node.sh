@@ -41,8 +41,9 @@ chmod +x ./beacon-chain.run &&
   --accept-terms-of-use \
   --chain-id=4004181 \
   --network-id=4004181 \
-  --interop-genesis-state /root/multinet/repo/data/common/genesis.ssz \
+  --genesis-state /root/multinet/repo/data/common/genesis.ssz \
   --force-clear-db \
+  --disable-sync \
   --datadir /tmp/chaindata \
   --chain-config-file=/root/multinet/repo/data/common/chain-config.yaml \
   --bootstrap-node="enr:-Ku4QA3oi1X-748lqAlNNQKPZAY2-KWMcBBp0BXN0VtiQlnEPf54uwJM84GiKNypMLd3uvkvs2XALmp9FJ2G5IPdcRMBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpD1pf1CAAAAAP__________gmlkgnY0gmlwhCPM_6yJc2VjcDI1NmsxoQKWfbT1atCho149MGMvpgBWUymiOv9QyXYhgYEBZvPBW4N1ZHCCD6A" \
@@ -54,9 +55,6 @@ chmod +x ./beacon-chain.run &&
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
-  --p2p-host-ip=$EXTERNAL_IP \
-  --lukso-network \
-  --orc-http-provider=http://127.0.0.1:7877
-
+  --p2p-host-ip=$EXTERNAL_IP
 
 
