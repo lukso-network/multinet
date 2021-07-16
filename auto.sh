@@ -6,7 +6,7 @@ GENESIS_START=$(echo "$(date +%s)"+150 | bc) &&
 --mainnet-config \
 --deposit-json-file=./deposit_data.json \
 --genesis-time="$GENESIS_START" &&
-kubectl cp /tmp/genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
+kubectl cp ./genesis.ssz  prysm-0:/root/multinet/repo/data/common/genesis.ssz \
 -c vanguard -n $NAMESPACE &&
 yq eval '.ETH_2_GENESIS_TIME = '"$GENESIS_START" multinet-cluster/values.yaml -i &&
 yq eval '.MIN_GENESIS_TIME = '$GENESIS_START chain-config.yaml -i &&
