@@ -55,4 +55,6 @@ chmod +x ./beacon-chain.run &&
   --verbosity=debug \
   --min-sync-peers=0 \
   --p2p-max-peers=10 \
-  --p2p-host-ip=$EXTERNAL_IP
+  --p2p-host-ip=$EXTERNAL_IP \
+  --lukso-network \
+  --orc-http-provider=http://127.0.0.1:7877
