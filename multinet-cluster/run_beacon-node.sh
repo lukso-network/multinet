@@ -33,7 +33,7 @@ done
 
 echo "chain-config.yaml received starting up...";
 
-wget https://github.com/lukso-network/vanguard-consensus-engine/releases/download/v0.0.15-debug-135-update/beacon-chain -O ./beacon-chain.run &&
+wget https://github.com/lukso-network/vanguard-consensus-engine/releases/download/"$VANGUARD_GH_TAG"/beacon-chain -O ./beacon-chain.run &&
 chmod +x ./beacon-chain.run &&
 
 ./beacon-chain.run \
