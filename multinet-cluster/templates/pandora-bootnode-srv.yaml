@@ -11,4 +11,4 @@ spec:
       targetPort: 30303
       protocol: TCP
   type: LoadBalancer
-  loadBalancerIP:
+  loadBalancerIP: 34.90.255.247

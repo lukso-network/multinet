@@ -41,3 +41,5 @@ spec:
                   fieldPath: status.podIP
             - name: PRYSM_SCRIPT
               value: {{ .Files.Get "run_pandora-bootnode.sh" | b64enc }}
+            - name: PANDORA_GH_TAG
+              value: "{{ .Values.PANDORA_GH_TAG }}"
