@@ -13,4 +13,4 @@ chmod +x ./geth &&
 ./geth --datadir /blockchainData/pandora-bootnode/"$ETH_2_GENESIS_TIME" \
 --networkid 4004181 \
 --verbosity 6 \
---nat extip:$MULTINET_POD_IP
+--nat extip:35.204.174.24
