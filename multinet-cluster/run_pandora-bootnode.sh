@@ -8,9 +8,9 @@ wget https://github.com/lukso-network/pandora-execution-engine/releases/download
 wget https://storage.googleapis.com/l16-common/pandora/pandora_private_testnet_genesis.json -O ./genesis.json &&
 
 chmod +x ./geth &&
-./geth --datadir /blockchainData/pandora-bootnode/"$ETH_2_GENESIS_TIME" init ./genesis.json &&
+./geth --datadir /blockchainData/pandora/"$ETH_2_GENESIS_TIME" init ./genesis.json &&
 
-./geth --datadir /blockchainData/pandora-bootnode/"$ETH_2_GENESIS_TIME" \
+./geth --datadir /blockchainData/pandora/"$ETH_2_GENESIS_TIME" \
 --networkid 4004181 \
 --verbosity 6 \
 --nat extip:34.90.255.247
