@@ -22,7 +22,7 @@ if [ "$MULTINET_POD_NAME" == "prysm-3" ]; then
 fi
 
 echo "Waiting For genesis.ssz";
-while  [ ! -f /root/multinet/repo/data/common/genesis.ssz ]; do
+while  [ ! -f /root/multinet/repo/data/common/vanguard_private_testnet_genesis.ssz ]; do
   sleep 5;
 done
 
@@ -41,7 +41,7 @@ chmod +x ./beacon-chain.run &&
   --force-clear-db \
   --chain-id=4004181 \
   --network-id=4004181 \
-  --genesis-state /root/multinet/repo/data/common/genesis.ssz \
+  --genesis-state /root/multinet/repo/data/common/vanguard_private_testnet_genesis.ssz \
   --force-clear-db \
   --disable-sync \
   --datadir /tmp/chaindata \

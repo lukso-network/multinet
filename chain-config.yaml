@@ -1,7 +1,6 @@
 # Mainnet preset
 # Note: the intention of this file (for now) is to illustrate what a mainnet configuration could look like.
 # Some of these constants may still change before the launch of Phase 0.
-
 CONFIG_NAME: "lukso-private-testnet"
 # Misc
 # ---------------------------------------------------------------
@@ -20,7 +19,7 @@ SHUFFLE_ROUND_COUNT: 90
 # `2**14` (= 16,384)
 MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: 1
 # Jan 3, 2020
-MIN_GENESIS_TIME: 1626703466
+MIN_GENESIS_TIME: 1627398782
 # 4
 HYSTERESIS_QUOTIENT: 4
 # 1 (minus 0.25)
