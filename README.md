@@ -156,3 +156,14 @@ CC0 (Creative Common Zero)
 
 * For some reason (due to the `build.rs` in `deposit_contract` project) lighthouse will need to build again (we built already in the Dockerfile...) the first time `docker-compose up` will run.
 * If you spin new network with catalyst and teku  `ETH_2_GENESIS_TIME` in `multinet-cluster/values.yml` cannot be too old. The best approach is to get current timestamp and inject into `multinet-cluster/values.yml`. TL:DR; `https://www.unixtimestamp.com/index.php`  
+
+## Generate genesis and config files for l16-multinet (for l16-common cloud storage)
+
+1. Use`generate_genesis.sh` to create/update new genesis and config files: `vanguard_private_testnet_genesis.ssz`,
+`pandora_private_testnet_genesis.json` and `chain-config.yaml`.
+2. Upload all these 3 files to `l16-common` google cloud storage by replacing existing files in `vanguard` and `pandora` directories.
+3. Make them public by `EDIT PERMISSIONS`.
+4. Set cache for every file by `EDIT METADATA` and set for field `Cache-control` this value: `public, max-age=60`.
+`max-age=60` means 1min cache.
+   
+Points no. 3 and 4 -> you can find these `EDIT` buttons when you chose (click on) concrete file.
