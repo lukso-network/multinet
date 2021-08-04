@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prysm-external-0
+spec:
+  selector:
+    pod.kubernetes.io/pod-name: beaconchain-explorer
+  ports:
+    - name: frontend-port
+      port: 80
+      targetPort: 3333
+      protocol: TCP
+
+  type: LoadBalancer
+  loadBalancerIP:
