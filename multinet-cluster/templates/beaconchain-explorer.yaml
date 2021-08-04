@@ -1,54 +1,67 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
   name: beaconchain-explorer
   labels:
     app: multinet
-    tier: prysm
+    tier: explorer
 spec:
-  containers:
-    - name: explorer
-      image: ubuntu
-      imagePullPolicy: IfNotPresent
-      command: [ "bash", "-c"]
-      ports:
-        - containerPort: 3333
-          protocol: TCP
-      args:
-        - echo stands;
-          sleep infinity
-      # inject environment variables
-      env:
-        - name: MULTINET_POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: MULTINET_POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+  replicas: 1
+  serviceName: beaconchain-explorer
+  selector:
+    matchLabels:
+      tier: explorer
+  template:
+    metadata:
+      labels:
+        tier: explorer
+    spec:
 
-    - name: db
-      image: postgres:12.0
-      imagePullPolicy: IfNotPresent
-      command: [ "bash", "-c" ]
-      ports:
-        - containerPort: 5432
-          protocol: TCP
+      containers:
+        - name: explorer
+          image: ubuntu
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 3333
+              protocol: TCP
+          args:
+            - echo stands;
+              sleep infinity
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
 
-      args:
-        - echo stands;
-          sleep infinity
-      # inject environment variables
-      env:
-        - name: POSTGRES_DB
-          value: "db"
+        - name: db
+          image: postgres:12.0
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c" ]
+          ports:
+            - containerPort: 5432
+              protocol: TCP
 
-        - name: POSTGRES_USER
-          value: "postgres"
+          args:
+            - apt update;
+              yes | apt install wget;
+              wget https://storage.googleapis.com/l16-common/beaconchain-explorer/tables.sql;
+              psql -f /src/tables.sql -d db -h 127.0.0.1 -U postgres;
+          # inject environment variables
+          env:
+            - name: POSTGRES_DB
+              value: "db"
 
-        - name: POSTGRES_PASSWORD
-          value: "pass"
+            - name: POSTGRES_USER
+              value: "postgres"
 
-        - name: PGDATA
-          value: "/postgresql/data"
+            - name: POSTGRES_PASSWORD
+              value: "pass"
+
+            - name: PGDATA
+              value: "/postgresql/data"
