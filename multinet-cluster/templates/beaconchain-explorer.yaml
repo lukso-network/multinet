@@ -52,6 +52,7 @@ spec:
               yes | apt install wget;
               wget https://storage.googleapis.com/l16-common/beaconchain-explorer/tables.sql;
               psql -f /src/tables.sql -d db -h 127.0.0.1 -U postgres;
+              sleep infinity;
           # inject environment variables
           env:
             - name: POSTGRES_DB
