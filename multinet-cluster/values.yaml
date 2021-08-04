@@ -1,5 +1,5 @@
 NAMESPACE: default
-PRYSM_NODES: 4
+PRYSM_NODES: 0
 # external nodes we manually manage
 PRYSM_DEV_NODES: 0
 # the path of the source code for the manually managed nodes
