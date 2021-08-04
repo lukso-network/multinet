@@ -25,8 +25,8 @@ ETH_2_EXPLORERS: 0
 #Number of validators from interop that teku should own
 INTEROP_OWNED_VALIDATOR_COUNT: 32
 # Ethstats for catalyst
-PANDORA_STATS_HOST: catalyst.silesiacoin.com
-PANDORA_STATS_LOGIN_SECRET: VIyf7EjWlR49
+PANDORA_STATS_HOST: stats.pandora.lukso.network
+PANDORA_STATS_LOGIN_SECRET: VIyf7EjWlR48
 # Postgres for eth2 beacon chain explorer
 POSTGRES_PASSWORD: XbCNE86d6J98
 POSTGRES_USER: postgres
