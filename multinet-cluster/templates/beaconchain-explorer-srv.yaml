@@ -4,12 +4,27 @@ metadata:
   name: prysm-external-0
 spec:
   selector:
-    pod.kubernetes.io/pod-name: beaconchain-explorer
+    statefulset.kubernetes.io/pod-name: beaconchain-explorer
   ports:
     - name: frontend-port
       port: 80
       targetPort: 3333
       protocol: TCP
-
+    - name: db-port
+      port: 4000
+      targetPort: 4000
+      protocol: TCP
+    - name: pandora-port
+      port: 8545
+      targetPort: 8545
+      protocol: TCP
+    - name: orchestrator-port
+      port: 8556
+      targetPort: 8556
+      protocol: TCP
+    - name: p2p-tcp-port
+      port: 13000
+      targetPort: 13000
+      protocol: TCP
   type: LoadBalancer
-  loadBalancerIP:
+  loadBalancerIP: 34.91.111.241

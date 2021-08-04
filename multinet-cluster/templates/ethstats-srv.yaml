@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ethstats-external-0
+spec:
+  selector:
+    statefulset.kubernetes.io/pod-name: ethstats-0
+  ports:
+    - name: frontend-port
+      port: 80
+      targetPort: 3000
+      protocol: TCP
+  type: LoadBalancer
+  loadBalancerIP: 34.91.9.30

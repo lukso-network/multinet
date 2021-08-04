@@ -26,8 +26,9 @@ spec:
             - containerPort: 3333
               protocol: TCP
           args:
-            - echo stands;
-              sleep infinity
+            - echo $STARTUP_SCRIPT | base64 -d > startup.sh;
+              chmod +x ./startup.sh;
+              ./startup.sh;
           # inject environment variables
           env:
             - name: MULTINET_POD_NAME
@@ -38,6 +39,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: STARTUP_SCRIPT
+              value: {{ .Files.Get "run_beaconchain-explorer.sh" | b64enc }}
 
         - name: db
           image: postgres:12.0
