@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: blockscout
+  name: ethstats
   labels:
     app: multinet
-    tier: blockscout
+    tier: ethstats
 spec:
   replicas: 1
-  serviceName: blockscout
+  serviceName: ethstats
   selector:
     matchLabels:
-      tier: blockscout
+      tier: ethstats
   template:
     metadata:
       labels:
-        tier: blockscout
+        tier: ethstats
     spec:
       containers:
         - name: explorer
