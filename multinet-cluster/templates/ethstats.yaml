@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: blockscout
+  labels:
+    app: multinet
+    tier: blockscout
+spec:
+  replicas: 1
+  serviceName: blockscout
+  selector:
+    matchLabels:
+      tier: blockscout
+  template:
+    metadata:
+      labels:
+        tier: blockscout
+    spec:
+      containers:
+        - name: explorer
+          image: puppeth/ethstats:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          # inject environment variables
+          env:
+            - name: WS_SECRET
+              value: "{{ .Values.PANDORA_STATS_LOGIN_SECRET }}"
+
