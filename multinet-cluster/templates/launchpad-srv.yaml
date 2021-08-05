@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ethstats-external-0
+  name: launchpad-external-0
 spec:
   selector:
-    statefulset.kubernetes.io/pod-name: ethstats-0
+    statefulset.kubernetes.io/pod-name: launchpad-dashboard-8b7665c6f-rxqsw
   ports:
     - name: frontend-port
       port: 80
-      targetPort: 3000
+      targetPort: 80
       protocol: TCP
   type: NodePort

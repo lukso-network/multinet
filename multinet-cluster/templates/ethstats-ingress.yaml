@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ethstats-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: testnet-ethstats
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/issue-temporary-certificate: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  labels:
+    app: multinet
+spec:
+  tls:
+    - hosts:
+        - stats.pandora.l15.lukso.network
+      secretName: stats-pandora-l15-lukso-network
+  rules:
+    - host: stats.pandora.l15.lukso.network
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ethstats-external-0
+              servicePort: 80

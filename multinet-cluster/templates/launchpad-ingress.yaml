@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: launchpad-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: testnet-launchpad
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/issue-temporary-certificate: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  labels:
+    app: multinet
+spec:
+  tls:
+    - hosts:
+        - launchpad.l15.lukso.network
+      secretName: launchpad-l15-lukso-network
+  rules:
+    - host: launchpad.l15.lukso.network
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: launchpad-external-0
+              servicePort: 80
