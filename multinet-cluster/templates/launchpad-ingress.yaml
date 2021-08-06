@@ -18,8 +18,33 @@ spec:
     - host: launchpad.l15.lukso.network
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: launchpad-external-0
+              servicePort: 80
+          - path: /en/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: launchpad-external-0
+              servicePort: 80
+          - path: /static/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: launchpad-external-0
+              servicePort: 80
+          - path: /static/css/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: launchpad-external-0
+              servicePort: 80
+          - path: /static/js/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: launchpad-external-0
+              servicePort: 80
+          - path: /static/media/*
+            pathType: ImplementationSpecific
             backend:
               serviceName: launchpad-external-0
               servicePort: 80

@@ -4,7 +4,7 @@ metadata:
   name: launchpad-external-0
 spec:
   selector:
-    statefulset.kubernetes.io/pod-name: launchpad-dashboard-8b7665c6f-rxqsw
+    statefulset.kubernetes.io/pod-name: launchpad-dashboard-68c8b8fb7d-c4rl9
   ports:
     - name: frontend-port
       port: 80

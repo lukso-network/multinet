@@ -15,5 +15,9 @@ spec:
       - name: launchpad-dashboard
         image: silesiacoin/eth20-deposit:l15-v002
         imagePullPolicy: IfNotPresent
+        readinessProbe:
+          httpGet:
+            port: 80
+            path: /en
         ports:
         - containerPort: 80
