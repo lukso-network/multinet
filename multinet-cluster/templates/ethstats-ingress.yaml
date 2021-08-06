@@ -10,15 +10,29 @@ metadata:
   labels:
     app: multinet
 spec:
+  backend:
+    serviceName: ethstats-external-0
+    servicePort: 80
   tls:
     - hosts:
-        - stats.pandora.l15.lukso.network
-      secretName: stats-pandora-l15-lukso-network
+        - pandora.l15.lukso.network
+      secretName: pandora-l15-lukso-network
   rules:
-    - host: stats.pandora.l15.lukso.network
+    - host: pandora.l15.lukso.network
       http:
         paths:
-          - path: /
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: ethstats-external-0
+              servicePort: 80
+          - path: /js/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: ethstats-external-0
+              servicePort: 80
+          - path: /css/*
+            pathType: ImplementationSpecific
             backend:
               serviceName: ethstats-external-0
               servicePort: 80

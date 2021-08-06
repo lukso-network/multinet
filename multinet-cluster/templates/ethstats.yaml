@@ -17,7 +17,7 @@ spec:
         tier: ethstats
     spec:
       containers:
-        - name: explorer
+        - name: ethstats
           image: puppeth/ethstats:latest
           imagePullPolicy: IfNotPresent
           ports:
