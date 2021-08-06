@@ -11,5 +11,4 @@ spec:
       targetPort: 3333
       protocol: TCP
 
-  type: LoadBalancer
-  loadBalancerIP: 34.147.11.53
+  type: NodePort

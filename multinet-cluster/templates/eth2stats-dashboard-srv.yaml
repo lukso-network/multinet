@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: eth2stats-dashboard-external
 spec:
-  type: LoadBalancer
-  loadBalancerIP: 34.91.231.216
   selector:
     app: eth2stats-dashboard
   ports:
-    - protocol: TCP
+    - name: frontend-port
+      protocol: TCP
       port: 80
       targetPort: 80
+  type: NodePort

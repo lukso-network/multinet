@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ethstats-ingress
+  name: eth2stats-dashboard-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: testnet-ethstats
+    kubernetes.io/ingress.global-static-ip-name: testnet-eth2stats-dashboard
     cert-manager.io/cluster-issuer: letsencrypt-prod
     cert-manager.io/issue-temporary-certificate: "true"
     acme.cert-manager.io/http01-edit-in-place: "true"
@@ -11,28 +11,28 @@ metadata:
     app: multinet
 spec:
   backend:
-    serviceName: ethstats-external-0
+    serviceName: eth2stats-dashboard-external
     servicePort: 80
   tls:
     - hosts:
-        - stats.pandora.l15.lukso.network
-      secretName: stats-pandora-l15-lukso-network
+        - stats.vanguard.l15.lukso.network
+      secretName: stats-vanguard-l15-lukso-network
   rules:
-    - host: stats.pandora.l15.lukso.network
+    - host: stats.vanguard.l15.lukso.network
       http:
         paths:
           - path: /*
             pathType: ImplementationSpecific
             backend:
-              serviceName: ethstats-external-0
+              serviceName: eth2stats-dashboard-external
               servicePort: 80
           - path: /js/*
             pathType: ImplementationSpecific
             backend:
-              serviceName: ethstats-external-0
+              serviceName: eth2stats-dashboard-external
               servicePort: 80
-          - path: /css/*
+          - path: /config/*
             pathType: ImplementationSpecific
             backend:
-              serviceName: ethstats-external-0
+              serviceName: eth2stats-dashboard-external
               servicePort: 80

@@ -45,18 +45,9 @@ spec:
         - name: db
           image: postgres:12.0
           imagePullPolicy: IfNotPresent
-          #command: [ "bash", "-c" ]
           ports:
             - containerPort: 5432
               protocol: TCP
-
-#          args:
-#            - apt update;
-#              yes | apt install wget;
-#              wget https://storage.googleapis.com/l16-common/beaconchain-explorer/tables.sql;
-#              psql -f /src/tables.sql -d db -h 127.0.0.1 -U postgres;
-#              sleep infinity;
-          # inject environment variables
           env:
             - name: POSTGRES_DB
               value: "db"

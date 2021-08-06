@@ -1,0 +1,63 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: beaconchain-explorer-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: testnet-beaconchain-explorer
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/issue-temporary-certificate: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  labels:
+    app: multinet
+spec:
+  backend:
+    serviceName: beaconchain-explorer-external-0
+    servicePort: 80
+  tls:
+    - hosts:
+        - explorer.vanguard.l15.lukso.network
+      secretName: explorer-vanguard-l15-lukso-network
+  rules:
+    - host: explorer.vanguard.l15.lukso.network
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /js/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /css/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /img/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /webfonts/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /theme/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /fonts/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
+          - path: /index/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: beaconchain-explorer-external-0
+              servicePort: 80
