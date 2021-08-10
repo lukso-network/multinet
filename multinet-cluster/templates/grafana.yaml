@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grafana
+  labels:
+    app: multinet
+
+spec:
+  replicas: 1
+  serviceName: grafana
+  selector:
+    matchLabels:
+      tier: explorer
+  template:
+    metadata:
+      labels:
+        tier: explorer
+    spec:
+
+      containers:
+        - name: grafana
+          image: grafana/grafana
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: GF_PATHS_CONFIG
+              value: "/etc/grafana/grafana.ini"
+          volumeMounts:
+            - mountPath: /etc/grafana/grafana.ini
+              name: grafana-cfgmap
+              subPath: payload
+
+        - name: prometheus
+          image: prom/prometheus:v2.28.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/prometheus/prometheus.yml
+              name: prometheus-cfgmap
+              subPath: payload
+
+      volumes:
+        - name: prometheus-cfgmap
+          configMap:
+            name: prometheus-cfg
+        - name: grafana-cfgmap
+          configMap:
+            name: grafana-cfg
