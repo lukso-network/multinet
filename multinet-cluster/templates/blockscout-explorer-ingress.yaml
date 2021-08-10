@@ -1,0 +1,58 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: blockscout-explorer-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: explorer-pandora-testnet
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/issue-temporary-certificate: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  labels:
+    app: multinet
+spec:
+  backend:
+    serviceName: blockscout-explorer-external-0
+    servicePort: 80
+  tls:
+    - hosts:
+        - explorer.pandora.l15.lukso.network
+      secretName: explorer-pandora-l15-lukso-network
+  rules:
+    - host: explorer.pandora.l15.lukso.network
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80
+          - path: /js/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80
+          - path: /css/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80
+          - path: /images/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80
+          - path: /socket/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80
+          - path: /blocks/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80
+          - path: /address/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: blockscout-explorer-external-0
+              servicePort: 80

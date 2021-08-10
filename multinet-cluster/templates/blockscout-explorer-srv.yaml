@@ -11,5 +11,4 @@ spec:
       targetPort: 4000
       protocol: TCP
 
-  type: LoadBalancer
-  loadBalancerIP:
+  type: NodePort
