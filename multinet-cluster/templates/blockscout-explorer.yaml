@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: blockscout-explorer
+  labels:
+    app: multinet
+    tier: explorer
+spec:
+  replicas: 1
+  serviceName: blockscout-explorer
+  selector:
+    matchLabels:
+      tier: explorer
+  template:
+    metadata:
+      labels:
+        tier: explorer
+    spec:
+
+      containers:
+        - name: explorer
+          image: blockscout/blockscout-lukso:3.6.1-pre-5
+          imagePullPolicy: IfNotPresent
+#          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 4000
+              protocol: TCP
+#          args:
+#            - echo $STARTUP_SCRIPT | base64 -d > startup.sh;
+#              chmod +x ./startup.sh;
+#              ./startup.sh;
+          # inject environment variables
+          env:
+            - name: NETWORK_PATH
+              value: "/"
+            - name: API_PATH
+              value: "/"
+            - name: DATABASE_URL
+              value: "postgresql://postgres:pass@127.0.0.1:5432/db?ssl=false"
+            - name: ETHEREUM_JSONRPC_VARIANT
+              value: "geth"
+            - name: ETHEREUM_JSONRPC_HTTP_URL
+              value: "34.141.11.212:8545"
+            - name: SECRET_KEY_BASE
+              value: "bd2N4bz2cOb5Xn5tuvfijbcuRjD4AY/3+hzimilj4rw8tfpevF/0we2AxMNtjjQn"
+            - name: SUBNETWORK
+              value: "LUKSO L15"
+            - name: SHOW_ADDRESS_MARKETCAP_PERCENTAGE
+              value: "false"
+            - name: BLOCKSCOUT_VERSION
+              value: "v3.7.1-beta"
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+
+        - name: db
+          image: postgres:12.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          env:
+            - name: POSTGRES_DB
+              value: "db"
+
+            - name: POSTGRES_USER
+              value: "postgres"
+
+            - name: POSTGRES_PASSWORD
+              value: "pass"
+
+            - name: PGDATA
+              value: "/postgresql/data"

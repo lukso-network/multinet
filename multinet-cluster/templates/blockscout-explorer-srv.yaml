@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blockscout-explorer-external-0
+spec:
+  selector:
+    statefulset.kubernetes.io/pod-name: blockscout-explorer-0
+  ports:
+    - name: frontend-port
+      port: 80
+      targetPort: 4000
+      protocol: TCP
+
+  type: LoadBalancer
+  loadBalancerIP:
