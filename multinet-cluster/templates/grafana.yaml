@@ -22,11 +22,16 @@ spec:
           image: grafana/grafana
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 3000
+            - name: grafana
+              containerPort: 3000
               protocol: TCP
           env:
             - name: GF_PATHS_CONFIG
               value: "/etc/grafana/grafana.ini"
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 3000
           volumeMounts:
             - mountPath: /etc/grafana/grafana.ini
               name: grafana-cfgmap
