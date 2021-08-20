@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: beaconchain-explorer-cfg
+data:
+  payload: |
+    # Database credentials
+    database:
+      user: "postgres"
+      name: "db"
+      host: "127.0.0.1"
+      port: "5432"
+      password: "pass"
+
+    # Chain network configuration (example will work for the prysm testnet)
+    chain:
+      slotsPerEpoch: 32
+      secondsPerSlot: 6
+      genesisTimestamp: 1627288043
+      minGenesisActiveValidatorCount: 1
+
+    # Note: It is possible to run either the frontend or the indexer or both at the same time
+    # Frontend config
+    frontend:
+      enabled: true # Enable or disable to web frontend
+      phase0path: "./vanguard-config.yml"
+      imprint: "templates/imprint.example.html}**"  # Path to the imprint page content
+      siteName: "Ethereum 2.0 Beacon Chain (Phase 0) Block Chain Explorer" # Name of the site, displayed in the title tag
+      siteSubtitle: "Showing the <a href='https://prylabs.net'>💎 Prysm Eth2 Testnet</a>" # Subtitle shown on the main page
+      csrfAuthKey: '0123456789abcdef000000000000000000000000000000000000000000000000'
+      jwtSigningSecret: "0123456789abcdef000000000000000000000000000000000000000000000000"
+      jwtIssuer: "beaconcha.in"
+      jwtValidityInMinutes: 30
+      server:
+        host: "0.0.0.0" # Address to listen on
+        port: "3333" # Port to listen on
+      database:
+        user: "postgres"
+        name: "db"
+        host: "127.0.0.1"
+        port: "5432"
+        password: "pass"
+      sessionSecret: "<sessionSecret>"
+      email:
+        smtp:
+          server: "<emailserver>"
+          host: "<emailhost>"
+          user: "<emailuser>"
+          password: "<emailpassword>"
+      flashSecret: "" # Encryption secret for flash cookies
+
+    # Indexer config
+    indexer:
+      enabled: true # Enable or disable the indexing service
+      fullIndexOnStartup: false # Perform a one time full db index on startup
+      indexMissingEpochsOnStartup: false # Check for missing epochs and export them after startup
+      node:
+        host: "35.198.170.46" # Address of the backend node
+        port: "4000" # port of the backend node
+        type: "prysm" # can be either prysm or lighthouse
+        pageSize: 250 # the amount of entries to fetch per paged rpc call
+      eth1Endpoint: 'http://35.198.170.46:8545'
+      eth1DepositContractAddress: '0x000000000000000000000000000000000000cafe'
+      eth1DepositContractFirstBlock: 0

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sleep infinity;
 apt update;
 yes | apt install wget git unzip postgresql-client-common postgresql-client-12;
 
