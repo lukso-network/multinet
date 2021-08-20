@@ -23,5 +23,5 @@ data:
     scrape_configs:
       - job_name: 'beacon node'
         static_configs:
-          - targets: ['34.141.11.212:8080']
+          - targets: ['35.198.170.46:8080']
 

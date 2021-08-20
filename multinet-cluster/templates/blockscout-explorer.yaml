@@ -40,7 +40,7 @@ spec:
             - name: ETHEREUM_JSONRPC_VARIANT
               value: "geth"
             - name: ETHEREUM_JSONRPC_HTTP_URL
-              value: "34.141.11.212:8545"
+              value: "35.198.170.46:8545"
             - name: SECRET_KEY_BASE
               value: "bd2N4bz2cOb5Xn5tuvfijbcuRjD4AY/3+hzimilj4rw8tfpevF/0we2AxMNtjjQn"
             - name: SUBNETWORK

@@ -41,6 +41,10 @@ spec:
                   fieldPath: status.podIP
             - name: STARTUP_SCRIPT
               value: {{ .Files.Get "run_beaconchain-explorer.sh" | b64enc }}
+          volumeMounts:
+            - mountPath: /explorer/eth2-beaconchain-explorer/config1.yml
+              name: beaconchain-explorer-cfgmap
+              subPath: payload
 
         - name: db
           image: postgres:12.0
@@ -60,3 +64,8 @@ spec:
 
             - name: PGDATA
               value: "/postgresql/data"
+
+      volumes:
+        - name: beaconchain-explorer-cfgmap
+          configMap:
+            name: beaconchain-explorer-cfg
