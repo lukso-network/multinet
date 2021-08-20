@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: install-l15-lukso-network
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/issue-temporary-certificate: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  labels:
+    app: multinet
+spec:
+  backend:
+    serviceName: installserv-external-0
+    servicePort: 80
+  tls:
+    - hosts:
+        - install.vanguard.l15.lukso.network
+      secretName: install-l15-lukso-network
+  rules:
+    - host: install.vanguard.l15.lukso.network
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: grafana-external-0
+              servicePort: 80

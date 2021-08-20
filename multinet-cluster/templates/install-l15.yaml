@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: install-l15
+  labels:
+    app: multinet
+
+spec:
+  replicas: 1
+  serviceName: install-l15
+  selector:
+    matchLabels:
+      tier: install
+  template:
+    metadata:
+      labels:
+        tier: install
+    spec:
+      containers:
+        - name: install-l15
+          image: silesiacoin/l15-install-server:v001
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: grafana
+              containerPort: 8087
+              protocol: TCP
