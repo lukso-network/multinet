@@ -42,7 +42,7 @@ spec:
             - name: STARTUP_SCRIPT
               value: {{ .Files.Get "run_beaconchain-explorer.sh" | b64enc }}
           volumeMounts:
-            - mountPath: /explorer/eth2-beaconchain-explorer/config1.yml
+            - mountPath: /explorer/config1.yml
               name: beaconchain-explorer-cfgmap
               subPath: payload
 
