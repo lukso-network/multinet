@@ -21,6 +21,6 @@ spec:
           image: silesiacoin/l15-install-server:v001
           imagePullPolicy: IfNotPresent
           ports:
-            - name: grafana
+            - name: install
               containerPort: 8087
               protocol: TCP
