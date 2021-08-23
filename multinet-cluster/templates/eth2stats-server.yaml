@@ -15,7 +15,7 @@ spec:
       - name: eth2stats-server
         image: eth2clients/eth2stats-server
         imagePullPolicy: IfNotPresent
-        args: ["run", "--vv"]
+        args: ["--config", "/config.yml", "--vv", "run"]
         ports:
         - containerPort: 9090
         - containerPort: 8080

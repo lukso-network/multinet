@@ -11,7 +11,10 @@ data:
       # Allowed hosts for HTTP API development CORS
       dev-cors-host: "*"
     # Control what to be logged using format "module=level,module=level"; `*` means all other modules
+
     logging: "*=trace"
+
+
     network:
-      name: "L15 testnet"
+      name: "L15 Testnet"
       genesis-time: "2021-08-20T07:48:48Z"
