@@ -9,7 +9,7 @@ data:
             {
                 "name": "L15 testnet",
                 "path": "/cluster",
-                "joinURL": "http://{{ .Values.ETH2STATS_SERVER_HOST }}:{{ .Values.ETH2STATS_SERVER_EXPOSURE_PORT }}/participate",
+                "joinURL": "https://docs.lukso.tech/networks/l15-testnet/#how-to-participate",
                 "HTTP_API": "https://stats.vanguard.l15.lukso.network/api",
                 "WS_API": "wss://stats.vanguard.l15.lukso.network/ws",
                 "SERVER_ADDR": "{{ .Values.ETH2STATS_DASHBOARD_HOST }}:{{ .Values.ETH2STATS_DASHBOARD_EXPOSURE_PORT }}"

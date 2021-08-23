@@ -4,17 +4,17 @@ metadata:
   name: eth2stats-server-cfg
 data:
   payload: >
+    grpc:
+      port: 9090
     http:
       # Enable/disable development CORS
       port: 8080
       dev-cors: true
       # Allowed hosts for HTTP API development CORS
       dev-cors-host: "*"
-    # Control what to be logged using format "module=level,module=level"; `*` means all other modules
 
-    logging: "*=trace"
-
-
+      # Control what to be logged using format "module=level,module=level"; `*` means all other modules
     network:
       name: "L15 Testnet"
       genesis-time: "2021-08-20T07:48:48Z"
+    logging: "*=trace"
