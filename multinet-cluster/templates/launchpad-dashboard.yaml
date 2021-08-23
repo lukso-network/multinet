@@ -21,7 +21,3 @@ spec:
             path: /en
         ports:
         - containerPort: 80
-        command:
-          - serve
-          - -s
-          - build
