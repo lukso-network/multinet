@@ -6,4 +6,4 @@ data:
   payload: >
     client-versions:
       - namespace: eth2stats-client
-        version: v0.0.0+
+        version: v0.0.4

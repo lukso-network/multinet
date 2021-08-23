@@ -7,7 +7,7 @@ data:
     {
         "networks": [
             {
-                "name": "multinet cluster",
+                "name": "L15 testnet",
                 "path": "/cluster",
                 "joinURL": "http://{{ .Values.ETH2STATS_SERVER_HOST }}:{{ .Values.ETH2STATS_SERVER_EXPOSURE_PORT }}/participate",
                 "HTTP_API": "http://{{ .Values.ETH2STATS_SERVER_HOST }}:{{ .Values.ETH2STATS_SERVER_EXPOSURE_PORT }}/api",
