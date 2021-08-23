@@ -21,11 +21,31 @@ spec:
     - host: stats.vanguard.l15.lukso.network
       http:
         paths:
-          - path: /*
+          - path: /api
             pathType: ImplementationSpecific
             backend:
-              serviceName: eth2stats-dashboard-external
+              serviceName: eth2stats-external
               servicePort: 80
+          - path: /api/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: eth2stats-external
+              servicePort: 80
+          - path: /ws
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: eth2stats-external
+              servicePort: 80
+          - path: /ws/*
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: eth2stats-external
+              servicePort: 80
+#          - path: /*
+#            pathType: ImplementationSpecific
+#            backend:
+#              serviceName: eth2stats-dashboard-external
+#              servicePort: 80
           - path: /js/*
             pathType: ImplementationSpecific
             backend:

@@ -10,8 +10,8 @@ data:
                 "name": "L15 testnet",
                 "path": "/cluster",
                 "joinURL": "http://{{ .Values.ETH2STATS_SERVER_HOST }}:{{ .Values.ETH2STATS_SERVER_EXPOSURE_PORT }}/participate",
-                "HTTP_API": "http://{{ .Values.ETH2STATS_SERVER_HOST }}:{{ .Values.ETH2STATS_SERVER_EXPOSURE_PORT }}/api",
-                "WS_API": "ws://{{ .Values.ETH2STATS_SERVER_HOST }}:{{ .Values.ETH2STATS_SERVER_EXPOSURE_PORT }}/ws",
+                "HTTP_API": "https://stats.vanguard.l15.lukso.network/api",
+                "WS_API": "ws://stats.vanguard.l15.lukso.network/ws",
                 "SERVER_ADDR": "{{ .Values.ETH2STATS_DASHBOARD_HOST }}:{{ .Values.ETH2STATS_DASHBOARD_EXPOSURE_PORT }}"
             }
         ]
