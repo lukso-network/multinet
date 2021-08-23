@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: launchpad-dashboard
-        image: silesiacoin/eth20-deposit:l15-v002
+        image: silesiacoin/eth20-deposit:l15-v003
         imagePullPolicy: IfNotPresent
         readinessProbe:
           httpGet:
