@@ -12,6 +12,6 @@ spec:
       targetPort: 8080
 #      nodePort: {{ .Values.ETH2STATS_SERVER_PORT }}
       name: api
-    - protocol: TCP
-      port: 9090
-      name: grpc
+#    - protocol: TCP
+#      port: 9090
+#      name: grpc
