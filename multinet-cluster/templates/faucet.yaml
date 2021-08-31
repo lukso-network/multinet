@@ -1,0 +1,59 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: faucet
+spec:
+  selector:
+    matchLabels:
+      app: faucet
+  template:
+    metadata:
+      labels:
+        app: faucet
+    spec:
+      volumes:
+        - name: common-data-default
+          persistentVolumeClaim:
+            claimName: common-data-pvc-default
+      containers:
+      - name: launchpad-dashboard
+        image: silesiacoin/faucet:v005
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: PANDORA_STATS_LOGIN_SECRET
+            value: "{{ .Values.PANDORA_STATS_LOGIN_SECRET }}"
+          - name: PANDORA_STATS_HOST
+            value: "{{ .Values.PANDORA_STATS_HOST }}"
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /root/l15
+            name: common-data-default
+        command:
+          - faucet
+          - --account.json
+          - /root/l15/account.json
+          - --account.pass
+          - /root/l15/password.txt
+          - --network
+          - "808080"
+          - --faucet.amount
+          - "32"
+          - --faucet.name
+          - L15
+          - --genesis
+          - /root/l15/pandora-genesis.json
+          - --faucet.minutes
+          - "45"
+          - --ethstats
+          - faucetl15-monday:VIyf7EjWlR48@stats.pandora.l15.lukso.network
+          - --bootnodes
+          - enr:-J24QHJBQM6Jh0HT0FEz51x20uy7mVg_9Tn_tHOl0kfoAq2LQfnGits_vuCN-re-y0fKWHX_99YN482lXcvOqh9tKWcBg2V0aMfGhBrhjnOAgmlkgnY0gmlwhCKNGfmJc2VjcDI1NmsxoQK4yjuhuFMtL451t8EWyB-ZzuwmZx_foNnShOoFKnCtD4RzbmFwwIN0Y3CCdsWDdWRwgnbF
+          - --pandora.notify
+          - ws://34.141.25.249:7878,ws://34.141.25.249:7878
+          - --ethport
+          - "30506"
