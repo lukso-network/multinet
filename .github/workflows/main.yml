@@ -19,6 +19,7 @@ jobs:
           CLUSTER_ZONE: europe-west4-a
           GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
           PROJECT_NAME: l15-testnet
+          TWITTER_TOKEN: ${{ secrets.FAUCET_TWITTER_API_BEARER_TOKEN }}
         run: |
           export GCLOUD_KEY &&
           gcloud config set project "$PROJECT_NAME" &&
@@ -26,7 +27,9 @@ jobs:
           gcloud auth activate-service-account --key-file=./gcloud.json &&
           gcloud container clusters get-credentials "$CLUSTER_NAME" \
           --zone "$CLUSTER_ZONE" \
-          --project "$PROJECT_NAME"
+          --project "$PROJECT_NAME" \
+          kubectl create secret generic faucet \
+          --from-literal=twitter="$TWITTER_TOKEN"
 
       - name: Upgrade cluster
         env:
