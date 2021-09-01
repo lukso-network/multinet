@@ -17,7 +17,7 @@ spec:
             claimName: common-data-pvc-default
       containers:
       - name: launchpad-dashboard
-        image: silesiacoin/faucet:v005
+        image: silesiacoin/faucet:v006
         imagePullPolicy: IfNotPresent
         env:
           - name: PANDORA_STATS_LOGIN_SECRET
@@ -54,13 +54,15 @@ spec:
           - /root/l15/pandora-genesis.json
           - --faucet.minutes
           - "45"
-          - --ethstats
           - --twitter.token
           - $TWITTER_TOKEN
-          - faucetl15-tuesday:VIyf7EjWlR48@stats.pandora.l15.lukso.network
+          - --ethstats
+          - faucetl15-wed:VIyf7EjWlR48@stats.pandora.l15.lukso.network
           - --bootnodes
-          - enr:-J24QHJBQM6Jh0HT0FEz51x20uy7mVg_9Tn_tHOl0kfoAq2LQfnGits_vuCN-re-y0fKWHX_99YN482lXcvOqh9tKWcBg2V0aMfGhBrhjnOAgmlkgnY0gmlwhCKNGfmJc2VjcDI1NmsxoQK4yjuhuFMtL451t8EWyB-ZzuwmZx_foNnShOoFKnCtD4RzbmFwwIN0Y3CCdsWDdWRwgnbF
+          - enr:-J24QCDtMoOpi_j2F4UoWwjg-paZ1m7w1-FW6BL6SVM3jSCfar99T4YDGiQFSiLFaNQwBvGB43Vk5NuYfPHxKynORpsBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNGfmJc2VjcDI1NmsxoQPtKcXuhNkVDIIIxRi1iAhkn1hC3MM-z5IdIskSnYtLf4RzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF
           - --pandora.notify
           - ws://34.141.25.249:7878,ws://34.141.25.249:7878
           - --ethport
           - "30506"
+          - --loglevel
+          - "5"
