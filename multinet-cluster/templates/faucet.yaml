@@ -1,68 +1,70 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-kind: Deployment
-metadata:
-  name: faucet
-spec:
-  selector:
-    matchLabels:
-      app: faucet
-  template:
-    metadata:
-      labels:
-        app: faucet
-    spec:
-      volumes:
-        - name: common-data-default
-          persistentVolumeClaim:
-            claimName: common-data-pvc-default
-      containers:
-      - name: launchpad-dashboard
-        image: silesiacoin/faucet:v006
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: PANDORA_STATS_LOGIN_SECRET
-            value: "{{ .Values.PANDORA_STATS_LOGIN_SECRET }}"
-          - name: PANDORA_STATS_HOST
-            value: "{{ .Values.PANDORA_STATS_HOST }}"
-          - name: TWITTER_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: faucet
-                key: twitter
-        readinessProbe:
-          httpGet:
-            port: 8080
-            path: /
-        ports:
-        - containerPort: 80
-        volumeMounts:
-          - mountPath: /root/l15
-            name: common-data-default
-        command:
-          - faucet
-          - --account.json
-          - /root/l15/account.json
-          - --account.pass
-          - /root/l15/password.txt
-          - --network
-          - "808080"
-          - --faucet.amount
-          - "32"
-          - --faucet.name
-          - L15
-          - --genesis
-          - /root/l15/pandora-genesis.json
-          - --faucet.minutes
-          - "45"
-          - --twitter.token
-          - $TWITTER_TOKEN
-          - --ethstats
-          - faucetl15-wed:VIyf7EjWlR48@stats.pandora.l15.lukso.network
-          - --bootnodes
-          - enr:-J24QCDtMoOpi_j2F4UoWwjg-paZ1m7w1-FW6BL6SVM3jSCfar99T4YDGiQFSiLFaNQwBvGB43Vk5NuYfPHxKynORpsBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNGfmJc2VjcDI1NmsxoQPtKcXuhNkVDIIIxRi1iAhkn1hC3MM-z5IdIskSnYtLf4RzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF
-          - --pandora.notify
-          - ws://34.141.25.249:7878,ws://34.141.25.249:7878
-          - --ethport
-          - "30506"
-          - --loglevel
-          - "5"
+# It is commented because $TWITTER_TOKEN is not parsed correctly, TODO: check this out
+#apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+#kind: Deployment
+#metadata:
+#  name: faucet
+#spec:
+#  selector:
+#    matchLabels:
+#      app: faucet
+#  template:
+#    metadata:
+#      labels:
+#        app: faucet
+#    spec:
+#      volumes:
+#        - name: common-data-default
+#          persistentVolumeClaim:
+#            claimName: common-data-pvc-default
+#      containers:
+#      - name: launchpad-dashboard
+#        image: silesiacoin/faucet:v007
+#        imagePullPolicy: IfNotPresent
+#        env:
+#          - name: PANDORA_STATS_LOGIN_SECRET
+#            value: "{{ .Values.PANDORA_STATS_LOGIN_SECRET }}"
+#          - name: PANDORA_STATS_HOST
+#            value: "{{ .Values.PANDORA_STATS_HOST }}"
+#          - name: TWITTER_TOKEN
+#            valueFrom:
+#              secretKeyRef:
+#                name: faucet
+#                key: twitter
+#        readinessProbe:
+#          httpGet:
+#            port: 8080
+#            path: /
+#        ports:
+#        - containerPort: 8080
+#        volumeMounts:
+#          - mountPath: /root/l15
+#            name: common-data-default
+#        command:
+#          - faucet
+#          - --account.json
+#          - /root/l15/account.json
+#          - --account.pass
+#          - /root/l15/password.txt
+#          - --network
+#          - "808080"
+#          - --faucet.amount
+#          - "32"
+#          - --faucet.name
+#          - L15
+#          - --genesis
+#          - /root/l15/pandora-genesis.json
+#          - --faucet.minutes
+#          - "45"
+#          - --twitter.token
+#          - $TWITTER_TOKEN
+#          - --ethstats
+#          - faucetl15-wed:VIyf7EjWlR48@stats.pandora.l15.lukso.network
+#          - --bootnodes
+#          - enr:-J24QCDtMoOpi_j2F4UoWwjg-paZ1m7w1-FW6BL6SVM3jSCfar99T4YDGiQFSiLFaNQwBvGB43Vk5NuYfPHxKynORpsBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNGfmJc2VjcDI1NmsxoQPtKcXuhNkVDIIIxRi1iAhkn1hC3MM-z5IdIskSnYtLf4RzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF
+#          - --pandora.notify
+#          - ws://34.141.25.249:7878,ws://34.141.25.249:7878
+#          - --ethport
+#          - "30506"
+#          - --loglevel
+#          - "5"
+#
