@@ -25,7 +25,7 @@ ETH_2_EXPLORERS: 0
 #Number of validators from interop that teku should own
 INTEROP_OWNED_VALIDATOR_COUNT: 32
 # Ethstats for catalyst
-PANDORA_STATS_HOST: stats.pandora.lukso.network
+PANDORA_STATS_HOST: stats.pandora.l15.lukso.network
 PANDORA_STATS_LOGIN_SECRET: VIyf7EjWlR48
 # Postgres for eth2 beacon chain explorer
 POSTGRES_PASSWORD: XbCNE86d6J98
@@ -40,3 +40,5 @@ VALIDATOR_GH_TAG: p-v0.0.5-alpha
 PANDORA_GH_TAG: p-v0.0.7-alpha
 # Orchestrator
 ORCHESTRATOR_GH_TAG: 0.0.9
+# Faucet
+FAUCET_NAME: faucet-l15-m

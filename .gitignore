@@ -21,3 +21,8 @@ data/
 *.iml
 out
 gen
+
+# Faucet-related insecure data
+/multinet-cluster/faucet-account.json
+/multinet-cluster/faucet-password.txt
+/multinet-cluster/faucet-twitter-token.txt

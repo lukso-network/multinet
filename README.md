@@ -148,6 +148,14 @@ Example for teku:
 3. Change `image` to latest one inside `multinet-cluster/templates/prysm.yaml` template (`image: silesiacoin/multinet-prysm:v7`)
 4. Run `helm upgrade` command - you can delete prysm pod to be sure about the latest image contribution.
 
+# Deploying faucet
+You need to have several files present in your repo to make it work:
+```shell
+/multinet-cluster/faucet-account.json
+/multinet-cluster/faucet-password.txt
+/multinet-cluster/faucet-twitter-token.txt
+```
+
 # License
 
 CC0 (Creative Common Zero)

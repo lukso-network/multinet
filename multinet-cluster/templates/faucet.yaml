@@ -1,70 +1,70 @@
-# It is commented because $TWITTER_TOKEN is not parsed correctly, TODO: check this out
-#apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-#kind: Deployment
-#metadata:
-#  name: faucet
-#spec:
-#  selector:
-#    matchLabels:
-#      app: faucet
-#  template:
-#    metadata:
-#      labels:
-#        app: faucet
-#    spec:
-#      volumes:
-#        - name: common-data-default
-#          persistentVolumeClaim:
-#            claimName: common-data-pvc-default
-#      containers:
-#      - name: launchpad-dashboard
-#        image: silesiacoin/faucet:v007
-#        imagePullPolicy: IfNotPresent
-#        env:
-#          - name: PANDORA_STATS_LOGIN_SECRET
-#            value: "{{ .Values.PANDORA_STATS_LOGIN_SECRET }}"
-#          - name: PANDORA_STATS_HOST
-#            value: "{{ .Values.PANDORA_STATS_HOST }}"
-#          - name: TWITTER_TOKEN
-#            valueFrom:
-#              secretKeyRef:
-#                name: faucet
-#                key: twitter
-#        readinessProbe:
-#          httpGet:
-#            port: 8080
-#            path: /
-#        ports:
-#        - containerPort: 8080
-#        volumeMounts:
-#          - mountPath: /root/l15
-#            name: common-data-default
-#        command:
-#          - faucet
-#          - --account.json
-#          - /root/l15/account.json
-#          - --account.pass
-#          - /root/l15/password.txt
-#          - --network
-#          - "808080"
-#          - --faucet.amount
-#          - "32"
-#          - --faucet.name
-#          - L15
-#          - --genesis
-#          - /root/l15/pandora-genesis.json
-#          - --faucet.minutes
-#          - "45"
-#          - --twitter.token
-#          - $TWITTER_TOKEN
-#          - --ethstats
-#          - faucetl15-wed:VIyf7EjWlR48@stats.pandora.l15.lukso.network
-#          - --bootnodes
-#          - enr:-J24QCDtMoOpi_j2F4UoWwjg-paZ1m7w1-FW6BL6SVM3jSCfar99T4YDGiQFSiLFaNQwBvGB43Vk5NuYfPHxKynORpsBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNGfmJc2VjcDI1NmsxoQPtKcXuhNkVDIIIxRi1iAhkn1hC3MM-z5IdIskSnYtLf4RzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF,enr:-J24QIL2U7r9XfUg_Icrxc9HN4uXYghpxaUs9NYati6osYE1E2pWpDwypJXEvaiNkK8HmqSXA_77lnjJ6L-3SgV8h6YBg2V0aMfGhL3iEdaAgmlkgnY0gmlwhCKNC9SJc2VjcDI1NmsxoQLNVAJto_JgCJw4wAPvySb_gWDaFgv-6VrUet2l0jagGIRzbmFwwIN0Y3CCdsWDdWRwgnbF
-#          - --pandora.notify
-#          - ws://34.141.25.249:7878,ws://34.141.25.249:7878
-#          - --ethport
-#          - "30506"
-#          - --loglevel
-#          - "5"
-#
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: faucet
+spec:
+  selector:
+    matchLabels:
+      app: faucet
+  template:
+    metadata:
+      labels:
+        app: faucet
+    spec:
+      volumes:
+        - name: shared-data
+          emptyDir: {}
+      initContainers:
+      - name: faucet-init-service
+        volumeMounts:
+          - mountPath: /root/l15
+            name: shared-data
+        image: ubuntu:20.04
+        env:
+          - name: TWITTER_TOKEN
+            value: {{ .Files.Get "faucet-twitter-token.txt" }}
+          - name: PANDORA_GENESIS
+            value: {{ .Files.Get "pandora-genesis.json" | b64enc }}
+          - name: FAUCET_ACCOUNT
+            value: {{ .Files.Get "faucet-account.json" | b64enc }}
+          - name: FAUCET_PASSWORD
+            value: {{ .Files.Get "faucet-password.txt" | b64enc }}
+          - name: FAUCET_SCRIPT
+            value: {{ .Files.Get "run_faucet.sh" | b64enc }}
+          - name: FAUCET_FULL_LINK
+            value: "{{ .Values.FAUCET_NAME }}:{{ .Values.PANDORA_STATS_LOGIN_SECRET }}@{{ .Values.PANDORA_STATS_HOST }}"
+        command:
+        - 'bash'
+        - '-c'
+        args:
+          - mkdir -p /root/l15;
+            echo "pandora stats link $FAUCET_FULL_LINK";
+            echo "$FAUCET_FULL_LINK" > /root/l15/stats.txt;
+            echo "twitter token $TWITTER_TOKEN";
+            echo "$TWITTER_TOKEN" > /root/l15/twitter.txt;
+            echo "faucet password $FAUCET_PASSWORD";
+            echo $PANDORA_GENESIS > /root/l15/pandora-genesis-b64.json;
+            echo $FAUCET_ACCOUNT > /root/l15/account-b64.json;
+            echo $FAUCET_PASSWORD > /root/l15/account-password-b64.txt;
+            echo $FAUCET_SCRIPT > /root/l15/faucet-b64.sh;
+            base64 -d /root/l15/faucet-b64.sh > /root/l15/faucet.sh;
+            chmod +x /root/l15/faucet.sh;
+            base64 -d /root/l15/account-b64.json > /root/l15/account.json;
+            echo $(cat /root/l15/account.json);
+            base64 -d /root/l15/account-password-b64.txt > /root/l15/password.txt;
+            base64 -d /root/l15/pandora-genesis-b64.json > /root/l15/pandora-genesis.json;
+      containers:
+      - name: faucet
+        image: silesiacoin/faucet:v007
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /root/l15
+            name: shared-data
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /
+        ports:
+        - containerPort: 8080
+        command:
+          - /root/l15/faucet.sh
