@@ -22,22 +22,39 @@ spec:
         image: ubuntu:20.04
         env:
           - name: TWITTER_TOKEN
-            value: {{ .Files.Get "faucet-twitter-token.txt" }}
+            valueFrom:
+              secretKeyRef:
+                name: faucet
+                key: twitter
           - name: PANDORA_GENESIS
-            value: {{ .Files.Get "pandora-genesis.json" | b64enc }}
+            valueFrom:
+              secretKeyRef:
+                name: faucet
+                key: genesis
           - name: FAUCET_ACCOUNT
-            value: {{ .Files.Get "faucet-account.json" | b64enc }}
+            valueFrom:
+              secretKeyRef:
+                name: faucet
+                key: account
           - name: FAUCET_PASSWORD
-            value: {{ .Files.Get "faucet-password.txt" | b64enc }}
+            valueFrom:
+              secretKeyRef:
+                name: faucet
+                key: password
           - name: FAUCET_SCRIPT
             value: {{ .Files.Get "run_faucet.sh" | b64enc }}
-          - name: FAUCET_FULL_LINK
-            value: "{{ .Values.FAUCET_NAME }}:{{ .Values.PANDORA_STATS_LOGIN_SECRET }}@{{ .Values.PANDORA_STATS_HOST }}"
+          - name: PANDORA_STATS_LOGIN_SECRET
+            value: "{{ .Values.PANDORA_STATS_LOGIN_SECRET }}"
+          - name: FAUCET_NAME
+            value: "{{ .Values.FAUCET_NAME }}"
+          - name: PANDORA_STATS_HOST
+            value: "{{ .Values.PANDORA_STATS_HOST}}"
         command:
         - 'bash'
         - '-c'
         args:
           - mkdir -p /root/l15;
+            export FAUCET_FULL_LINK="$FAUCET_NAME:$PANDORA_STATS_LOGIN_SECRET@$PANDORA_STATS_HOST";
             echo "pandora stats link $FAUCET_FULL_LINK";
             echo "$FAUCET_FULL_LINK" > /root/l15/stats.txt;
             echo "twitter token $TWITTER_TOKEN";
