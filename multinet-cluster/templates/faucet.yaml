@@ -60,16 +60,13 @@ spec:
             echo "twitter token $TWITTER_TOKEN";
             echo "$TWITTER_TOKEN" > /root/l15/twitter.txt;
             echo "faucet password $FAUCET_PASSWORD";
-            echo $PANDORA_GENESIS > /root/l15/pandora-genesis-b64.json;
-            echo $FAUCET_ACCOUNT > /root/l15/account-b64.json;
-            echo $FAUCET_PASSWORD > /root/l15/account-password-b64.txt;
+            echo $PANDORA_GENESIS > /root/l15/pandora-genesis.json;
+            echo $FAUCET_ACCOUNT > /root/l15/account.json;
+            echo $FAUCET_PASSWORD > /root/l15/password.txt;
             echo $FAUCET_SCRIPT > /root/l15/faucet-b64.sh;
             base64 -d /root/l15/faucet-b64.sh > /root/l15/faucet.sh;
             chmod +x /root/l15/faucet.sh;
-            base64 -d /root/l15/account-b64.json > /root/l15/account.json;
             echo $(cat /root/l15/account.json);
-            base64 -d /root/l15/account-password-b64.txt > /root/l15/password.txt;
-            base64 -d /root/l15/pandora-genesis-b64.json > /root/l15/pandora-genesis.json;
       containers:
       - name: faucet
         image: silesiacoin/faucet:v007
