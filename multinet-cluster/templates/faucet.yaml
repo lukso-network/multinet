@@ -1,13 +1,16 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: faucet
 spec:
+  serviceName: faucet
+  replicas: {{ .Values.FAUCET_NODES }}
   selector:
     matchLabels:
       app: faucet
   template:
     metadata:
+      generateName: faucet-
       labels:
         app: faucet
     spec:
