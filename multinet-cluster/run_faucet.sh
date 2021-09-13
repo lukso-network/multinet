@@ -11,7 +11,7 @@ faucet \
   --account.pass \
   /root/l15/password.txt \
   --network \
-  "808080" \
+  "808081" \
   --faucet.amount \
   "32" \
   --faucet.name \
