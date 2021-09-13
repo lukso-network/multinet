@@ -11,7 +11,7 @@ git checkout feature/vanguard-pandora-shard-info-view;
 
 
 wget https://storage.googleapis.com/l16-common/beaconchain-explorer/bin2.zip -O bin.zip;
-wget https://storage.googleapis.com/l16-common/beaconchain-explorer/vanguard-config.yml;
+wget https://storage.googleapis.com/l16-common/vanguard/vanguard-config_808081.yml -O vanguard-config.yml;
 
 rm -rf ./bin;
 unzip bin.zip;
