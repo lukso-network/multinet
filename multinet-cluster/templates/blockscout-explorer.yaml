@@ -21,14 +21,16 @@ spec:
         - name: explorer
           image: blockscout/blockscout-lukso:3.6.1-pre-5
           imagePullPolicy: IfNotPresent
-#          command: [ "bash", "-c"]
+          command: [ "sh", "-c"]
           ports:
             - containerPort: 4000
               protocol: TCP
-#          args:
-#            - echo $STARTUP_SCRIPT | base64 -d > startup.sh;
-#              chmod +x ./startup.sh;
-#              ./startup.sh;
+          args:
+            - wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh; chmod +x ./wait-for-it.sh;
+              ./wait-for-it.sh -h 127.0.0.1 -p 5432 -t 240 -- echo "end of awaiting period";
+              mix do ecto.create, ecto.migrate;
+              mix phx.server;
+
           # inject environment variables
           env:
             - name: NETWORK_PATH
@@ -40,7 +42,7 @@ spec:
             - name: ETHEREUM_JSONRPC_VARIANT
               value: "geth"
             - name: ETHEREUM_JSONRPC_HTTP_URL
-              value: "35.198.170.46:8545"
+              value: "34.141.11.212:8545"
             - name: SECRET_KEY_BASE
               value: "bd2N4bz2cOb5Xn5tuvfijbcuRjD4AY/3+hzimilj4rw8tfpevF/0we2AxMNtjjQn"
             - name: SUBNETWORK
