@@ -18,42 +18,7 @@ spec:
     - host: {{ include "env-prefix-host" . }}explorer.vanguard.l15.lukso.network
       http:
         paths:
-          - path: /*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /js/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /css/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /img/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /webfonts/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /theme/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /fonts/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: beaconchain-explorer-external-0
-              servicePort: 80
-          - path: /index/*
+          - path: /
             pathType: ImplementationSpecific
             backend:
               serviceName: beaconchain-explorer-external-0

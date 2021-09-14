@@ -18,17 +18,7 @@ spec:
     - host: {{ include "env-prefix-host" . }}stats.pandora.l15.lukso.network
       http:
         paths:
-          - path: /*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: ethstats-external-0
-              servicePort: 80
-          - path: /js/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: ethstats-external-0
-              servicePort: 80
-          - path: /css/*
+          - path: /
             pathType: ImplementationSpecific
             backend:
               serviceName: ethstats-external-0

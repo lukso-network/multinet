@@ -18,12 +18,7 @@ spec:
     - host: {{ include "env-prefix-host" . }}faucet.l15.lukso.network
       http:
         paths:
-          - path: /*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: faucet-l15-external
-              servicePort: 80
-          - path: /api/*
+          - path: /
             pathType: ImplementationSpecific
             backend:
               serviceName: faucet-l15-external

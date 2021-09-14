@@ -18,23 +18,9 @@ spec:
     - host: {{ include "env-prefix-host" . }}grafana.vanguard.l15.lukso.network
       http:
         paths:
-          - path: /*
+          - path: /
             pathType: ImplementationSpecific
             backend:
               serviceName: grafana-external-0
               servicePort: 80
-          - path: /public/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: grafana-external-0
-              servicePort: 80
-          - path: /api/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: grafana-external-0
-              servicePort: 80
-          - path: /login/*
-            pathType: ImplementationSpecific
-            backend:
-              serviceName: grafana-external-0
-              servicePort: 80
+
