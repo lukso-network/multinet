@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - launchpad.l15.lukso.network
-      secretName: launchpad-l15-lukso-network
+        - {{ include "env-prefix-host" . }}launchpad.l15.lukso.network
+      secretName: {{ include "env-prefix-secret" . }}launchpad-l15-lukso-network
   rules:
-    - host: launchpad.l15.lukso.network
+    - host: {{ include "env-prefix-host" . }}launchpad.l15.lukso.network
       http:
         paths:
           - path: /*

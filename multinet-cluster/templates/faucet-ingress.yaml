@@ -15,10 +15,10 @@ spec:
     servicePort: 80
   tls:
     - hosts:
-        - faucet.l15.lukso.network
-      secretName: faucet-l15-lukso-network
+        - {{ include "env-prefix-host" . }}faucet.l15.lukso.network
+      secretName: {{ include "env-prefix-secret" . }}faucet-l15-lukso-network
   rules:
-    - host: faucet.l15.lukso.network
+    - host: {{ include "env-prefix-host" . }}faucet.l15.lukso.network
       http:
         paths:
           - path: /*

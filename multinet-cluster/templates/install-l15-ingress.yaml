@@ -15,10 +15,10 @@ spec:
     servicePort: 80
   tls:
     - hosts:
-        - install.l15.lukso.network
-      secretName: install-l15-lukso-network
+        - {{ include "env-prefix-host" . }}install.l15.lukso.network
+      secretName: {{ include "env-prefix-secret" . }}install-l15-lukso-network
   rules:
-    - host: install.l15.lukso.network
+    - host: {{ include "env-prefix-host" . }}install.l15.lukso.network
       http:
         paths:
           - path: /*

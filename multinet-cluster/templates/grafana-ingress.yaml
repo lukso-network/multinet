@@ -15,10 +15,10 @@ spec:
     servicePort: 80
   tls:
     - hosts:
-        - grafana.vanguard.l15.lukso.network
-      secretName: grafana-vanguard-l15-lukso-network
+        - {{ include "env-prefix-host" . }}grafana.vanguard.l15.lukso.network
+      secretName: {{ include "env-prefix-secret" . }}grafana-vanguard-l15-lukso-network
   rules:
-    - host: grafana.vanguard.l15.lukso.network
+    - host: {{ include "env-prefix-host" . }}grafana.vanguard.l15.lukso.network
       http:
         paths:
           - path: /*
