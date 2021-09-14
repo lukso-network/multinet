@@ -3,10 +3,7 @@ kind: Ingress
 metadata:
   name: eth2stats-dashboard-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: testnet-eth2stats-dashboard
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    cert-manager.io/issue-temporary-certificate: "true"
-    acme.cert-manager.io/http01-edit-in-place: "true"
+    {{- include "ingress-annotations" . | nindent 4 }}
   labels:
     app: multinet
 spec:

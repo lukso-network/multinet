@@ -25,3 +25,12 @@ Environment prefix for the secret
 {{- end -}}
 {{- end }}
 
+{{/*
+Ingress annotations
+*/}}
+{{- define "ingress-annotations" -}}
+acme.cert-manager.io/http01-edit-in-place: 'true'
+cert-manager.io/cluster-issuer: letsencrypt-prod
+kubernetes.io/tls-acme: 'true'
+kubernetes.io/ingress.class: kong
+{{- end }}
