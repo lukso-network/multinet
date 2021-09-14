@@ -16,7 +16,7 @@ data:
     chain:
       slotsPerEpoch: 32
       secondsPerSlot: 6
-      genesisTimestamp: 1627288043
+      genesisTimestamp: 1631514580
       minGenesisActiveValidatorCount: 1
 
     # Note: It is possible to run either the frontend or the indexer or both at the same time
@@ -55,10 +55,10 @@ data:
       fullIndexOnStartup: false # Perform a one time full db index on startup
       indexMissingEpochsOnStartup: false # Check for missing epochs and export them after startup
       node:
-        host: "34.89.191.112" # Address of the backend node
+        host: "34.141.25.249" # Address of the backend node
         port: "4000" # port of the backend node
         type: "prysm" # can be either prysm or lighthouse
         pageSize: 250 # the amount of entries to fetch per paged rpc call
-      eth1Endpoint: 'http://34.89.191.112:8545'
+      eth1Endpoint: 'http://34.141.25.249:8545'
       eth1DepositContractAddress: '0x000000000000000000000000000000000000cafe'
       eth1DepositContractFirstBlock: 0
