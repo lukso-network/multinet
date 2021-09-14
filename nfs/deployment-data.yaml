@@ -27,7 +27,6 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: default-nfs-data
-
       volumes:
         - name: default-nfs-data
           gcePersistentDisk:
