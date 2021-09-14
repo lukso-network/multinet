@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: install-l15
-          image: silesiacoin/l15-install-server:v001
+          image: silesiacoin/l15-install-server:v003
           imagePullPolicy: IfNotPresent
           ports:
             - name: install
