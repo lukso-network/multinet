@@ -21,3 +21,10 @@ spec:
             path: /en
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "20m"
+          limits:
+            memory: "100Mi"
+            cpu: "50m"

@@ -16,7 +16,6 @@ spec:
       labels:
         tier: explorer
     spec:
-
       containers:
         - name: explorer
           image: ubuntu
@@ -45,6 +44,13 @@ spec:
             - mountPath: /explorer/config1.yml
               name: beaconchain-explorer-cfgmap
               subPath: payload
+          resources:
+            requests:
+              memory: "400Mi"
+              cpu: "50m"
+            limits:
+              memory: "600Mi"
+              cpu: "100m"
 
         - name: db
           image: postgres:12.0

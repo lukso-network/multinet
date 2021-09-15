@@ -26,6 +26,13 @@ spec:
         - mountPath: /client-versions.yml
           name: cfgmap2
           subPath: payload
+        resources:
+          requests:
+            memory: "3000Mi"
+            cpu: "250m"
+          limits:
+            memory: "4000Mi"
+            cpu: "500m"
       volumes:
       - name: cfgmap
         configMap:

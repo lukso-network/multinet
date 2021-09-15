@@ -57,6 +57,13 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "150m"
+            limits:
+              memory: "300Mi"
+              cpu: "300m"
 
         - name: db
           image: postgres:12.0
