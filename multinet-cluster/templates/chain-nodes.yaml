@@ -27,32 +27,33 @@ spec:
           imagePullPolicy: IfNotPresent
           command: [ "bash", "-c" ]
           ports:
-            - name: pandora-rpc-port
+            - name: pandora-rpc
               containerPort: 8545
               protocol: TCP
-            - name: pandora-ws-port
+            - name: pandora-ws
               containerPort: 8546
               protocol: TCP
-            - name: pandora-port
+            - name: pandora
               containerPort: 30303
               protocol: TCP
-            - name: vanguard-monitoring-port
+            - name: vanguard-monit
               containerPort: 8080
               protocol: TCP
-            - name: vanguard-grpc-port
+            - name: vanguard-grpc
               containerPort: 4000
               protocol: TCP
-            - name: vanguard-p2p-tcp-port
+            - name: vanguard-p2p
               containerPort: 13000
               protocol: TCP
-            - name: orchestrator-ws-port
+            - name: orch-ws
               containerPort: 7878
               protocol: TCP
-            - name: orchestrator-rpc-port
+            - name: orch-rpc
               containerPort: 7879
               protocol: TCP
           args:
-            - curl https://install.l15.lukso.network | bash;
+            - apt-get update && apt-get install -y curl sudo wget unzip;
+              curl https://install.l15.lukso.network | bash;
               echo $(which lukso);
               lukso start;
           terminationMessagePolicy: FallbackToLogsOnError
