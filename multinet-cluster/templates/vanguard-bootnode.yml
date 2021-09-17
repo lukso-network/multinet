@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prysmbootnode
+  labels:
+    app: multinet
+    tier: prysm
+spec:
+  replicas: 1
+  serviceName: prysmbootnode
+  selector:
+    matchLabels:
+      tier: prysm
+  template:
+    metadata:
+      generateName: prysmbootnode
+      labels:
+        tier: prysm
+    spec:
+      containers:
+        - name: prysmbootnode
+          image: ubuntu
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c"]
+          ports:
+            - containerPort: 4000
+              protocol: UDP
+            - containerPort: 5000
+              protocol: TCP
+            - containerPort: 13000
+              protocol: TCP
+            - containerPort: 12000
+              protocol: TCP
+          args:
+            - echo $BOOTNODE_SCRIPT; echo $BOOTNODE_SCRIPT > ./run_bootnode.shB64.sh; echo "copied"; base64 -d ./run_bootnode.shB64.sh > ./run_bootnode.sh; echo "decoded"; chmod +x ./run_bootnode.sh; ./run_bootnode.sh;
+          # inject environment variables
+          env:
+            - name: MULTINET_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MULTINET_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: BOOTNODE_SCRIPT
+              value: {{ .Files.Get "run_vanguard_bootnode.sh" | b64enc }}

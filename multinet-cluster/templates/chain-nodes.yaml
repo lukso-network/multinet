@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chain-nodes
+  labels:
+    app: multinet
+    tier: chain-nodes
+spec:
+  replicas: 1
+  serviceName: chain-node
+  selector:
+    matchLabels:
+      tier: chain-nodes
+  template:
+    metadata:
+      generateName: lukso-
+      labels:
+        tier: chain-nodes
+    spec:
+      containers:
+        - name: node
+          image: ubuntu
+          resources:
+            requests:
+              memory: "1000M"
+              cpu: "1"
+          imagePullPolicy: IfNotPresent
+          command: [ "bash", "-c" ]
+          ports:
+            - name: pandora-rpc-port
+              containerPort: 8545
+              protocol: TCP
+            - name: pandora-ws-port
+              containerPort: 8546
+              protocol: TCP
+            - name: pandora-port
+              containerPort: 30303
+              protocol: TCP
+            - name: vanguard-monitoring-port
+              containerPort: 8080
+              protocol: TCP
+            - name: vanguard-grpc-port
+              containerPort: 4000
+              protocol: TCP
+            - name: vanguard-p2p-tcp-port
+              containerPort: 13000
+              protocol: TCP
+            - name: orchestrator-ws-port
+              containerPort: 7878
+              protocol: TCP
+            - name: orchestrator-rpc-port
+              containerPort: 7879
+              protocol: TCP
+          args:
+            - curl https://install.l15.lukso.network | bash;
+              echo $(which lukso);
+              lukso start;
+          terminationMessagePolicy: FallbackToLogsOnError
