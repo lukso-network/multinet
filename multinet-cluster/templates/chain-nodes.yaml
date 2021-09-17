@@ -56,4 +56,5 @@ spec:
               curl https://install.l15.lukso.network | bash;
               echo $(which lukso);
               lukso start;
+              tail -f /root/.lukso/l15/logs/pandora/"$(ls -1 /root/.lukso/l15/logs/pandora/ |grep log| head -1)";
           terminationMessagePolicy: FallbackToLogsOnError
