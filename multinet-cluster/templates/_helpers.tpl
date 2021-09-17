@@ -3,7 +3,7 @@
 Environment prefix for the host
 */}}
 {{- define "env-prefix-host" -}}
-{{- $environment := default "dev" .Values.environment }}
+{{- $environment := default "dev" .Release.Namespace }}
 {{- if eq $environment "dev" -}}
 {{- "dev." -}}
 {{- end -}}
@@ -16,7 +16,7 @@ Environment prefix for the host
 Environment prefix for the secret
 */}}
 {{- define "env-prefix-secret" -}}
-{{- $environment := default "dev" .Values.environment }}
+{{- $environment := default "dev" .Release.Namespace }}
 {{- if eq $environment "dev" -}}
 {{- "dev-" -}}
 {{- end -}}
